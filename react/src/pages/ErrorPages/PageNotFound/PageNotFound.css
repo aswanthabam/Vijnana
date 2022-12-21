@@ -1,0 +1,22 @@
+.PageNotFound
+{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #252525;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.PageNotFound div
+{
+  text-align: center;
+}
+.PageNotFound div h2
+{
+  text-shadow: 5px 5px 10px #fff;
+  font-size: 30px;
+}
