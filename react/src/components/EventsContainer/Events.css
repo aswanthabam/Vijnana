@@ -1,0 +1,12 @@
+.events
+{
+  width: calc(100% - 20px);
+  position: relative;
+  height: auto;
+  padding: 10px;
+}
+.events .heading
+{
+  text-align: center;
+  --border-color: var(--text);
+}

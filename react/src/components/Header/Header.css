@@ -1,9 +1,9 @@
-@@keyframes updown{
+@keyframes updown{
   0%{
-    transform: translateY(80%);
+    bottom: 80px;
   }
   100%{
-    transform: translateY(0%);
+    bottom: 90px;
   }
 }
 .header
@@ -16,11 +16,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
+  background: var(--bg);
 }
 .header .background 
 {
-  width: 100%;
+  width: calc(100% - 60px);
+  margin: 0 30px 0 30px;
   height: auto;
   position: absolute;
   z-index: 0;
@@ -36,18 +37,23 @@
   top: 50%;
   transform: translateY(-50%);
   left: 0;
-  color: #fff;
+  color: var(--text);
+}
+.header .center .countdown .countdown-bottom
+{
+  font-size: 13px;
 }
 .header .center .countdown
 {
   font-size: 20px;
+  text-shadow: 1px 1px 10px var(--text);
 }
 .header .center .heading
 {
   display: none;
   font-size: 60px;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  color: #fff;
+  text-shadow: 0 0 10px var(--text), 0 0 20px var(--text), 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  color: var(--text);
 }
 .header .bottom
 {
@@ -56,19 +62,21 @@
   left: 0;
   width: 100%;
   text-align: center;
-  color: #fff;
-  line-height: 30px;
-  font-size: 12px;
+  color: var(--text);
+  line-height: 20px;
+  font-size: 11px;
+  text-shadow: 1px 1px 5px var(--text);
 }
 .header .go-bottom i
 {
   font-size: 40px;
-  color: #fff;
-  animation: updown 2s linear infinite;
+  color: var(--text);
+  text-shadow: 1px 1px 10px var(--text);
 }
 .header .go-bottom
 {
   position: absolute;
   bottom: 100px;
-  animation: updown 4s linear 2s infinite alternate;
+  animation: 2s infinite linear alternate updown;
+  
 }
