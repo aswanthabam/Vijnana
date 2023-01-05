@@ -1,0 +1,140 @@
+.register .login
+{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+.register .form{
+  width: calc(100% - 40px);
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  box-shadow: 1px 1px 10px #252525;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+.register .form .form-item.double input:nth-child(3)
+{
+  width: 40px;
+  margin-left: 10px;
+}
+.register .form .form-item.double
+{
+  display: flex;
+  align-items: space-between;
+}
+.register .form .form-item label
+{
+  font-size: 12px;
+  color: #9d9d9d;
+  margin-bottom: 10px;
+  display: block;
+  height: 20px;
+  background: var(--bg);
+  padding: 0 10px 0 10px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-15px);
+  transition: all 0.5s ease;
+  font-size: 15px;
+  color: green;
+  pointer-events: none;
+}
+.register .form .form-item input:focus ~ label,
+.register .form .form-item input:not(:focus):not(:placeholder-shown) ~ label
+{
+  top: 0px;
+  font-size: 12px;
+  height: 15px;
+  transform: translateY(-50%);
+}
+.register .form .form-item
+{
+  position: relative;
+  width: 100%;
+  height: auto;
+  text-align: left;
+}
+.register .form .header
+{
+  display: block;
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+.register .form .header span
+{
+  color: #5e6263;
+}
+.register .form .form-item select
+{
+  height: 45px;
+  width: 100%;
+  padding: 10px;
+  color: green;
+  margin-bottom: 10px;
+  background: none;
+  box-shadow: 1px 1px 10px #00ff0630;
+  border-radius: 10px;
+  outline: none;
+  border: 0.1px solid #00ff0670;
+}
+.register input
+{
+  width: calc(100% - 20px);
+  height: 25px;
+  padding: 10px;
+  color: green;
+  margin-bottom: 10px;
+  background: none;
+  box-shadow: 1px 1px 10px #00ff0630;
+  border-radius: 10px;
+  outline: none;
+  border: 0.1px solid #00ff0670;
+}
+.register img{
+  display: block;
+  position: relative;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 10px #00ff06;
+  transform: translateX(-50%);
+}
+.register button
+{
+  width: 150px;
+  height: auto;
+  padding: 10px 20px 10px 20px;
+  background: #00ff06;
+  color: #121212;
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 10px #00ff0630;
+  border-radius: 10px;
+}
+.register h3,.register h6,.register h4,.register h2,.register h5
+{
+  width: 100%;
+  color: #808080;
+}
+.register p
+{
+  width: 100%;
+  text-align: left;
+  color: #808080;
+  font-size: 13px;
+}
+@media only screen and (min-width: 800px)
+{
+  .register .form{
+    width: 500px;
+  }
+}

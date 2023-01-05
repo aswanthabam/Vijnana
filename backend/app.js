@@ -7,6 +7,8 @@ var mongoose = require("mongoose");
 var cors = require('cors');
 
 var indexRouter = require("./routes/index");
+var userRouter = require("./routes/api/user");
+var adminRouter = require("./routes/admin");
 
 var app = express();
 
@@ -26,8 +28,10 @@ app.use(function(req, res, next) {
 });
 
 app.use("/",indexRouter);
+app.use("/api/user",userRouter);
+app.use("/admin",adminRouter);
 
-const uri = "mongodb+srv://avctech:avctech@cluster0.4wxlu7g.mongodb.net/avctech-db?retryWrites=true&w=majority";
+const uri = "mongodb+srv://avctech:avctech@cluster0.4wxlu7g.mongodb.net/Tech-Fest?retryWrites=true&w=majority";
 mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true})
   .then((result) =>{
     console.log("CONNECTED TO DB");

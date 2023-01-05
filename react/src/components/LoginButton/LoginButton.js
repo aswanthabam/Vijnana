@@ -1,26 +1,19 @@
-import React,{useState} from "react";
-import { GoogleLogin } from '@react-oauth/google';
+import './LoginButton.css'
+import React,{useState,useEffect} from "react";
 import jwt_decode from "jwt-decode";
  import {fromAccessToken} from '../../services/LoginService';
-import { useGoogleLogin } from '@react-oauth/google';
-
-
-const LoginButton = () => {
-  const [mi,setMi] = useState(true);
-  const onLogin = (token) =>{
-    fromAccessToken(token.access_token).then(res =>{
-      if(res.status==200){
-        document.getElementById("res").textContent = res.data.access_type+"|"+ Object.keys(res.data);
-      }else{}
-    }).catch(err =>{
-      document.getElementById("res").textContent = ""+ Object.keys(err);
-    });
-  };
-  const login = useGoogleLogin({
-    onSuccess: (tokenResponse) =>{ onLogin(tokenResponse)},
-  });
-  return <div className="user" onClick={login}>
-        {mi ? <span id="res"><i class="bi bi-google"></i> Register</span> : <span>None</span>}
+import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+const LoginButton = ({must=false}) => {
+  const state = useSelector(state => state);
+  useEffect(()=>{
+    /* global google */
+    var parent = document.getElementById("login-button");
+    if(!state.is_logged || must) google.accounts.id.renderButton(parent,{theme:null});
+  },[]);
+  return <div className="user">
+        {(!state.is_logged || must) &&<span className="g_id_signin" id="login-button">Login</span>}
+        {(state.is_logged && !must)&&<Link to="/dashboard"><span className="button">Dashboard</span></Link>}
       </div>;
 };
 

@@ -9,7 +9,7 @@ export default function Header(){
       <div className="center">
         <h2 className="heading">VIDHYA</h2>
         <h3 className="countdown">3 Days 2 Hours 35 Minutes</h3>
-        <span className="countdown-bottom">Left for moving on...</span>
+        <span className="countdown-bottom">Left for moving on...<br/><span id="res">Nothing</span></span>
       </div>
       <div className="bottom">
         <h3 className="college">

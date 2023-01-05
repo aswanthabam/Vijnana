@@ -23,9 +23,10 @@
   },
   "nodemonConfig": {
     "env": {
-      "USER": "avc-asw",
-      "PASS": "asw-avc",
-      "ADMIN": "aswanth"
+      "USER": "asw-avc",
+      "PASS": "avc-asw",
+      "ADMIN": "aswanth",
+      "CLIENT_ID":"1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com"
     }
   },
   "author": "Aswanth V C",

@@ -13,15 +13,7 @@
   top: 0;
   left: 0;
 }
-.topbar .user a{text-decoration: none;color:var(--text);}
-.topbar .user span
-{
-  font-size: 13px;
-  border: 1px solid #108500;
-  padding: 10px;
-  border-radius: 30px;
-  background: #108500;
-}
+
 .topbar .menu
 {
   position: relative;
