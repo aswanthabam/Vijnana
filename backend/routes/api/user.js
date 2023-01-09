@@ -61,6 +61,52 @@ const loginAction = async (p,res) =>{
 router.get("/",(req,res)=>{
   res.json({hi:"6"});
 });
+router.post("/getMyDetails",async (req,res)=>{
+  var {userId=null,token=null} = req.body;
+  var out = {status:400};
+  if(userId == null) out.description = "UserId not provided";
+  else if(token == null) out.description = "Token not provided";
+  else out.status = 200;
+  if(out.status != 200){
+    res.json(out);
+    return;
+  }
+  try{
+    await User.find({userId:userId}).then(p=>{
+      out.status = 400;
+      if(p == null) out.description = "Invalid userId";
+      else if(p.length != 1) out.description = "User not found";
+      else{
+        p = p[0];
+        console.log("TOKEN: "+p.token+" | "+token)
+        if(p.token != token){
+          out.description = "Invalid token";
+        }else{
+          out.status = 200;
+          out.description = "User found";
+          out.content = {
+            userId:p.userId,
+            name:p.name,
+            email:p.email,
+            dob:p.dob,
+            course:p.course,
+            phone:p.phone,
+            picture:p.picture,
+          }
+        }
+      }
+      res.json(out)
+      return;
+    });
+    return;
+  }catch(e){
+    out.status = 500;
+    out.description = "Error occured when getting details";
+    out.error = e;
+    res.json(out);
+    return;
+  }
+})
 router.post("/login",async (req,res) =>{
   var {email=null,aud=null} = req.body;
   var out = {status:400};
@@ -83,6 +129,8 @@ router.post("/login",async (req,res) =>{
   }else{
     await User.find({email:email}).then(async (p)=>{
       al = await loginAction(p,res);
+      console.log("Login request");
+      console.log(p);
     });
   }
   if(!al){
@@ -107,6 +155,8 @@ router.post("/create",async (req,res)=>{
   }else{
     await User.find({email:email}).then(async (p)=>{
       al = await loginAction(p,res);
+      console.log("Create user: Uniqueness check:-")
+      console.log(p)
     });
   }
   if(al) return;
@@ -163,7 +213,7 @@ router.post("/create",async (req,res)=>{
        return;
      }
    });
-   var userId = "VIDHYA23-"+(100+id);
+   var userId = "VIJNANA23-"+(100+id);
    var date = new Date();
    var token = btoa(email+"D"+date.getDate()+"M"+date.getMonth()+"Y"+date.getFullYear()+"H"+date.getHours()+"M"+date.getMinutes()+"S"+date.getSeconds()+"CL").replace("=","");
    date.setDate(date.getDate() + 14);

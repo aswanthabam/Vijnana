@@ -1,13 +1,20 @@
-import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION} from "./types";
+import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED} from "./types";
+
+export const googleScriptLoaded = (val=false) => ({
+  type: GOOGLE_SCRIPT_LOADED,
+   payload: {
+      gapi:val
+   }
+});
 
 export const cancelNotification = () => ({
-  type: USER_LOGIN,
+  type: CANCEL_NOTIFICATION,
    payload: {
       visble:false
    }
 });
 export const newNotification = ({text,type="info"}) => ({
-  type: USER_LOGIN,
+  type: NEW_NOTIFICATION,
    payload: {
       text:text,
       type:type,

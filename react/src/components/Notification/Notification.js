@@ -6,6 +6,7 @@ export default function Notification({visible=false,type="info",text}){
     case "info":
        icon = "bi bi-info"
        break;
+     default:icon = "bi bi-info"
   }
   return (
     <div className={"notification "+type+" "+(visible ? "": "gone")}>

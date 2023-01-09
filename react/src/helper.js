@@ -6,7 +6,7 @@ export const useNotification = () =>{
   const [text,setText] = useState(null);
   const [type,setType] = useState("info");
   
-  const newNotification = (te,ty) => {
+  const newNotification = (te,ty="info") => {
     setText(te);
     setType(ty);
     setVisible(true);
@@ -17,7 +17,7 @@ export const useNotification = () =>{
 };
 export const useLogin = () => {
   const [user,setUser] = useState({is_logged:false});
-  const [cookies,setCookie,removeCookie] = useCookies("user");
+  const [cookies,setCookie] = useCookies("user");
   //const {userId,email,token,expiry=null} = user;
   const login = ({userId,email,token,expiry=null}) =>{
     if(expiry == null){
@@ -46,7 +46,7 @@ export const useLogin = () => {
   };
   useEffect(()=>{
     setUser({
-      "is_logged":(cookies.is_logged == "true" ? true : false)||false,
+      "is_logged":(cookies.is_logged === "true" ? true : false)||false,
       "userId":cookies.userId,
       "email":cookies.email,
       token:cookies.token

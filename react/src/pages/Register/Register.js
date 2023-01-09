@@ -1,19 +1,24 @@
 import './Register.css';
-import {useState} from "react";
+//import {useState} from "react";
 import LoginButton from '../../components/LoginButton/LoginButton';
 import {createUser} from "../../services/LoginService";
 import { useSelector, useDispatch} from 'react-redux';
 import { loginUser } from '../../actions/index'; 
 import {useLogin} from '../../helper';
+import {useNavigate} from "react-router-dom";
+import {useNotification} from "../../helper";
+
 export default function Register({user=null,setUser})
 {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const [curUser,login,logout] = useLogin();
+  const redirect = useNavigate();
+  const [visible,text,type,showNotification] = useNotification();
   const handleSubmit = e =>{
     e.preventDefault();
     createUser(user.email,user.name,user.picture,user.phone,user.dob,user.course,user.aud).then(responce =>{
-      if(responce.status == 200){
+      if(responce.status === 200){
         dispatch(loginUser({
             user:{
               email:user.email,
@@ -27,6 +32,8 @@ export default function Register({user=null,setUser})
             is_logged:true
           }));
         login({email:user.email,...responce.data.content});
+        showNotification("User Created Successfully ");
+        redirect("/dashboard");
       }else {
         logout();
       }
@@ -40,7 +47,7 @@ export default function Register({user=null,setUser})
       { (!state.is_logged && user) && 
       <form onSubmit={handleSubmit} className="form">
         <div className="header">
-          <img src={user.picture} width="50px" height="50px"></img>
+          <img alt="Profile" src={user.picture} width="50px" height="50px"></img>
           <span>{user.email}</span>
         </div>
         <h3> Welcome {user.name}</h3>

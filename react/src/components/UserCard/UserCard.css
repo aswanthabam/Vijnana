@@ -1,0 +1,38 @@
+.user-card{
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  min-height: 200px;
+  width: calc(100% - 40px);
+  margin: 10px;
+  padding: 10px;
+  background: #252525;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px #9d9d9d;
+  position: relative;
+}
+.user-card .profile{
+  display: block;
+  width: 70px;
+  height: 70px;
+  /*left: 50%;
+  transform: translateX(-50%);*/
+  border: 2px solid #9d9d9d;
+  border-radius: 50%;
+}
+.user-card .details{
+  width: calc(100% - 90px);
+  height: auto;
+}
+.user-card .name{
+  display: block;
+  font-size: 18px;
+}
+.user-card .email{
+  display: block;
+  font-size: 14px;
+}
+.user-card .userId{
+  display: block;
+  font-size: 18px;
+}

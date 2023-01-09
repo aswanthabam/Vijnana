@@ -1,15 +1,26 @@
 import './Header.css';
-import bg from '../../images/bg_1.jpg';
+import logo from '../../images/logo.png';
+import bg from "../../images/bg2.jpg"
 import TopBar from '../TopBar/TopBar'
+import vid from "../../videos/vid1.mp4"
+import name from "../../images/name.png"
 export default function Header(){
   return (
     <div className="header">
       <TopBar/>
-      <img className="background" src={bg}/>
-      <div className="center">
-        <h2 className="heading">VIDHYA</h2>
-        <h3 className="countdown">3 Days 2 Hours 35 Minutes</h3>
-        <span className="countdown-bottom">Left for moving on...<br/><span id="res">Nothing</span></span>
+      <video onClick={(elem)=>{
+        elem.currentTarget.style.animation = "none";
+        document.getElementById("header-center-elem").style.animation = "none";
+      }} className='videoTag' autoPlay muted>
+        <source src={vid} type='video/mp4' />
+      </video>
+      <img alt="" className="background" src={bg}/>
+      <div id="header-center-elem" className="center">
+        <img alt="Logo" className="logo" src={logo}/>
+        <img alt="VIJÑĀNA" className="name" src={name}/>
+        <h2 className="heading">VIJÑĀNA</h2>
+        {/*<h3 className="countdown">3 Days 2 Hours 35 Minutes</h3>
+        <span className="countdown-bottom">Left for moving on...<br/><span id="res">Nothing</span></span>*/}
       </div>
       <div className="bottom">
         <h3 className="college">

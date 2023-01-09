@@ -8,9 +8,9 @@ import PageNotFound from './pages/ErrorPages/PageNotFound/PageNotFound';
 import Main from './components/Main/Main';
 import jwt_decode from "jwt-decode";
 import {login} from "./services/LoginService";
-import { useSelector, useDispatch} from 'react-redux';
-import { loginUser,logoutUser,newNotification,cancelNotification } from './actions/index';
-import { useCookies } from 'react-cookie';
+import {useSelector,useDispatch} from 'react-redux';
+import { loginUser,logoutUser,googleScriptLoaded,newNotification,cancelNotification} from './actions/index';
+// import { useCookies } from 'react-cookie';
 import { useLogin,useNotification } from "./helper";
 import Notification from "./components/Notification/Notification";
 function App() {
@@ -19,16 +19,54 @@ function App() {
   const [user,setUser] = useState(null);
   const redirect = useNavigate();
   const [curUser,userLogin,userLogout] = useLogin();
-  const [visible,text,type,newNotification] = useNotification();
+  const [visible,text,type,showNotification] = useNotification();
   const clientId = "1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com";
-  const [cookies,setCookie] = useCookies(["user"]);
+  //const [cookies,setCookie] = useCookies(["user"]);
+  
+  useEffect(() => {
+    if(typeof window === "undefined" || !window.google)  return;
+    window.google.accounts.id.initialize({
+      client_id: clientId,
+      callback: handleCredentialResponse
+    });
+    dispatch(googleScriptLoaded(true));
+    var logg = curUser.is_logged;
+    
+    if(!logg) window.google.accounts.id.prompt();
+    else{
+      setUser({
+        userId:curUser.userId,
+        email:curUser.email,
+        token:curUser.token,
+        expiry:curUser.expiry
+      });
+      dispatch(loginUser({
+        user:{
+          userId:curUser.userId,
+          email:curUser.email,
+          token:curUser.token,
+          expiry:curUser.expiry
+        },
+        is_logged:logg
+      }));
+    }
+    /*const script = document.createElement("script")
+    script.src = "https://accounts.google.com/gsi/client"
+    script.onload = initializeGsi
+    script.async = true
+    script.id = "google-client-script"
+    document.querySelector("body").appendChild(script)
+    //userLogout();*/
+  },[curUser,dispatch]);
+  
+  
   const handleCredentialResponse = async (responce) =>{
     var data = jwt_decode(responce.credential);
-    if(data.aud == clientId){
+    if(data.aud === clientId){
       
       var reg = false;
       await login(data.email,data.aud).then(async (res)=>{
-        if(res.data.status == 200){
+        if(res.data.status === 200){
           setUser({
             is_logged:true
           });
@@ -47,6 +85,8 @@ function App() {
           }));
           //onLogin(user);
           userLogin({email:data.email,...res.data.content});
+          showNotification("Logged In Successfully ");
+          redirect("/dashboard");
         }else{
           setUser({});
           dispatch(logoutUser());
@@ -80,38 +120,11 @@ function App() {
      // else return redirect("/");
     }
   };
-  useEffect(() => {
-    //userLogout();
-    var logg = curUser.is_logged;
-    /* global google */
-   google.accounts.id.initialize({
-      client_id: clientId,
-      callback: handleCredentialResponse
-    });
-    if(!logg) google.accounts.id.prompt();
-    else{
-      setUser({
-        userId:curUser.userId,
-        email:curUser.email,
-        token:curUser.token,
-        expiry:curUser.expiry
-      });
-      dispatch(loginUser({
-        user:{
-          userId:curUser.userId,
-          email:curUser.email,
-          token:curUser.token,
-          expiry:curUser.expiry
-        },
-        is_logged:logg
-      }));
-    }
-  },[curUser]);
   
   return (
     <Main>
       <Notification visible={visible} text={text} type={type}/>
-      {<h6 onClick={()=>{dispatch(newNotification("Hello"))}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>}
+      {/*<h6 onClick={()=>{showNotification("Hello")}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>*/}
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
