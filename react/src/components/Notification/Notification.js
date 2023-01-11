@@ -1,20 +1,27 @@
 import "./Notification.css";
-
-export default function Notification({visible=false,type="info",text}){
+import {useSelector} from "react-redux";
+export default function Notification({}){
+  const notification = useSelector(state => state.notification);
   var icon;
-  switch(type){
+  var classes = "notification "+notification.type;
+  switch(notification.type){
     case "info":
        icon = "bi bi-info"
        break;
      default:icon = "bi bi-info"
   }
+  if(notification.visible) classes += " visible";
+  
   return (
-    <div className={"notification "+type+" "+(visible ? "": "gone")}>
+    <div className={classes}>
       <span className="icon">
-        <i class={icon}></i>
+        <i className={icon}></i>
       </span>
       <span className="text">
-         {text}
+         {notification.text}
+      </span>
+      <span className="close">
+        <i className="bi bi-x"></i>
       </span>
     </div>
   );

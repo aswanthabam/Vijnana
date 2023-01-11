@@ -1,7 +1,16 @@
+.notification.visible,
+.notification.info.visible{
+  top: 10px;
+}
+.notification.gone,
+.notification.info.gone
+{
+ /* top: -100%;*/
+}
 .notification
 {
   position: fixed;
-  top: 10px;
+  top: -100%;
   left: 10px;
   width: calc(100% - 10px);
   height: auto;
@@ -18,6 +27,7 @@
   transform: translateY(15%);
   z-index: 166;
 }
+
 .notification .text
 {
   width: calc(100% - 50px);
@@ -56,10 +66,7 @@
 }
 .notification.info
 {
+  top: 10px;
   border: 1px solid #33c4ff;
   box-shadow: 1px 1px 10px #33c4ff;
-}
-.notification.gone
-{
-  top: -100%;
 }

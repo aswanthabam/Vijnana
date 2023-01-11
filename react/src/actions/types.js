@@ -6,3 +6,6 @@ export const CANCEL_NOTIFICATION = "CANCEL_NOTIFICATION"
 
 export const GOOGLE_SCRIPT_LOADED = "GOOGLE_SCRIPT_LOADED";
 //export const GOOGLE_SCRIPT_ = "GOOGLE_SCRIPT_LOADED";
+
+export const SET_ADMIN = "SET_ADMIN";
+//export const _ADMIN = "SET_ADMIN";

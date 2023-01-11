@@ -1,6 +1,6 @@
-import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED} from "../actions/types";
+import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED,SET_ADMIN} from "../actions/types";
 //import {useLogin,useLogout} from "../helper"
-export default function userReducer(state = {is_logged:false,gapi:false}, action) {
+export default function userReducer(state = {is_logged:false,gapi:false,notification:{visible:false},admin:{is_admin:false}}, action) {
   
    switch (action.type) {
       case USER_LOGIN:
@@ -13,6 +13,8 @@ export default function userReducer(state = {is_logged:false,gapi:false}, action
         return {...state,notification:action.payload};
       case GOOGLE_SCRIPT_LOADED:
         return {...state,gapi:action.payload.gapi};
+      case SET_ADMIN:
+        return {...state,admin:action.payload};
       default:
          return state;
    }

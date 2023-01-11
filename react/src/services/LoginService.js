@@ -1,7 +1,16 @@
 import axios from "axios";
 import {api} from "../config";
-export const fromAccessToken = token =>{
-  return axios.get("https://oauth2.googleapis.com/tokeninfo?access_token="+token);
+
+export const isAdmin = (token) =>{
+  return axios.post(api+"/api/admin/is_admin",{
+    token:token
+  });
+};
+export const adminLogin = (user,pass) =>{
+  return axios.post(api+"/api/admin/login",{
+    user:user,
+    pass:pass
+  });
 };
 export const login = (email,aud) =>{
   return axios.post(api+"/api/user/login",{

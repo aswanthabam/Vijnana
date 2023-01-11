@@ -1,20 +1,48 @@
 import { useCookies } from 'react-cookie';
 import { useEffect,useState } from 'react';
-
+import {useDispatch} from "react-redux";
+import {newNotification,cancelNotification} from "./actions/index"
 export const useNotification = () =>{
+  const notification = useDispatch(state => state.notification);
+  const dispatch = useDispatch();
   const [visible,setVisible] = useState(false);
   const [text,setText] = useState(null);
   const [type,setType] = useState("info");
   
-  const newNotification = (te,ty="info") => {
-    setText(te);
+  const showNotification = (te,ty="info",au=true,time=4000) => {
+    dispatch(newNotification(te,ty,au,time));
+    /*setText(te);
     setType(ty);
-    setVisible(true);
-    setTimeout(()=>{setVisible(false)},2000);
+    setVisible(true);*/
+    if(au)setTimeout(()=>{dispatch(cancelNotification())},time);
   }
   
-  return [visible,text,type,newNotification];
+  return showNotification;
 };
+export const useAdmin = () =>{
+  const [token,setToken] = useState(null);
+  const [expiry,setExpiry] = useState(null);
+  const [cookies,setCookie] = useCookies("admin");
+  
+  const login = ({token,expiry=null}) =>{
+    if(expiry == null){
+      expiry = new Date();
+      expiry.setDate(expiry.getDate() + 14);
+    }
+    setCookie("token",token,{path:'/',expiry:expiry});
+   // setCookie("expiry",token,{path:'/',expiry:date});
+    setToken(token);
+  }
+  const logout = () =>{
+    setCookie("token",null,{path:'/'});
+   // setCookie("expiry",token,{path:'/',expiry:date});
+    setToken(null);
+  }
+  useEffect(()=>{
+    setToken(cookies.token);
+  },[cookies]);
+  return [token, login,logout];
+}
 export const useLogin = () => {
   const [user,setUser] = useState({is_logged:false});
   const [cookies,setCookie] = useCookies("user");

@@ -1,4 +1,12 @@
-import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED} from "./types";
+import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED,SET_ADMIN} from "./types";
+
+export const setAdmin = (is_admin=true,token)=>({
+  type:SET_ADMIN,
+  payload:{
+    token:token,
+    is_admin:is_admin
+  }
+});
 
 export const googleScriptLoaded = (val=false) => ({
   type: GOOGLE_SCRIPT_LOADED,
@@ -13,12 +21,14 @@ export const cancelNotification = () => ({
       visble:false
    }
 });
-export const newNotification = ({text,type="info"}) => ({
+export const newNotification = (text,type="info",auto=true,time=4000) => ({
   type: NEW_NOTIFICATION,
    payload: {
       text:text,
       type:type,
-      visble:true
+      visble:true,
+      auto:auto,
+      time:time
    }
 });
 export const loginUser = ({user,is_logged=false}) => ({

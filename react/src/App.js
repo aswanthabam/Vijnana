@@ -13,13 +13,16 @@ import { loginUser,logoutUser,googleScriptLoaded,newNotification,cancelNotificat
 // import { useCookies } from 'react-cookie';
 import { useLogin,useNotification } from "./helper";
 import Notification from "./components/Notification/Notification";
+import Login from "./pages/Admin/Login/Login";
+import Admin from "./pages/Admin/Admin";
+import AdminRoute from "./pages/Admin/AdminRoute";
 function App() {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const [user,setUser] = useState(null);
   const redirect = useNavigate();
   const [curUser,userLogin,userLogout] = useLogin();
-  const [visible,text,type,showNotification] = useNotification();
+  const showNotification = useNotification();
   const clientId = "1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com";
   //const [cookies,setCookie] = useCookies(["user"]);
   
@@ -66,6 +69,7 @@ function App() {
       
       var reg = false;
       await login(data.email,data.aud).then(async (res)=>{
+        showNotification(JSON.stringify(res.data),"info",false);
         if(res.data.status === 200){
           setUser({
             is_logged:true
@@ -123,12 +127,17 @@ function App() {
   
   return (
     <Main>
-      <Notification visible={visible} text={text} type={type}/>
-      {/*<h6 onClick={()=>{showNotification("Hello")}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>*/}
+      <Notification visible={state.notification.visible} text={state.notification.visible ? state.notification.text : ""} type={state.notification.visible ? state.notification.type : ""}/>
+      {<h6 onClick={()=>{showNotification("Hello","info",false)}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>}
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/register" element={<Register user={user} setUser={setUser}/>}/>
+        <Route path="/admin" element={<AdminRoute/>}>
+          <Route index element={<Admin/>}/>
+          
+        </Route>
+        <Route path="admin_login" element={<Login/>}/>
         <Route path="*" element={<PageNotFound/>}/>
       </Routes>
     </Main>

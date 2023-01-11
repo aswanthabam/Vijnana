@@ -9,6 +9,7 @@ var cors = require('cors');
 var indexRouter = require("./routes/index");
 var userRouter = require("./routes/api/user");
 var adminRouter = require("./routes/admin");
+var adminApiRouter = require("./routes/api/admin");
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(function(req, res, next) {
 
 app.use("/",indexRouter);
 app.use("/api/user",userRouter);
+app.use("/api/admin",adminApiRouter);
 app.use("/admin",adminRouter);
 
 const uri = "mongodb+srv://avctech:avctech@cluster0.4wxlu7g.mongodb.net/Tech-Fest?retryWrites=true&w=majority";
