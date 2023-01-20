@@ -5,9 +5,9 @@ import {newNotification,cancelNotification} from "./actions/index"
 export const useNotification = () =>{
   const notification = useDispatch(state => state.notification);
   const dispatch = useDispatch();
-  const [visible,setVisible] = useState(false);
+  /*const [visible,setVisible] = useState(false);
   const [text,setText] = useState(null);
-  const [type,setType] = useState("info");
+  const [type,setType] = useState("info");*/
   
   const showNotification = (te,ty="info",au=true,time=4000) => {
     dispatch(newNotification(te,ty,au,time));
@@ -28,7 +28,7 @@ export const useAdmin = () =>{
     if(expiry == null){
       expiry = new Date();
       expiry.setDate(expiry.getDate() + 14);
-    }
+    }else expiry = new Date(expiry);
     setCookie("token",token,{path:'/',expiry:expiry});
    // setCookie("expiry",token,{path:'/',expiry:date});
     setToken(token);
@@ -41,7 +41,7 @@ export const useAdmin = () =>{
   useEffect(()=>{
     setToken(cookies.token);
   },[cookies]);
-  return [token, login,logout];
+  return [cookies.token, login,logout];
 }
 export const useLogin = () => {
   const [user,setUser] = useState({is_logged:false});
@@ -51,7 +51,7 @@ export const useLogin = () => {
     if(expiry == null){
       expiry = new Date();
       expiry.setDate(expiry.getDate() + 14);
-    }
+    }else expiry = new Date(expiry);
     setCookie("is_logged",true,{path:"/",expiry:expiry});
     setCookie("userId",userId,{path:"/",expiry:expiry});
     setCookie("email",email,{path:"/",expiry:expiry});

@@ -1,7 +1,10 @@
 .admin-route{
-  width: 100%;
+  position: absolute;
+  top: 0;
+  width: calc(100% - 20px);
+  padding: 10px;
   height: auto;
-  min-height: 100vh;
+  min-height:calc(100vh - 20px);
   background: #fff;
   color: #121212;
 }

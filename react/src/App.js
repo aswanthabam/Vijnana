@@ -13,6 +13,7 @@ import { loginUser,logoutUser,googleScriptLoaded,newNotification,cancelNotificat
 // import { useCookies } from 'react-cookie';
 import { useLogin,useNotification } from "./helper";
 import Notification from "./components/Notification/Notification";
+import Router from "./components/Router/Router";
 import Login from "./pages/Admin/Login/Login";
 import Admin from "./pages/Admin/Admin";
 import AdminRoute from "./pages/Admin/AdminRoute";
@@ -69,7 +70,7 @@ function App() {
       
       var reg = false;
       await login(data.email,data.aud).then(async (res)=>{
-        showNotification(JSON.stringify(res.data),"info",false);
+        showNotification(JSON.stringify(res.data),"error",false);
         if(res.data.status === 200){
           setUser({
             is_logged:true
@@ -89,7 +90,7 @@ function App() {
           }));
           //onLogin(user);
           userLogin({email:data.email,...res.data.content});
-          showNotification("Logged In Successfully ");
+          showNotification("Logged In Successfully ","success");
           redirect("/dashboard");
         }else{
           setUser({});
@@ -98,6 +99,7 @@ function App() {
           reg = false;
         }
       }).catch(err=>{
+        showNotification("An error occured!","error");
         console.log(err);
         setUser({});
         dispatch(logoutUser());
@@ -127,19 +129,8 @@ function App() {
   
   return (
     <Main>
-      <Notification visible={state.notification.visible} text={state.notification.visible ? state.notification.text : ""} type={state.notification.visible ? state.notification.type : ""}/>
-      {<h6 onClick={()=>{showNotification("Hello","info",false)}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>}
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/register" element={<Register user={user} setUser={setUser}/>}/>
-        <Route path="/admin" element={<AdminRoute/>}>
-          <Route index element={<Admin/>}/>
-          
-        </Route>
-        <Route path="admin_login" element={<Login/>}/>
-        <Route path="*" element={<PageNotFound/>}/>
-      </Routes>
+      {/*<h6 onClick={()=>{showNotification("Hello","info")}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>*/}
+      <Router user={user} setUser={setUser}/>
     </Main>
   );
 }

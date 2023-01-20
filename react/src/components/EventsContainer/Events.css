@@ -7,6 +7,7 @@
 }
 .events .heading
 {
+  color: var(--text);
   text-align: center;
   --border-color: var(--text);
 }

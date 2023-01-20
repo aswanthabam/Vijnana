@@ -6,24 +6,25 @@ import {useEffect,useState} from "react"
 import {useNavigate} from "react-router-dom";
 export default function UserCard(){
   const state = useSelector(state => state);
-  const [visible,text,type,showNotification] = useNotification();
+  const showNotification = useNotification();
   const redirect = useNavigate();
   const [user,setUser] = useState({});
   useEffect(()=>{
     if(!state.is_logged) return;
     getMyDetails(state.user.userId,state.user.token).then(res =>{
+     //showNotification(JSON.stringify(res.data),"info",false);
      // document.getElementsByClassName("email")[0].textContent = JSON.stringify(res.data);
      if(res.data.status == 200){
        setUser(res.data.content);
      }else{
        setUser({});
-       showNotification("An error occured. please re-login");
+       showNotification("An error occured. please re-login","error");
        redirect("/register");
      }
       //showNotification("hi");
     }).catch(err=>{
       setUser({});
-      showNotification("An error occured. please re-login");
+      showNotification("An error occured. please re-login","error");
       redirect("/register");
       //showNotification(JSON.stringify(err));
     });

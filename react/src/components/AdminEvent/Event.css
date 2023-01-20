@@ -1,0 +1,46 @@
+.admin-event
+{
+  width: calc(100% - 40px);
+  height: auto;
+  max-height: 350px;
+  margin: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px #12121230;
+  background: #25252510;
+  padding: 10px;
+  color: #121212;
+}
+.admin-event .heading {
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  color: #121212;
+}
+.admin-event .date, .admin-event .type, .admin-event .participants {
+  display: inline-block;
+  width: auto;
+  margin: 0 0 10px 5px;
+  text-align: left;
+}
+.admin-event .date span,
+.admin-event .type span,
+.admin-event .participants span{
+  background: #25252599;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  box-shadow: 0 0 3px var(--blue);
+  color: #fff;
+}
+.admin-event .options a,
+.admin-event .options button{
+  text-decoration: none;
+  color: #12121299;
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px #12121230;
+}

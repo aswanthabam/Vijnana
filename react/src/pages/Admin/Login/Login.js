@@ -15,24 +15,25 @@ export default function Login(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     await adminLogin(user,pass).then(res=>{
+      
       if(res.data.status == 200){
-        login(token);
+        login(res.data.content);
         //localStorage.setItem("adminToken",res.data.content.token);
        // showNotification(JSON.stringify(res.data.error));
-       showNotification(res.data.description);
+       showNotification(res.data.description,"success");
        redirect("/admin");
       }else{
         logout();
         //localStorage.setItem("adminToken",null);
         //showNotification(JSON.stringify(res.data.error));
-        showNotification(res.data.description);
+        showNotification(res.data.description,"error");
       }
     }).catch(err=>{
       console.log("Error")
       console.log(err);
       logout();
       //localStorage.setItem("adminToken",null);
-      showNotification("Error loging in..");
+      showNotification("Error loging in..","error");
       //showNotification(JSON.stringify(err),"info",false);
     });
   };

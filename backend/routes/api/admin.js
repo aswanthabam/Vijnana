@@ -19,17 +19,22 @@ router.post("/is_admin",async (req,res) =>{
   
   console.log("Admin Authentication process....");
   var date = new Date();
+  console.log("Today time: "+date.toISOString())
   try{
   await Admin.find({token:token}).then(p=>{
     if(p == null){
       out.status = 400;
       out.description = "Invalid token";
+      console.log("Invalid token 1 NULL");
     }else if(p.length != 1){
       out.status = 400;
       out.description = "Invalid token";
+      console.log("Invalid token 2");
     }else{
       p = p[0];
-      if(date.getDate() >= p.expiry.getDate() && date.getHours() >= p.expiry.getHours() && date.getMinutes() >= p.expiry.getMinutes()){
+      if(date.getFullYear() >= p.expiry.getFullYear() && date.getMonth() >= p.expiry.getDate() && date.getDate() >= p.expiry.getDate() && date.getHours() >= p.expiry.getHours() && date.getMinutes() >= p.expiry.getMinutes()){
+        console.log("Expired token");
+        console.log(date.getFullYear()+"/"+date.getMonth()+" | Token expiry: "+p.expiry);
         out.status = 400;
         out.description = "Expired token";
       }else{

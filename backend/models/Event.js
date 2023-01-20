@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const gameSchema = new Schema({
+const eventSchema = new Schema({
   id:{
     type:String,
     required:true,
@@ -12,6 +12,10 @@ const gameSchema = new Schema({
     required:true
   },
   description:{
+    type:String,
+    required:true
+  },
+  type:{
     type:String,
     required:true
   },
@@ -36,8 +40,15 @@ const gameSchema = new Schema({
   is_team:{
     type:Boolean,
     default:false
+  },participants:{
+    type:[mongoose.ObjectId],
+    ref:"Users"
+  },
+  teams:{
+    type:[mongoose.ObjectId],
+    ref:"Teams"
   }
 },{timestamps:true});
-const item = mongoose.model("Games",gameSchema);
+const item = mongoose.model("Events",eventSchema);
 
 module.exports = item;
