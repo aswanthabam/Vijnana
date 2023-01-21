@@ -22,6 +22,9 @@ const eventSchema = new Schema({
   image:{
     type:String
   },
+  poster:{
+    type:String
+  },
   docs:{
     type:Array
   },

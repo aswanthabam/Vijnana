@@ -2,6 +2,7 @@ import "./Dashboard.css";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
 import Notification from "../../components/Notification/Notification";
 import UserCard from "../../components/UserCard/UserCard";
+import PreLoader from "../../components/PreLoader/PreLoader";
 import Event from "../../components/Event/Event";
 import {useSelector} from "react-redux";
 import {getMyDetails} from "../../services/UserService";
@@ -36,8 +37,9 @@ export default function Dashboard(){
   },[state.is_logged,state.user]);
   return (
     <div className="dashboard">
-      <LogoutButton/><br/>
+      <PreLoader visible={!user.loaded}/>
       <UserCard user={user}/>
+      <br/><LogoutButton/>
       <h3 className="underlined">Registered Events</h3>
       { user.participate && user.participate.map(event=><Event event={{...event,date:event.date}}/>)}
       {!user.participate && <span>No events registered</span>}

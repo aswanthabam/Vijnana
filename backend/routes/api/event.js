@@ -257,7 +257,7 @@ router.get("/getAll",async (req,res) =>{
   }
 })
 router.post("/create",async (req,res) => {
-  var {name=null, description=null,date=null,type=null,image=null,maxPart,minPart,poster,docs} = req.body;
+  var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null} = req.body;
   var out = {status:400}
   if(name == null) out.description = "Name not provided";
   else if(description == null) out.description = "description not provided";
@@ -283,7 +283,8 @@ router.post("/create",async (req,res) => {
       minpart:minPart,
       maxpart:maxPart,
       is_team:minPart > 1,
-      type:type
+      type:type,
+      poster:poster
     });
     await ev.save();
     out.status = 200;

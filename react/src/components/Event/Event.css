@@ -2,7 +2,7 @@
 {
   width: calc(100% - 40px);
   height: auto;
-  max-height: 350px;
+  max-height: 360px;
   margin: 10px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -11,16 +11,20 @@
   padding: 10px;
 }
 .event .heading {
-  font-size: 15px;
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
 }
 .event .description {
   display: -webkit-box;
   font-size: 13px;
   max-height: 100px;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   text-overflow: ellipsis;
   overflow: hidden;
   -webkit-box-orient: vertical;
+  color: #ffffff99;
 }
 .event .image {
   width: 100%;
@@ -44,4 +48,6 @@
 .event .more {
   text-decoration: none;
   color: var(--text);
+  padding: 5px 10px 5px 10px;
+  font-size: 15px;
 }

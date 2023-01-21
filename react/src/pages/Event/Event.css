@@ -1,6 +1,6 @@
 .event-page {
-  margin: 10px;
-  width: calc(100% - 20px);
+  margin: 20px;
+  width: calc(100% - 40px);
   height: auto;
   color: var(--text);
 }
@@ -25,4 +25,8 @@
   border-radius: 5px;
   font-size: 12px;
   box-shadow: 0 0 3px var(--blue);
+}
+.event-page .poster {
+  width: 100%;
+  height: auto;
 }

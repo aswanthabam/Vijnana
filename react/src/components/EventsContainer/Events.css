@@ -3,6 +3,7 @@
   width: calc(100% - 20px);
   position: relative;
   height: auto;
+  min-height: 300px;
   padding: 10px;
 }
 .events .heading

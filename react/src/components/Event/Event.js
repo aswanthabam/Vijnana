@@ -19,7 +19,7 @@ export default function Event({event,...props})
       <p className="date"><span>{ ""+date}</span></p>
       <p className="description">{event.description}</p>
       <RegisterButton id={event.id}/>
-      <Link className="more" to={"/event/"+event.id}>More</Link>
+      <Link className="more" to={"/event/"+event.id}>More >></Link>
     </div>
   );
 }

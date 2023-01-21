@@ -18,6 +18,7 @@ import Router from "./components/Router/Router";
 import Login from "./pages/Admin/Login/Login";
 import Admin from "./pages/Admin/Admin";
 import AdminRoute from "./pages/Admin/AdminRoute";
+import PreLoader from "./components/PreLoader/PreLoader";
 
 function App() {
   const state = useSelector(state => state);
@@ -132,6 +133,7 @@ function App() {
   
   return (
     <div className={"App"+(sidebar.visible ? "opened":"closed")}>
+      <PreLoader visible={false}/>
       <SideBar />
       <Main className={""+(sidebar.visible ? "opened":"closed")}>
         
