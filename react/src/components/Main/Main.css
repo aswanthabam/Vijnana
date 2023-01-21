@@ -1,0 +1,15 @@
+.main .content {
+  margin-top: 60px;
+}
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  transition: all 0.5s ease;
+}
+.main.opened {
+  left: calc(70% + 0px);
+}

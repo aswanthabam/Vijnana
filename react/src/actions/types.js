@@ -8,4 +8,7 @@ export const GOOGLE_SCRIPT_LOADED = "GOOGLE_SCRIPT_LOADED";
 //export const GOOGLE_SCRIPT_ = "GOOGLE_SCRIPT_LOADED";
 
 export const SET_ADMIN = "SET_ADMIN";
+
+export const TOPBAR_LOGIN_BUTTON = "TOPBAR_LOGIN_BUTTON";
+export const SIDEBAR_STATE = "SIDEBAR_STATE";
 //export const _ADMIN = "SET_ADMIN";

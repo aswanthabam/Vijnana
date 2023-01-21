@@ -1,13 +1,23 @@
-import { Component } from 'react';
+import "./Main.css"
+import { useEffect } from 'react';
 import Notification from "../Notification/Notification"
-export default class Main extends Component
+import TopBar from "../TopBar/TopBar";
+import {useLocation} from "react-router-dom"
+import {useSidebar} from "../../helper"
+export default function Main({className,children})
 {
-  render(){
-    return (
-      <div className="main">
+  const location = useLocation();
+  const [sidebar,open,close] = useSidebar();
+  useEffect(()=>{
+    close();
+  },[location]);
+  return (
+    <div className={"main "+className}>
+      <TopBar/>
       <Notification />
-        { this.props.children }
+      <div className="content">
+      { children }
       </div>
-    );
-  }
+    </div>
+  );
 }

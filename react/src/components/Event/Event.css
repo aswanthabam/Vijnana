@@ -29,7 +29,8 @@
   border-radius: 10px;
 }
 .event .date span,
-.event .type span{
+.event .type span,
+.event .more{
   background: var(--blue);
   padding: 5px;
   border-radius: 5px;
@@ -39,4 +40,8 @@
 .event .date {
   width: 100%;
   text-align: right;
+}
+.event .more {
+  text-decoration: none;
+  color: var(--text);
 }

@@ -40,10 +40,7 @@ const eventSchema = new Schema({
   is_team:{
     type:Boolean,
     default:false
-  },participants:{
-    type:[mongoose.ObjectId],
-    ref:"Users"
-  },
+  },participants:[{type:mongoose.ObjectId,ref:"Users"}],
   teams:{
     type:[mongoose.ObjectId],
     ref:"Teams"

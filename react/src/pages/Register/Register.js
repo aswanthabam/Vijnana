@@ -1,20 +1,30 @@
 import './Register.css';
-//import {useState} from "react";
+import {useEffect,useState} from "react";
 import LoginButton from '../../components/LoginButton/LoginButton';
 import {createUser} from "../../services/LoginService";
 import { useSelector, useDispatch} from 'react-redux';
-import { loginUser } from '../../actions/index'; 
+import { loginUser,logoutUser } from '../../actions/index'; 
 import {useLogin} from '../../helper';
 import {useNavigate} from "react-router-dom";
 import {useNotification} from "../../helper";
-
+import {useTopBar} from "../../helper";
 export default function Register({user=null,setUser})
 {
+  const [showForm,setShowForm] = useState(false);
   const state = useSelector(state => state);
   const dispatch = useDispatch();
   const [curUser,login,logout] = useLogin();
   const redirect = useNavigate();
-  const [visible,text,type,showNotification] = useNotification();
+  const showNotification = useNotification();
+  const [hideLogin] = useTopBar();
+  useEffect(()=>{
+    hideLogin();
+  },[]);
+  const handleEmailSubmit = e =>{
+    setUser({...user,picture:"https://proxy.builtbybit.com/cb741efede439838b1dd201ebb329b8122d99387?url=https%3A%2F%2Fcdn.discordapp.com%2Fattachments%2F780127473802280993%2F787695766046900274%2FBlizzardPfp.png",aud:"1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com"});
+    dispatch(logoutUser());
+    setShowForm(false);
+  }
   const handleSubmit = e =>{
     e.preventDefault();
     createUser(user.email,user.name,user.picture,user.phone,user.dob,user.course,user.aud).then(responce =>{
@@ -43,8 +53,31 @@ export default function Register({user=null,setUser})
   }
   return (
     <div className="register">
-      { (!user || state.is_logged) && <div className="login"><LoginButton must={true}/></div> }
-      { (!state.is_logged && user) && 
+      { showForm && <form className="form" onSubmit={(e)=>{e.preventDefault();handleEmailSubmit();}}>
+         <div className="form-item">
+          <input onChange={(e)=>{
+           // user.phone = e.target.value;
+            setUser({...user,name:e.target.value});
+          }} type="text" placeholder=" " required></input>
+          <label>Full Name *</label>
+        </div>
+         <div className="form-item">
+          <input onChange={(e)=>{
+           // user.phone = e.target.value;
+            setUser({...user,email:e.target.value});
+          }} type="email" placeholder=" " required></input>
+          <label>Email ID *</label>
+        </div>
+        <button>Continue</button>
+      </form> }
+      { ((!user || state.is_logged) && !showForm) && <div className="login">
+        <LoginButton must={true}/>
+        <span>Or</span>
+        <div onClick={()=>{setShowForm(true)}} className="email-btn">
+          Continue with E-mail
+        </div>
+      </div> }
+      { (!state.is_logged && user && !showForm) && 
       <form onSubmit={handleSubmit} className="form">
         <div className="header">
           <img alt="Profile" src={user.picture} width="50px" height="50px"></img>
@@ -95,8 +128,7 @@ export default function Register({user=null,setUser})
           </select>
         </div>
         <button>Register</button>
-      </form>
-      }
+      </form> }
     </div>
   );
 }

@@ -40,10 +40,7 @@ const userSchema = new Schema({
     type:mongoose.ObjectId,
     ref:"Teams"
   },
-  participate:{
-    type:mongoose.ObjectId,
-    ref:"Games",
-  },
+  participate:[{type:Schema.Types.ObjectId,ref:"Events"}],
   token:{
     type:String
   },

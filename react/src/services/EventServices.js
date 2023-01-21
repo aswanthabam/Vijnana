@@ -17,9 +17,18 @@ export const createEvent = ({name=null, description=null,date=null,type=null,ima
 export const getAllEvents = (token=null,count=-1)=>{
   return axios.get(api+"/api/event/getAll?count="+count+(token != null ? "&token="+token:""));
 };
+export const getEvent = (id,token=null)=>{
+  return axios.get(api+"/api/event/get?id="+id+(token != null ? "&token="+token:""));
+};
 export const deleteEvent = (id=null,token=null)=>{
   return axios.post(api+"/api/event/delete",{
     id:id,
     token:token
+  });
+};
+export const registerEvent = (id=null,userId=null)=>{
+  return axios.post(api+"/api/event/register",{
+    id:id,
+    userId:userId
   });
 };

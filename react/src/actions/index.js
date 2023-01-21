@@ -1,5 +1,17 @@
-import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED,SET_ADMIN} from "./types";
+import {USER_LOGIN,USER_LOGOUT,NEW_NOTIFICATION,CANCEL_NOTIFICATION,GOOGLE_SCRIPT_LOADED,SET_ADMIN,TOPBAR_LOGIN_BUTTON,SIDEBAR_STATE} from "./types";
 
+export const setSidebar = (visible=false) => ({
+  type:SIDEBAR_STATE,
+  payload:{
+    visible:visible
+  }
+});
+export const setTopBarLogin = (visible=true)=>({
+  type:TOPBAR_LOGIN_BUTTON,
+  payload:{
+    visible:visible
+  }
+});
 export const setAdmin = (is_admin=true,token)=>({
   type:SET_ADMIN,
   payload:{

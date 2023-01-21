@@ -3,6 +3,7 @@ var express = require('express');
 const mongoose = require("mongoose");
 
 const User = require("../../models/User");
+const Event = require("../../models/Event");
 
 
 var router = express.Router();
@@ -72,12 +73,13 @@ router.post("/getMyDetails",async (req,res)=>{
     return;
   }
   try{
-    await User.find({userId:userId}).then(p=>{
+    var tt = await User.find({userId:userId}).populate("participate").then(p=>{
       out.status = 400;
       if(p == null) out.description = "Invalid userId";
       else if(p.length != 1) out.description = "User not found";
       else{
         p = p[0];
+        console.log(p);
         console.log("TOKEN: "+p.token+" | "+token)
         if(p.token != token){
           out.description = "Invalid token";
@@ -92,6 +94,7 @@ router.post("/getMyDetails",async (req,res)=>{
             course:p.course,
             phone:p.phone,
             picture:p.picture,
+            participate:p.participate
           }
         }
       }

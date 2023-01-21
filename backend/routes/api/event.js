@@ -8,6 +8,62 @@ const Event = require("../../models/Event");
 
 
 var router = express.Router();
+router.post("/register",async (req,res) => {
+  var {id = null, userId=null} = req.body;
+  var out = {status:400};
+  if(id == null) out.description = "ID not provided";
+  else if(userId == null) out.description = "UserID not provided";
+  else out.status = 200;
+  if(out.status != 200) {
+    res.json(out);
+    return;
+  }
+  try {
+    var user = await User.find({userId:userId});
+    if(user == null) {
+      out.status = 400;
+      out.description = "User error";
+    }else if(user.length != 1) {
+      out.status = 400;
+      out.description = "User error";
+    }else {
+      var event = await Event.find({id:id});
+      if(user == null) {
+        out.status = 400;
+        out.description = "Event not found error";
+      }else if(user.length != 1) {
+        out.status = 400;
+        out.description = "Event not found error";
+      }else {
+        user = user[0];
+        event = event[0];
+        if(event.participants.includes(user._id) && user.participate.includes(event._id)) {
+          out.status = 400;
+          out.description = "Already registered";
+        }else {
+          event.participants.push(mongoose.Types.ObjectId(user._id));
+          await event.save();
+          user.participate.push(mongoose.Types.ObjectId(event._id));
+          await user.save();
+          out.status = 200;
+          out.description = "Successfuly registered";
+          out.content = {
+            userId:user.userId,
+            eventId:event.id,
+            participate:user.participate
+          }
+        }
+      }
+    }
+    res.json(out);
+  }catch(e) {
+    out.status = 500;
+    out.description = "Error while fetching";
+    out.error = e;
+    res.json(out);
+    return;
+  }
+});
 router.post("/delete",async (req,res) =>{
   var {id = null,token=null} = req.body;
   var out = {}
@@ -116,11 +172,13 @@ router.get("/get",async (req,res)=>{
     out.status = 200;
     out.description = "Success";
     out.content = {
-      ...p[0],
+      ...p[0]._doc,
       _id:admin ? p[0]._id : null,
       participants:admin ? p[0].participants : null,
       teams:admin ? p[0].teams : null
     }
+    res.json(out);
+    return;
   }catch(e){
     out.status = 500;
     out.description = "Error while fetching data";
@@ -157,8 +215,8 @@ router.get("/getAll",async (req,res) =>{
         return;
       }else console.log("✔️")
     }
-    if(count == -1) var p = await Event.find().sort({date:-1});//.then(p =>{
-    else var p = await Event.find().sort({date:-1}).limit(count);//.then(p =>{
+    if(count == -1) var p = await Event.find().sort({date:1});//.then(p =>{
+    else var p = await Event.find().sort({date:1}).limit(count);//.then(p =>{
     if(p == null) {
       out.status = 400;
       out.description = "no events";

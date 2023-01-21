@@ -9,7 +9,7 @@ export default function Events(props){
   useEffect(()=>{
     getAllEvents().then(res=>{
       if(res.data.status == 200){
-        showNotification(res.data.description,"success");
+        // showNotification(res.data.description,"success");
         setEvents(res.data.content);
       }else{
         showNotification(res.data.description,"error");

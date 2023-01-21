@@ -11,14 +11,17 @@ import {login} from "./services/LoginService";
 import {useSelector,useDispatch} from 'react-redux';
 import { loginUser,logoutUser,googleScriptLoaded,newNotification,cancelNotification} from './actions/index';
 // import { useCookies } from 'react-cookie';
-import { useLogin,useNotification } from "./helper";
+import { useLogin,useNotification,useSidebar} from "./helper";
 import Notification from "./components/Notification/Notification";
+import SideBar from "./components/SideBar/SideBar";
 import Router from "./components/Router/Router";
 import Login from "./pages/Admin/Login/Login";
 import Admin from "./pages/Admin/Admin";
 import AdminRoute from "./pages/Admin/AdminRoute";
+
 function App() {
   const state = useSelector(state => state);
+  const [sidebar,open,close] = useSidebar();
   const dispatch = useDispatch();
   const [user,setUser] = useState(null);
   const redirect = useNavigate();
@@ -70,7 +73,7 @@ function App() {
       
       var reg = false;
       await login(data.email,data.aud).then(async (res)=>{
-        showNotification(JSON.stringify(res.data),"error",false);
+       // showNotification(JSON.stringify(res.data),"error",false);
         if(res.data.status === 200){
           setUser({
             is_logged:true
@@ -128,10 +131,14 @@ function App() {
   };
   
   return (
-    <Main>
-      {/*<h6 onClick={()=>{showNotification("Hello","info")}} className="underlined">hi {JSON.stringify(curUser)+"|"+JSON.stringify(state)}</h6>*/}
-      <Router user={user} setUser={setUser}/>
-    </Main>
+    <div className={"App"+(sidebar.visible ? "opened":"closed")}>
+      <SideBar />
+      <Main className={""+(sidebar.visible ? "opened":"closed")}>
+        
+        {/*<h6 onClick={()=>{showNotification("Hello","info")}} className="underlined">{JSON.stringify(state)}</h6>*/}
+        <Router user={user} setUser={setUser}/>
+      </Main>
+    </div>
   );
 }
 

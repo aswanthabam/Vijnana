@@ -17,7 +17,6 @@ export default function Header(){
   },[]);
   return (
     <div className="header">
-      <TopBar/>
       <video onClick={(elem)=>{
         elem.currentTarget.style.animation = "none";
         document.getElementById("header-center-elem").style.animation = "none";

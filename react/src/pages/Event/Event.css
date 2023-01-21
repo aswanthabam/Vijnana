@@ -1,0 +1,28 @@
+.event-page {
+  margin: 10px;
+  width: calc(100% - 20px);
+  height: auto;
+  color: var(--text);
+}
+.event-page .image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.event-page .name {
+  font-size: 15px;
+  --border-color: var(--text);
+}
+.event-page .description {
+  font-size: 12px;
+}
+.event-page .date span,
+.event-page .type span{
+  background: var(--blue);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  box-shadow: 0 0 3px var(--blue);
+}

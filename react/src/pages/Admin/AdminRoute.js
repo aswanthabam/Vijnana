@@ -1,7 +1,7 @@
 import "./AdminRoute.css";
 import {Outlet} from "react-router-dom";
 import {useEffect,useState} from "react";
-import {useAdmin} from "../../helper"
+import {useAdmin,useTopBar} from "../../helper"
 import {useSelector,useDispatch} from "react-redux"
 //import {setAdmin} from "../../actions/index"
 import {useNavigate,Navigate} from "react-router-dom";
@@ -9,11 +9,13 @@ import {isAdmin} from "../../services/AdminService";
 
 export default function AdminRoute(){
  const [admin,setAdmin] = useState({is_admin:false,loaded:false});
+ const [hideTopBar] = useTopBar();
   const dispatch = useDispatch();
   // const admin = useSelector(state => state.admin);
   const redirect = useNavigate();
   const [token,login,logout] = useAdmin();
   useEffect(()=>{
+    hideTopBar();
     /*if(token != null) {
       dispatch(setAdmin(true,token));
     //  redirect("/admin_login");

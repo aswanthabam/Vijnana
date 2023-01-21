@@ -1,7 +1,29 @@
 import { useCookies } from 'react-cookie';
 import { useEffect,useState } from 'react';
-import {useDispatch} from "react-redux";
-import {newNotification,cancelNotification} from "./actions/index"
+import {useDispatch,useSelector} from "react-redux";
+import {newNotification,cancelNotification,setTopBarLogin,setSidebar} from "./actions/index"
+
+export const useSidebar = () =>{
+  const sidebar = useSelector(state => state.sidebar);
+  const dispatch = useDispatch();
+  const open = () =>{
+    dispatch(setSidebar(true));
+  }
+  const close = () =>{
+    dispatch(setSidebar(false));
+  }
+  return [sidebar,open,close];
+}
+export const useTopBar = () =>{
+  const dispatch = useDispatch();
+  const hideLogin = () =>{
+    dispatch(setTopBarLogin(false));
+  }
+  const showLogin = () =>{
+    dispatch(setTopBarLogin(true));
+  }
+  return [hideLogin,showLogin]
+}
 export const useNotification = () =>{
   const notification = useDispatch(state => state.notification);
   const dispatch = useDispatch();
