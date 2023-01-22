@@ -8,11 +8,12 @@
 {
   position: fixed;
   top: -100%;
-  left: 10px;
+  left: 50%;
   width: calc(100% - 40px);
   height: auto;
   min-height: 35px;
   max-height: 100px;
+  max-width: 700px;
   border-radius: 10px;
   color: #fff;
   background: var(--bg);
@@ -21,7 +22,7 @@
   display: flex;
   align-items: space-between;
   justify-content: center;
-  transform: translateY(15%);
+  transform: translate(-50%,15%);
   z-index: 166;
   border: 1px solid var(--n-color);
   box-shadow: 1px 1px 10px var(--n-color);

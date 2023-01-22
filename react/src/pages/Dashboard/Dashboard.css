@@ -1,4 +1,25 @@
 .dashboard{
-  width: calc(100% - 20px);
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  width: calc(100% - 40px);
+  padding: 20px;
+}
+.dashboard .registered {
+  width: 100%;
+}
+.dashboard .registered .container {
+  width: 100%;
+  display: grid;
+  column-count: 3;
+  grid-template-columns: auto;
+  column-gap: 0;
+}
+@media only screen and (min-width:700px)  {
+  .dashboard .registered .container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 20px;
+  }
 }

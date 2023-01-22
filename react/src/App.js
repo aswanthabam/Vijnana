@@ -73,7 +73,7 @@ function App() {
     if(data.aud === clientId){
       
       var reg = false;
-      await login(data.email,data.aud).then(async (res)=>{
+      await login(data).then(async (res)=>{
        // showNotification(JSON.stringify(res.data),"error",false);
         if(res.data.status === 200){
           setUser({

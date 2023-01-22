@@ -1,14 +1,14 @@
 .event
 {
-  width: calc(100% - 40px);
+  width: calc(100% - 20px);
   height: auto;
   max-height: 360px;
-  margin: 10px;
   margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 1px 1px 10px var(--text-shadow);
   background: var(--bg-2);
   padding: 10px;
+  padding-bottom: 15px;
 }
 .event .heading {
   display: block;
@@ -50,4 +50,10 @@
   color: var(--text);
   padding: 5px 10px 5px 10px;
   font-size: 15px;
+}
+@media only screen and (min-width:700px) {
+  .event {
+    height: auto;
+    max-height: auto;
+  }
 }

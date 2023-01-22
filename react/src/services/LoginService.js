@@ -12,20 +12,9 @@ export const adminLogin = (user,pass) =>{
     pass:pass
   });
 };
-export const login = (email,aud) =>{
-  return axios.post(api+"/api/user/login",{
-    email:email,
-    aud:aud
-  });
+export const login = (user) =>{
+  return axios.post(api+"/api/user/login",user);
 };
-export const createUser = (email,name,picture,phone,dob,course,aud) =>{
-  return axios.post(api+"/api/user/create",{
-    email:email,
-    name:name,
-    picture:picture,
-    phone:phone,
-    dob:dob,
-    course:course,
-    aud:aud
-  });
+export const createUser = (user) =>{
+  return axios.post(api+"/api/user/create",user);
 };

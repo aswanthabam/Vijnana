@@ -27,7 +27,9 @@ export default function Events(props){
     <div className={"events "+className} id={id}>
       <h3 className="underlined heading">Events</h3>
       <PreLoader visible={!loaded}/>
+      <div className="container">
       {events.map(event => <Event event={{...event,date:new Date(event.date)}}/>)}
+      </div>
     </div>
   );
 }

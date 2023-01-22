@@ -162,7 +162,7 @@ router.get("/get",async (req,res)=>{
     }
   }
   try{
-    var p = await Event.find({id:id});
+    var p = await Event.find({id:id}).populate("participants");
     if(p == null || p.length != 1) {
       out.status = 400;
       out.description = "Event not found";
@@ -256,6 +256,52 @@ router.get("/getAll",async (req,res) =>{
     out.error = e;
   }
 })
+router.post("/edit",async (req,res) => {
+  var {id=null,name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null} = req.body;
+  var out = {status:400}
+  if(id == null) out.description = "ID Not given";
+  else {
+    out.status = 200;
+  }
+  if(out.status != 200){
+    res.json(out);
+    return;
+  }
+  try{
+    var ev = await Event.find({id:id});
+    console.log(ev);
+    if(ev == null) {
+      out.status = 400;
+      out.description = "No event with the id";
+    }else if(ev.length != 1) {
+      out.status = 400;
+      out.description = "No event with the id";
+    }else {
+      ev = ev[0];
+      if(name != null) ev.name = name;
+      if(description != null) ev.description = description;
+      if(date != null) ev.date = date;
+      if(type != null) ev.type = type;
+      if(image != null) ev.image = image;
+      if(maxPart != null) ev.maxpart = maxPart;
+      if(minPart != null) ev.minpart = minPart;
+      if(poster != null) ev.poster = poster;
+      if(docs != null) ev.docs = docs;
+      await ev.save();
+      out.status = 200;
+      out.description = "Event saved ("+name+")";
+      out.content = ev;
+    }
+    res.json(out);
+    return;
+  }catch(e){
+    out.status = 500;
+    out.description = "Error when saving data";
+    out.error = e;
+    res.json(out);
+    return;
+  }
+});
 router.post("/create",async (req,res) => {
   var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null} = req.body;
   var out = {status:400}
@@ -272,7 +318,7 @@ router.post("/create",async (req,res) => {
     return;
   }
   try{
-    var id = btoa("Event"+type+name+new Date());
+    var id = (type+"-"+name.replace(" ","").toLowerCase()+"-"+new Date(date).getDate()).replace("/","").replace("&","").replace("?","").replace("+","");//btoa("Event"+type+name+new Date()).replace("=","");
     var ev = new Event({
       id:id,
       name:name,
@@ -295,6 +341,7 @@ router.post("/create",async (req,res) => {
   }catch(e){
     out.status = 500;
     out.description = "Error when saving data";
+    console.log(e);
     out.error = e;
     res.json(out);
     return;

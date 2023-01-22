@@ -68,3 +68,6 @@ h3.shaded
   width: 100%;
   background: var(--border-color);
 }
+.center {
+  text-align: center;
+}

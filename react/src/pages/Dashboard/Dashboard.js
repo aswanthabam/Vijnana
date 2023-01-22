@@ -16,7 +16,10 @@ export default function Dashboard(){
   const redirect = useNavigate();
   const [user,setUser] = useState({loaded:false,error:false});
   useEffect(()=>{
-    if(!state.is_logged) return;
+    if(!state.is_logged){
+      setUser({loaded:true,error:true});
+      return;
+    }
     getMyDetails(state.user.userId,state.user.token).then(res =>{
      //showNotification(JSON.stringify(res.data),"info",false);
      // document.getElementsByClassName("email")[0].textContent = JSON.stringify(res.data);
@@ -40,9 +43,14 @@ export default function Dashboard(){
       <PreLoader visible={!user.loaded}/>
       <UserCard user={user}/>
       <br/><LogoutButton/>
+      <div className="registered" >
       <h3 className="underlined">Registered Events</h3>
-      { user.participate && user.participate.map(event=><Event event={{...event,date:event.date}}/>)}
-      {!user.participate && <span>No events registered</span>}
+        { user.participate &&
+        <div className="container">
+           { user.participate.map(event => <Event event={{...event,date:new Date(event.date)}}/> ) }
+        </div>}
+        {!user.participate && <span>No events registered</span>}
+      </div>
     </div>
   );
 };

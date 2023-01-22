@@ -44,7 +44,6 @@ export default function Event({}){
         {event.description}
       </p>
       <RegisterButton id={id}/>
-      {event && JSON.stringify(event)}
       {event.poster && <><h4>Poster</h4><img src={event.poster} className="poster"/></> }
       </div>: <span></span> }
     </div>

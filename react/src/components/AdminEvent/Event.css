@@ -23,6 +23,9 @@
   margin: 0 0 10px 5px;
   text-align: left;
 }
+.admin-event .participants a {
+  text-decoration: none;
+}
 .admin-event .date span,
 .admin-event .type span,
 .admin-event .participants span{

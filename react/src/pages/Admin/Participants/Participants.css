@@ -1,0 +1,33 @@
+.participants-page {
+  position: fixed;
+  top: 60px;
+  margin-top: 60px;
+  width: 100%;
+  overflow: auto;
+}
+.participants-page .pdfCont {
+  width: auto;
+  height: auto;
+  overflow: auto;
+}
+.participants-page table {
+  
+}
+.participants-page table td {
+  min-width: 100px;
+  border: 1px solid #121212;
+  padding: 5px;
+  white-space: nowrap;
+}
+.participants-page h3,
+.participants-page h4 {
+  text-align: center;
+  margin: 5px;
+}
+
+@media print {
+  .participants-page{
+    overflow: visible;
+    width: auto;
+  }
+}

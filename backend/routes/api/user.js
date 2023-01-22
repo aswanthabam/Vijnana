@@ -8,7 +8,7 @@ const Event = require("../../models/Event");
 
 var router = express.Router();
 
-const loginAction = async (p,res) =>{
+const loginAction = async (p,res,password=null) =>{
   //console.log(p);
   var out = {};
   try{
@@ -23,6 +23,12 @@ const loginAction = async (p,res) =>{
     }
     else{
       p = p[0];
+      if(!(password == null && p.password == null) &&(password== null || p.password == null || password != p.password)) {
+        out.status = 400;
+        out.description = "Invalid password "+(p.password==null ? "(Google Method)":"");
+        res.json(out);
+        return true;
+      }
       console.log(p.token)
       var date = new Date();
       out.status = 200;
@@ -111,12 +117,12 @@ router.post("/getMyDetails",async (req,res)=>{
   }
 })
 router.post("/login",async (req,res) =>{
-  var {email=null,aud=null} = req.body;
+  var {email=null,aud=null,password =null} = req.body;
   var out = {status:400};
   if(email==null) out.description = "Email not provided";
-  else if(aud==null) out.description = "Aud not provided";
+  else if(aud==null && password == null) out.description = "Aud|Pass not provided";
   else out.status = 200;
-  if(aud != env.CLIENT_ID){
+  if(aud != null && aud != env.CLIENT_ID){
     out.status = 400;
     out.description = "Unknown client";
     out.error = "Invalid Request";
@@ -131,7 +137,7 @@ router.post("/login",async (req,res) =>{
     return;
   }else{
     await User.find({email:email}).then(async (p)=>{
-      al = await loginAction(p,res);
+      al = await loginAction(p,res,password);
       console.log("Login request");
       console.log(p);
     });
@@ -144,7 +150,7 @@ router.post("/login",async (req,res) =>{
   }
 });
 router.post("/create",async (req,res)=>{
-  var {name=null,email=null,picture=null,phone=null,dob=null,course=null,aud=null} = req.body;
+  var {name=null,email=null,picture=null,phone=null,dob=null,course=null,aud=null,password=null} = req.body;
   var out = {status:400};
   if(name==null) out.description = "Name not provided";
   else if(email==null) out.description = "Email not provided";
@@ -167,7 +173,7 @@ router.post("/create",async (req,res)=>{
   if(picture==null) out.description = "Picture not provided";
   else if(dob==null) out.description = "DOB not provided";
   else if(course==null) out.description = "Course not provided";
-  else if(aud==null) out.description = "Aud not provided";
+  else if(aud==null && password==null) out.description = "Aud|Pass not provided";
   else out.status = 200;
   if(out.status != 200)
   {
@@ -175,7 +181,7 @@ router.post("/create",async (req,res)=>{
     res.json(out);
     return;
   }
-  if(aud != env.CLIENT_ID){
+  if(aud != null && aud != env.CLIENT_ID){
     out.status = 400;
     out.description = "Unknown client";
     out.error = "Invalid Request";
@@ -189,7 +195,8 @@ router.post("/create",async (req,res)=>{
       picture:picture,
       phone:phone,
       dob:dob,
-      course:course
+      course:course,
+      password:password
     });
    await user.save();
    var id = 0;

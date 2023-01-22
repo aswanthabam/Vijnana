@@ -5,6 +5,7 @@ import {useNotification} from "../../helper";
 import {useEffect,useState} from "react"
 import {useNavigate} from "react-router-dom";*/
 import QRCode from "react-qr-code";
+// import PreLoader from "../PreLoader/PreLoader"
 import html2canvas from "html2canvas"
 export default function UserCard({user}){
   const state = useSelector(state => state);
