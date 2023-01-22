@@ -67,7 +67,44 @@ const loginAction = async (p,res,password=null) =>{
 };
 router.get("/",(req,res)=>{
   res.json({hi:"6"});
-});
+});/*
+router.post("/getRegEvents",async (req,res)=>{
+  var {userId=null,token =null} = req.body;
+  var out = {status:400};
+  if(userId == null) out.description = "UserId not provided";
+  else if(token == null) out.description = "Token not provided";
+  else out.status = 200;
+  if(out.status != 200){
+    res.json(out);
+    return;
+  }
+  try{
+    var tt = await User.find({userId:userId}).populate("participate").then(p=>{
+      out.status = 400;
+      if(p == null) out.description = "Invalid userId";
+      else if(p.length != 1) out.description = "User not found";
+      else{
+        p = p[0];
+        console.log("TOKEN: "+p.token+" | "+token)
+        if(p.token != token){
+          out.description = "Invalid token";
+        }else{
+          out.status = 200;
+          out.description = "Success";
+          out.content = error
+        }
+      }
+      res.json(out)
+      return;
+    });
+  }catch(e){
+    out.status = 500;
+    out.description = "Error occured when getting details";
+    out.error = e;
+    res.json(out);
+    return;
+  }
+})*/
 router.post("/getMyDetails",async (req,res)=>{
   var {userId=null,token=null} = req.body;
   var out = {status:400};

@@ -51,13 +51,13 @@ export const useAdmin = () =>{
       expiry = new Date();
       expiry.setDate(expiry.getDate() + 14);
     }else expiry = new Date(expiry);
-    setCookie("token",token,{path:'/',expiry:expiry});
-   // setCookie("expiry",token,{path:'/',expiry:date});
+    setCookie("token",token,{path:'/',expires:expiry});
+   // setCookie("expiry",token,{path:'/',expires:date});
     // setToken(token);
   }
   const logout = () =>{
     setCookie("token",null,{path:'/'});
-   // setCookie("expiry",token,{path:'/',expiry:date});
+   // setCookie("expiry",token,{path:'/',expires:date});
   //  setToken(null);
   }/*
   useEffect(()=>{
@@ -74,10 +74,10 @@ export const useLogin = () => {
       expiry = new Date();
       expiry.setDate(expiry.getDate() + 14);
     }else expiry = new Date(expiry);
-    setCookie("is_logged",true,{path:"/",expiry:expiry});
-    setCookie("userId",userId,{path:"/",expiry:expiry});
-    setCookie("email",email,{path:"/",expiry:expiry});
-    setCookie("token",token,{path:"/",expiry:expiry});
+    setCookie("is_logged",true,{path:"/",expires:expiry});
+    setCookie("userId",userId,{path:"/",expires:expiry});
+    setCookie("email",email,{path:"/",expires:expiry});
+    setCookie("token",token,{path:"/",expires:expiry});
     setUser({
       "is_logged":true,
       "userId":userId,
