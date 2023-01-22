@@ -1,6 +1,6 @@
 import "./PreLoader.css";
 
-export default function PreLoader({visible=true,caption=true}) {
+export default function PreLoader({visible=true,caption=true,text="Working on it ..."}) {
   return (
     <div className={"pre-loader "+(visible ? "visble":"hidden")}>
       <svg class="tea" width="37" height="48" viewbox="0 0 37 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,7 +10,7 @@ export default function PreLoader({visible=true,caption=true}) {
         <path id="steamL" d="M17 1C17 1 17 4.5 14 6.5C11 8.5 11 12 11 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="var(--secondary)"></path>
         <path id="steamR" d="M21 6C21 6 21 8.22727 19 9.5C17 10.7727 17 13 17 13" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
-     {caption &&  <span>Working On It ...</span>}
+     {caption &&  <span>{text}</span>}
     </div>
   );
 }

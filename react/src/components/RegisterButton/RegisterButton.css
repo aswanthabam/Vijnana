@@ -7,3 +7,8 @@
   margin: 5px;
   border-radius: 5px;
 }
+.register-button.registered {
+  width: auto !important;
+  background: gray;
+  color: var(--text);
+}

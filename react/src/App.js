@@ -15,6 +15,7 @@ function App() {
   const [sidebar] = useSidebar();
   const dispatch = useDispatch();
   const [user,setUser] = useState(null);
+  const [preloader,setPreLoader] = useState({visible:false,text:"Loading ..."});
   const redirect = useNavigate();
   const [curUser,userLogin,userLogout] = useLogin();
   const showNotification = useNotification();
@@ -53,6 +54,7 @@ function App() {
   
   
   const handleCredentialResponse = async (responce) =>{
+    setPreLoader({visible:true,text:"Registering ..."});
     var data = jwt_decode(responce.credential);
     if(data.aud === clientId){
       
@@ -79,6 +81,7 @@ function App() {
           //onLogin(user);
           userLogin({email:data.email,...res.data.content});
           showNotification("Logged In Successfully ","success");
+          setPreLoader({visible:false,text:"Registering ..."});
           redirect("/dashboard");
         }else{
           setUser({});
@@ -108,14 +111,19 @@ function App() {
           token:null,
           aud:data.aud,
         });
+        setPreLoader({visible:false,text:"Registering ..."});
         return redirect("/register");
       }
+      setPreLoader({visible:false,text:"Registering ..."});
+    }else {
+      setPreLoader({visible:false,text:"Registering ..."});
+      showNotification("Error with google!","error");
     }
   };
   
   return (
     <div className={"App"+(sidebar.visible ? "opened":"closed")}>
-      <PreLoader visible={false}/>
+      <PreLoader visible={preloader.visible} text={preloader.text}/>
       <SideBar />
       <Main className={""+(sidebar.visible ? "opened":"closed")}>
         {/*<h6 onClick={()=>{showNotification("Hello","info")}} className="underlined">{JSON.stringify(state)}</h6>*/}

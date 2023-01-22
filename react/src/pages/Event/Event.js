@@ -44,7 +44,7 @@ export default function Event(){
       <p className="description">
         {event.description}
       </p>
-      <RegisterButton id={id}/>
+      <RegisterButton event={event}/>
       {event.poster && <><h4>Poster</h4><img src={event.poster} alt={"poster-"+event.name} className="poster"/></> }
       </div>: <span></span> }
     </div>

@@ -8,6 +8,16 @@ const Event = require("../../models/Event");
 
 
 var router = express.Router();
+/*
+router.post("/getParticipants",async (req,res) =>{
+  var {id=null,userId=null} = req.body;
+  var out = {status:400};
+  if(id == null){
+    out.description = "Invalid id";
+    res.json(out);
+    return;
+  }else 
+});*/
 router.post("/register",async (req,res) => {
   var {id = null, userId=null} = req.body;
   var out = {status:400};
@@ -131,15 +141,15 @@ router.post("/delete",async (req,res) =>{
   }
 });
 router.get("/get",async (req,res)=>{
-  var {id = null,token=null} = req.query;
+  var {id = null} = req.query;
   var out = {}
-  var admin = false;
+ // var admin = false;
   if(id == null){
     out.status = 400;
     out.description = "Id not given";
     res.json(out);
     return;
-  }
+  }/*
   if(token != null) {
     var p = await Admin.find({token:token});
     if(p == null){
@@ -160,7 +170,7 @@ router.get("/get",async (req,res)=>{
       res.json(out);
       return;
     }
-  }
+  }*/
   try{
     var p = await Event.find({id:id}).populate("participants");
     if(p == null || p.length != 1) {
@@ -172,10 +182,7 @@ router.get("/get",async (req,res)=>{
     out.status = 200;
     out.description = "Success";
     out.content = {
-      ...p[0]._doc,
-      _id:admin ? p[0]._id : null,
-      participants:admin ? p[0].participants : null,
-      teams:admin ? p[0].teams : null
+      ...p[0]._doc
     }
     res.json(out);
     return;
@@ -215,8 +222,8 @@ router.get("/getAll",async (req,res) =>{
         return;
       }else console.log("✔️")
     }
-    if(count == -1) var p = await Event.find().sort({date:1});//.then(p =>{
-    else var p = await Event.find().sort({date:1}).limit(count);//.then(p =>{
+    if(count == -1) var p = await Event.find().populate("participants").sort({date:1});//.then(p =>{
+    else var p = await Event.find().populate("participants").sort({date:1}).limit(count);//.then(p =>{
     if(p == null) {
       out.status = 400;
       out.description = "no events";
@@ -226,6 +233,13 @@ router.get("/getAll",async (req,res) =>{
     var data = [];
     for(var i = 0;i < p.length;i++){
       var cur = p[i];
+      var participants = [];
+      if(!admin) {
+        for(var j = 0;j < cur.participants.length;j++){
+          participants.push({userId:cur.participants[j].userId});
+        }
+      }else participants = cur.participants;
+     // console.log(participants)
       data.push({
         id:cur.id,
         name:cur.name,
@@ -238,7 +252,7 @@ router.get("/getAll",async (req,res) =>{
         maxPart:cur.maxpart,
         poster:cur.poster,
         is_team:cur.is_team,
-        participants:admin ? cur.participants : null,
+        participants:participants,
         teams:admin ? cur.teams : null
       });
     }
@@ -248,6 +262,7 @@ router.get("/getAll",async (req,res) =>{
    // res.json(out);
  //  return;
 //  });
+    //console.log(out);
   res.json(out);
   return;
   }catch(e){
