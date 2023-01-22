@@ -25,7 +25,7 @@ export const useTopBar = () =>{
   return [hideLogin,showLogin]
 }
 export const useNotification = () =>{
-  const notification = useDispatch(state => state.notification);
+  // const notification = useDispatch(state => state.notification);
   const dispatch = useDispatch();
   /*const [visible,setVisible] = useState(false);
   const [text,setText] = useState(null);
@@ -42,8 +42,8 @@ export const useNotification = () =>{
   return showNotification;
 };
 export const useAdmin = () =>{
-  const [token,setToken] = useState(null);
-  const [expiry,setExpiry] = useState(null);
+ // const [token,setToken] = useState(null);
+ // const [expiry,setExpiry] = useState(null);
   const [cookies,setCookie] = useCookies("admin");
   
   const login = ({token,expiry=null}) =>{
@@ -53,16 +53,16 @@ export const useAdmin = () =>{
     }else expiry = new Date(expiry);
     setCookie("token",token,{path:'/',expiry:expiry});
    // setCookie("expiry",token,{path:'/',expiry:date});
-    setToken(token);
+    // setToken(token);
   }
   const logout = () =>{
     setCookie("token",null,{path:'/'});
    // setCookie("expiry",token,{path:'/',expiry:date});
-    setToken(null);
-  }
+  //  setToken(null);
+  }/*
   useEffect(()=>{
     setToken(cookies.token);
-  },[cookies]);
+  },[cookies]);*/
   return [cookies.token, login,logout];
 }
 export const useLogin = () => {

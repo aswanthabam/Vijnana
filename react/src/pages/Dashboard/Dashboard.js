@@ -1,6 +1,6 @@
 import "./Dashboard.css";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
-import Notification from "../../components/Notification/Notification";
+// import Notification from "../../components/Notification/Notification";
 import UserCard from "../../components/UserCard/UserCard";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import Event from "../../components/Event/Event";
@@ -23,7 +23,7 @@ export default function Dashboard(){
     getMyDetails(state.user.userId,state.user.token).then(res =>{
      //showNotification(JSON.stringify(res.data),"info",false);
      // document.getElementsByClassName("email")[0].textContent = JSON.stringify(res.data);
-     if(res.data.status == 200){
+     if(res.data.status === 200){
        setUser({...res.data.content,loaded:true});
      }else{
        setUser({loaded:true,error:true});
@@ -37,6 +37,7 @@ export default function Dashboard(){
       redirect("/register");
       //showNotification(JSON.stringify(err));
     });
+    // eslint-disable-next-line
   },[state.is_logged,state.user]);
   return (
     <div className="dashboard">

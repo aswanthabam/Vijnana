@@ -1,7 +1,7 @@
 import './Header.css';
 import logo from '../../images/logo.png';
 import bg from "../../images/bg2.jpg"
-import TopBar from '../TopBar/TopBar'
+//import TopBar from '../TopBar/TopBar'
 import vid from "../../videos/vid1.mp4"
 import name from "../../images/name.png"
 import {useEffect} from "react"
@@ -13,7 +13,6 @@ export default function Header(){
     e.type = "video/mp4";
     e.href = vid;
     document.head.appendChild(e);
-   // <link rel="preload" as="video" type="video/mp4" href="foo.mp4" />
   },[]);
   return (
     <div className="header">
@@ -28,13 +27,11 @@ export default function Header(){
         <img alt="Logo" className="logo" src={logo}/>
         <img alt="VIJÑĀNA" className="name" src={name}/>
         <h2 className="heading">VIJÑĀNA</h2>
-        {/*<h3 className="countdown">3 Days 2 Hours 35 Minutes</h3>
-        <span className="countdown-bottom">Left for moving on...<br/><span id="res">Nothing</span></span>*/}
       </div>
       <div className="bottom">
         <h3 className="college">
-          Dept. of Computer Science<br/>
-          Govt. College Thalassery
+          Govt. College Thalassery<br/>
+          Dept. of Computer Science
         </h3>
       </div>
       <div className="go-bottom">

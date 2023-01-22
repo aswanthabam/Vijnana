@@ -32,6 +32,9 @@
   object-fit: cover;
   border-radius: 10px;
 }
+.event .date span {
+  text-transform: uppercase;
+}
 .event .date span,
 .event .type span,
 .event .more{

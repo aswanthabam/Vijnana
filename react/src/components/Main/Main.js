@@ -7,9 +7,10 @@ import {useSidebar} from "../../helper"
 export default function Main({className,children})
 {
   const location = useLocation();
-  const [sidebar,open,close] = useSidebar();
+  const [,,close] = useSidebar();
   useEffect(()=>{
     close();
+    // eslint-disable-next-line
   },[location]);
   return (
     <div className={"main "+className}>

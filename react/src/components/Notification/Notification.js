@@ -1,7 +1,7 @@
 import "./Notification.css";
 import {useSelector,useDispatch} from "react-redux";
 import {cancelNotification} from "../../actions/index";
-export default function Notification({}){
+export default function Notification(){
   const notification = useSelector(state => state.notification);
   const dispatch = useDispatch();
   var icon;

@@ -1,7 +1,7 @@
 import './TopBar.css';
 // import {Link} from 'react-router-dom';
 import LoginButton from '../LoginButton/LoginButton'
-import {useTopBar,useSidebar} from "../../helper"
+import {useSidebar} from "../../helper"
 import {useSelector} from "react-redux"
 export default function TopBar()
 {

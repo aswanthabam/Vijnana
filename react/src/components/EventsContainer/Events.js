@@ -11,7 +11,7 @@ export default function Events(props){
   useEffect(()=>{
     getAllEvents().then(res=>{
       setLoaded(true);
-      if(res.data.status == 200){
+      if(res.data.status === 200){
         // showNotification(res.data.description,"success");
         setEvents(res.data.content);
       }else{
@@ -21,6 +21,7 @@ export default function Events(props){
       setLoaded(true);
       showNotification("An error occured when fet hing events","error");
     });
+    // eslint-disable-next-line
   },[]);
   const {className = "",id = ""} = props;
   return (

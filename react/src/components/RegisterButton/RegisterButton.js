@@ -7,7 +7,7 @@ export default function RegisterButton({id}){
   return (
     <div onClick={()=>{
       registerEvent(id,user.userId).then(res=>{
-        if(res.data.status == 200){
+        if(res.data.status === 200){
           showNotification(res.data.description,"success");
         }else {
           showNotification(res.data.description,"error");

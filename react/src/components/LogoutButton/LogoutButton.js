@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import { logoutUser } from '../../actions/index'; 
 export default function LogoutButton(){
   //const state = useSelector(state => state);
-  const [user,login,logout] = useLogin();
+  const [,,logout] = useLogin();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return <div className="user">

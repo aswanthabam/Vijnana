@@ -150,7 +150,7 @@ router.post("/login",async (req,res) =>{
   }
 });
 router.post("/create",async (req,res)=>{
-  var {name=null,email=null,picture=null,phone=null,dob=null,course=null,aud=null,password=null} = req.body;
+  var {name=null,email=null,picture=null,phone=null,course=null,aud=null,password=null} = req.body;
   var out = {status:400};
   if(name==null) out.description = "Name not provided";
   else if(email==null) out.description = "Email not provided";
@@ -171,7 +171,6 @@ router.post("/create",async (req,res)=>{
   if(al) return;
   out.status = 400;
   if(picture==null) out.description = "Picture not provided";
-  else if(dob==null) out.description = "DOB not provided";
   else if(course==null) out.description = "Course not provided";
   else if(aud==null && password==null) out.description = "Aud|Pass not provided";
   else out.status = 200;
@@ -194,7 +193,6 @@ router.post("/create",async (req,res)=>{
       email:email,
       picture:picture,
       phone:phone,
-      dob:dob,
       course:course,
       password:password
     });

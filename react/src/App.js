@@ -1,28 +1,18 @@
 import './App.css';
 import {useEffect,useState} from 'react';
-import {Routes,Route,useNavigate} from 'react-router-dom';
-import Home from './pages/HomePage/Home';
-import Register from './pages/Register/Register';
-import Dashboard from './pages/Dashboard/Dashboard';
-import PageNotFound from './pages/ErrorPages/PageNotFound/PageNotFound';
+import {useNavigate} from 'react-router-dom';
 import Main from './components/Main/Main';
 import jwt_decode from "jwt-decode";
 import {login} from "./services/LoginService";
-import {useSelector,useDispatch} from 'react-redux';
-import { loginUser,logoutUser,googleScriptLoaded,newNotification,cancelNotification} from './actions/index';
-// import { useCookies } from 'react-cookie';
+import {useDispatch} from 'react-redux';
+import { loginUser,logoutUser,googleScriptLoaded} from './actions/index';
 import { useLogin,useNotification,useSidebar} from "./helper";
-import Notification from "./components/Notification/Notification";
 import SideBar from "./components/SideBar/SideBar";
 import Router from "./components/Router/Router";
-import Login from "./pages/Admin/Login/Login";
-import Admin from "./pages/Admin/Admin";
-import AdminRoute from "./pages/Admin/AdminRoute";
 import PreLoader from "./components/PreLoader/PreLoader";
 
 function App() {
-  const state = useSelector(state => state);
-  const [sidebar,open,close] = useSidebar();
+  const [sidebar] = useSidebar();
   const dispatch = useDispatch();
   const [user,setUser] = useState(null);
   const redirect = useNavigate();
@@ -58,13 +48,7 @@ function App() {
         is_logged:logg
       }));
     }
-    /*const script = document.createElement("script")
-    script.src = "https://accounts.google.com/gsi/client"
-    script.onload = initializeGsi
-    script.async = true
-    script.id = "google-client-script"
-    document.querySelector("body").appendChild(script)
-    //userLogout();*/
+    // eslint-disable-next-line
   },[curUser,dispatch]);
   
   
@@ -111,7 +95,6 @@ function App() {
         reg = false;
       });
       
-     // document.getElementById("res").textContent = ""+Object.keys(data);
       if(!reg) {
         dispatch(logoutUser());
         setUser({
@@ -127,7 +110,6 @@ function App() {
         });
         return redirect("/register");
       }
-     // else return redirect("/");
     }
   };
   
@@ -136,7 +118,6 @@ function App() {
       <PreLoader visible={false}/>
       <SideBar />
       <Main className={""+(sidebar.visible ? "opened":"closed")}>
-        
         {/*<h6 onClick={()=>{showNotification("Hello","info")}} className="underlined">{JSON.stringify(state)}</h6>*/}
         <Router user={user} setUser={setUser}/>
       </Main>

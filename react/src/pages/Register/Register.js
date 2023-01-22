@@ -19,9 +19,10 @@ export default function Register({user=null,setUser})
   const redirect = useNavigate();
   const showNotification = useNotification();
   const [hideLogin] = useTopBar();
-  const [curUser,userLogin,userLogout] = useLogin();
+  const [,userLogin,userLogout] = useLogin();
   useEffect(()=>{
     hideLogin();
+    // eslint-disable-next-line
   },[]);
   const handleLoginSubmit = async() => {
     await login(user).then(async (res)=>{
@@ -168,7 +169,7 @@ export default function Register({user=null,setUser})
           }} type="number" name="phone" placeholder=" " required></input>
           <label>Phone (Same as WhatsApp number)*</label>
         </div>
-        <div className="form-item double">
+        {/*<div className="form-item double">
           <input onChange={(e)=>{
             setUser({
               ...user,
@@ -185,7 +186,7 @@ export default function Register({user=null,setUser})
                dob:elem.target.value
              });
           }} type="date"></input>
-        </div>
+        </div>*/}
         <div className="form-item">
           <select onChange={(e)=>{
             setUser({

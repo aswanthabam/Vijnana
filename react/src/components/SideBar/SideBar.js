@@ -1,10 +1,10 @@
 import "./SideBar.css";
-import {setSidebar} from "../../actions/index";
+// import {setSidebar} from "../../actions/index";
 //import {useSelector,useDispatch} from "react-redux";
 import {useSidebar} from "../../helper"
 import {Link,useLocation} from "react-router-dom";
-export default function SideBar({}) {
-  const [sidebar,open,close] = useSidebar();
+export default function SideBar() {
+  const [sidebar,,close] = useSidebar();
   const location = useLocation();
   const data = [
     {

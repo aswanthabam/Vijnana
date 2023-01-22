@@ -15,7 +15,7 @@
   width: 100%;
   text-align: left;
   font-size: 15px;
-  color: #121212;
+  color: #121212 !important;
 }
 .admin-event .date, .admin-event .type, .admin-event .participants {
   display: inline-block;

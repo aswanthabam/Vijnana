@@ -3,8 +3,7 @@ import {useEffect,useState} from "react";
 import {useNotification,useAdmin} from "../../../helper"
 import {getEvent} from "../../../services/EventServices"
 import {useParams} from "react-router-dom";
-import jsPDF from "jspdf"
-import html2canvas from "html2canvas";
+
 export default function Participants(){
   const [event,setEvent] = useState({loaded:false});
   const showNotification = useNotification();
@@ -12,7 +11,7 @@ export default function Participants(){
   const {id=null} = useParams();
   useEffect(()=>{
     getEvent(id,token).then(res=>{
-      if(res.data.status == 200){
+      if(res.data.status === 200){
         showNotification(res.data.description,"success");
         setEvent({...res.data.content,loaded:true});
       }else {
@@ -23,6 +22,7 @@ export default function Participants(){
       setEvent({loaded:true});
       showNotification("Error fetching event data");
     })
+    // eslint-disable-next-line
   },[token]);
   const printDocument = ()=> {
     const input = document.getElementById('pdfCont');

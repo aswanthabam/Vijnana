@@ -1,4 +1,4 @@
-import {Routes,Route,useNavigate} from 'react-router-dom';
+import {Routes,Route} from 'react-router-dom';
 import Login from "../../pages/Admin/Login/Login";
 import Admin from "../../pages/Admin/Admin";
 import AdminRoute from "../../pages/Admin/AdminRoute";

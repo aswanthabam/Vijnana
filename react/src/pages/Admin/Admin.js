@@ -11,7 +11,7 @@ export default function Admin(){
   const [token] = useAdmin();
   useEffect(()=>{
     getAllEvents(token).then(res=>{
-      if(res.data.status == 200) {
+      if(res.data.status === 200) {
         setEvents(res.data.content);
         showNotification(res.data.description,"success");
       }else {
@@ -20,6 +20,7 @@ export default function Admin(){
     }).catch(err=>{
       showNotification("Erroe fetching events","error");
     });
+    // eslint-disable-next-line
   },[]);
   return (
     <div className="admin">

@@ -6,30 +6,31 @@ import {createEvent,getEvent,editEvent} from "../../../services/EventServices"
 import {useParams} from "react-router-dom";
 export default function CreateEvent({edit=false}){
   const [event,setEvent] = useState({});
-  const [loaded,setLoaded] = useState(false);
+  //const [loaded,setLoaded] = useState(false);
   const {id=null} = useParams();
-  const [token,login,logout] = useAdmin();
+  const [token] = useAdmin();
   useEffect(()=>{
     if(edit){
       getEvent(id,token).then(res=>{
-        setLoaded(true);
-        if(res.data.status == 200) {
+       // setLoaded(true);
+        if(res.data.status === 200) {
           setEvent(res.data.content);
         }else {
           showNotification(res.data.description,"warning");
         }
       }).catch(err=>{
-        setLoaded(true);
+        //setLoaded(true);
         showNotification("Error geting event data ,","error");
       });
     }
-    else setLoaded(true);
+   // else setLoaded(true);
+   // eslint-disable-next-line
   },[]);
   const showNotification = useNotification();
   const handleSubmit = () =>{
     if(edit){
       editEvent(event).then(res=>{
-        if(res.data.status == 200){
+        if(res.data.status === 200){
           showNotification(res.data.description,"success");
         }else{
           showNotification(res.data.description,"warning");
@@ -39,7 +40,7 @@ export default function CreateEvent({edit=false}){
       });
     }else {
       createEvent(event).then(res=>{
-        if(res.data.status == 200){
+        if(res.data.status === 200){
           showNotification(res.data.description,"success");
         }else{
           showNotification(res.data.description,"warning");

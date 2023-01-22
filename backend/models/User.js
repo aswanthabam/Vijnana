@@ -27,10 +27,6 @@ const userSchema = new Schema({
     type:String,
     required:true
   },
-  dob:{
-    type:Date,
-    required:true
-  },
   course:{
     type:String,
     required:true,

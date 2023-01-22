@@ -9,14 +9,14 @@ export default function Login(){
   const [user,setUser] = useState(null);
   const [pass,setPass] = useState(null);
   const redirect = useNavigate();
-  const [token,login,logout] = useAdmin();
+  const [,login,logout] = useAdmin();
   const showNotification = useNotification();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     await adminLogin(user,pass).then(res=>{
       
-      if(res.data.status == 200){
+      if(res.data.status === 200){
         login(res.data.content);
         //localStorage.setItem("adminToken",res.data.content.token);
        // showNotification(JSON.stringify(res.data.error));

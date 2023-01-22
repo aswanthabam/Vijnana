@@ -22,7 +22,7 @@ export default function Event({event,...props})
       <p className="participants"><Link to={"/admin/participants/"+event.id}><span>{event.participants.length + " students registered"}</span></Link></p>
       <div className="options">
         <button onClick={()=>{deleteEvent(event.id,token).then(res=>{
-          if(res.data.status == 200) {
+          if(res.data.status === 200) {
             showNotification(res.data.description,"success");
           }else {
             showNotification(res.data.description,"error");
