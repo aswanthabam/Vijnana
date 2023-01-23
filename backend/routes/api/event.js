@@ -7,20 +7,20 @@ const Admin = require("../../models/Admin");
 const Event = require("../../models/Event");
 const EventReg = require("../../models/EventReg");
 
-// Edited
+//
 var router = express.Router();
 
-// Route : /api/event/register (POST)
+// ROUTE : /API/EVENT/REGISTER (POST)
 
 router.post("/register",async (req,res) => {
-  // Register To Event
+  // REGISTER TO EVENT
   var {id = null, userId=null} = req.body;
   var out = {status:400};
   if(id == null) out.description = "ID not provided";
   else if(userId == null) out.description = "UserID not provided";
   else out.status = 200;
   if(out.status != 200) {
-    // not a valid request
+    // NOT A VALID REQUEST
     res.json(out);
     return;
   }
@@ -35,7 +35,7 @@ router.post("/register",async (req,res) => {
       out.status = 400;
       out.description = "User error";
     }else {
-      // valid user
+      // VALID USER
       var event = await Event.find({id:id});
       if(user == null) {
         out.status = 400;
@@ -44,33 +44,33 @@ router.post("/register",async (req,res) => {
         out.status = 400;
         out.description = "Event not found error";
       }else {
-        // Valid event
+        // VALID EVENT
         user = user[0];
         event = event[0];
         console.log("User instance:-");
         console.log(user);
         console.log("Event instance:-");
         console.log(event);
-        // Gets the event registration instance of the perticular event and user
+        // GETS THE EVENT REGISTRATION INSTANCE OF THE PERTICULAR EVENT AND USER
         var eventReg = await EventReg.find({userId:user .userId,eventId:event.id});
         var has = true;
         if(eventReg == null) has = false;
         else if(eventReg.length <= 0) has = false;
         if(has) {
-          // Event is already registered
+          // EVENT IS ALREADY REGISTERED
           console.log("Already registered, instance:-");
           console.log(eventReg)
           out.status = 400;
           out.description = "Already registered";
         }else {
-          // creaete a new Event registration instance
+          // CREAETE A NEW EVENT REGISTRATION INSTANCE
           var eventReg = new EventReg({
             userId:user.userId,
             eventId:event.id,
             date:new Date()
           });
           await eventReg.save();
-          // update the event and user with the perticular event and user 
+          // UPDATE THE EVENT AND USER WITH THE PERTICULAR EVENT AND USER 
           event.participants.push(mongoose.Types.ObjectId(eventReg._id));
           await event.save();
           user.participate.push(mongoose.Types.ObjectId(eventReg._id));
@@ -89,7 +89,7 @@ router.post("/register",async (req,res) => {
     }
     res.json(out);
   }catch(e) {
-    // Unexpected error is occured
+    // UNEXPECTED ERROR IS OCCURED
     console.log("Error Occured");
     console.log(e);
     out.status = 500;
@@ -100,10 +100,10 @@ router.post("/register",async (req,res) => {
   }
 });
 
-// Route : /api/event/delete (GET)
+// ROUTE : /API/EVENT/DELETE (GET)
 
 router.post("/delete",async (req,res) =>{
-  // Event deletion request from the admin
+  // EVENT DELETION REQUEST FROM THE ADMIN
   var {id = null,token=null} = req.body;
   var out = {}
   var admin = false;
@@ -115,7 +115,7 @@ router.post("/delete",async (req,res) =>{
   }
   console.log("Deletion "+id+" token "+token);
   if(token != null) {
-    // Admin validation
+    // ADMIN VALIDATION
     console.log("Checking admin");
     var p = await Admin.find({token:token});
     if(p == null){
@@ -145,7 +145,7 @@ router.post("/delete",async (req,res) =>{
     return;
   }
   try {
-    // Delete the event
+    // DELETE THE EVENT
     await Event.deleteOne({id:id}).then((err)=>{
       try {
         if(err.deletedCount< 1) {
@@ -168,7 +168,7 @@ router.post("/delete",async (req,res) =>{
     res.json(out);
     return;
   }catch(e){
-    // An umnknown error occured
+    // AN UMNKNOWN ERROR OCCURED
     console.log("Error occured");
     console.log(e)
     out.status = 500;
@@ -179,12 +179,12 @@ router.post("/delete",async (req,res) =>{
   }
 });
 
-// Route : /api/event/get (GET)
+// ROUTE : /API/EVENT/GET (GET)
 
 router.get("/get",async (req,res)=>{
   var {id = null} = req.query;
   var out = {}
- // var admin = false;
+ // VAR ADMIN = FALSE;
   if(id == null){
     out.status = 400;
     out.description = "Id not given";
@@ -215,7 +215,7 @@ router.get("/get",async (req,res)=>{
     }
   }*/
   try{
-    // Find all events and link the particular events with EventReg
+    // FIND ALL EVENTS AND LINK THE PARTICULAR EVENTS WITH EVENTREG
     var p = await Event.find({id:id}).populate("participants");
     if(p == null || p.length != 1) {
       out.status = 400;
@@ -241,7 +241,7 @@ router.get("/get",async (req,res)=>{
   }
 })
 
-// Route : /api/event/getAll (GET)
+// ROUTE : /API/EVENT/GETALL (GET)
 
 router.get("/getAll",async (req,res) =>{
   var {token=null,count=-1} = req.query;
@@ -249,7 +249,7 @@ router.get("/getAll",async (req,res) =>{
   try{
     var admin = false;
     if(token != null) {
-      // Check if admin
+      // CHECK IF ADMIN
       console.log("Admin Check ");
       var p = await Admin.find({token:token});
       if(p == null){
@@ -272,7 +272,7 @@ router.get("/getAll",async (req,res) =>{
         return;
       }else console.log("Admin ✔️")
     }
-    // Get the corresponding event list
+    // GET THE CORRESPONDING EVENT LIST
     if(count == -1) var p = await Event.find().populate("participants").sort({date:1});//.then(p =>{
     else var p = await Event.find().populate("participants").sort({date:1}).limit(count);//.then(p =>{
     if(p == null) {
@@ -285,9 +285,9 @@ router.get("/getAll",async (req,res) =>{
     console.log(p);
     var data = [];
     for(var i = 0;i < p.length;i++){
-      // push each event to the data and return it as responce
+      // PUSH EACH EVENT TO THE DATA AND RETURN IT AS RESPONCE
       var cur = p[i];
-      // Participant data giving accourding to admin and normal user
+      // PARTICIPANT DATA GIVING ACCOURDING TO ADMIN AND NORMAL USER
       var participants = [];
       if(!admin) {
         for(var j = 0;j < cur.participants.length;j++){
@@ -326,7 +326,7 @@ router.get("/getAll",async (req,res) =>{
   }
 })
 
-// Route : /api/event/edit (POST)
+// ROUTE : /API/EVENT/EDIT (POST)
 
 router.post("/edit",async (req,res) => {
   var {id=null,name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
@@ -340,7 +340,7 @@ router.post("/edit",async (req,res) => {
     return;
   }
   try{
-    //Find the event
+    //FIND THE EVENT
     var ev = await Event.find({id:id});
     console.log(ev);
     if(ev == null) {
@@ -351,7 +351,7 @@ router.post("/edit",async (req,res) => {
       out.description = "No event with the id";
     }else {
       ev = ev[0]; 
-      // Update the corresponding values
+      // UPDATE THE CORRESPONDING VALUES
       if(name != null) ev.name = name;
       if(description != null) ev.description = description;
       if(date != null) ev.date = date;
@@ -378,7 +378,7 @@ router.post("/edit",async (req,res) => {
   }
 });
 
-// Route : /api/event/create
+// ROUTE : /API/EVENT/CREATE
 
 router.post("/create",async (req,res) => {
   var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
@@ -396,7 +396,7 @@ router.post("/create",async (req,res) => {
     return;
   }
   try{
-    // Create an id fpr the event
+    // CREATE AN ID FPR THE EVENT
     var id = (type+"-"+name.replace(" ","").toLowerCase()+"-"+new Date(date).getDate()).replace("/","").replace("&","").replace("?","").replace("+","");//btoa("Event"+type+name+new Date()).replace("=","");
     var ev = new Event({
       id:id,
