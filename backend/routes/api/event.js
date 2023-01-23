@@ -5,19 +5,11 @@ const mongoose = require("mongoose");
 const User = require("../../models/User");
 const Admin = require("../../models/Admin");
 const Event = require("../../models/Event");
+const EventReg = require("../../models/EventReg");
 
 
 var router = express.Router();
-/*
-router.post("/getParticipants",async (req,res) =>{
-  var {id=null,userId=null} = req.body;
-  var out = {status:400};
-  if(id == null){
-    out.description = "Invalid id";
-    res.json(out);
-    return;
-  }else 
-});*/
+
 router.post("/register",async (req,res) => {
   var {id = null, userId=null} = req.body;
   var out = {status:400};
@@ -28,6 +20,8 @@ router.post("/register",async (req,res) => {
     res.json(out);
     return;
   }
+  console.log("Registeration to event "+id);
+  console.log("Request is ok");
   try {
     var user = await User.find({userId:userId});
     if(user == null) {
@@ -47,14 +41,32 @@ router.post("/register",async (req,res) => {
       }else {
         user = user[0];
         event = event[0];
-        if(event.participants.includes(user._id) && user.participate.includes(event._id)) {
+        console.log("User instance:-");
+        console.log(user);
+        console.log("Event instance:-");
+        console.log(event);
+        var eventReg = await EventReg.find({userId:user .userId,eventId:event.id});
+        var has = true;
+        if(eventReg == null) has = false;
+        else if(eventReg.length <= 0) has = false;
+        if(has) {
+          console.log("Already registered, instance:-");
+          console.log(eventReg)
           out.status = 400;
           out.description = "Already registered";
         }else {
-          event.participants.push(mongoose.Types.ObjectId(user._id));
+          var eventReg = new EventReg({
+            userId:user.userId,
+            eventId:event.id,
+            date:new Date()
+          });
+          await eventReg.save();
+          event.participants.push(mongoose.Types.ObjectId(eventReg._id));
           await event.save();
-          user.participate.push(mongoose.Types.ObjectId(event._id));
+          user.participate.push(mongoose.Types.ObjectId(eventReg._id));
           await user.save();
+          console.log("Registered");
+          console.log(eventReg);
           out.status = 200;
           out.description = "Successfuly registered";
           out.content = {
@@ -67,6 +79,8 @@ router.post("/register",async (req,res) => {
     }
     res.json(out);
   }catch(e) {
+    console.log("Error Occured");
+    console.log(e);
     out.status = 500;
     out.description = "Error while fetching";
     out.error = e;
@@ -84,7 +98,9 @@ router.post("/delete",async (req,res) =>{
     res.json(out);
     return;
   }
+  console.log("Deletion "+id+" token "+token);
   if(token != null) {
+    console.log("Checking admin");
     var p = await Admin.find({token:token});
     if(p == null){
       out.status = 400;
@@ -101,9 +117,11 @@ router.post("/delete",async (req,res) =>{
       }else admin = true;
     }
     if(!admin) {
+      console.log("User is admin ✔️");
       res.json(out);
       return;
     }
+    console.log("User is not admin ❌");
   }else {
     out.status = 400;
     out.description = "Token not given";
@@ -114,10 +132,12 @@ router.post("/delete",async (req,res) =>{
     await Event.deleteOne({id:id}).then((err)=>{
       try {
         if(err.deletedCount< 1) {
+          console.log("Unable to Delete")
           console.log(err)
           out.status = 400;
           out.description = "Unable to delete ";
         }else {
+          console.log("Deleted successfully ")
           out.status = 200;
           out.description = "Deleted Successfuly";
           out.content = p;
@@ -131,15 +151,16 @@ router.post("/delete",async (req,res) =>{
     res.json(out);
     return;
   }catch(e){
+    console.log("Error occured");
+    console.log(e)
     out.status = 500;
     out.description = "Error fetching data";
     out.error = e;
-    console.log("Error fetchjng data")
-    console.log(e);
     res.json(out);
     return;
   }
 });
+//
 router.get("/get",async (req,res)=>{
   var {id = null} = req.query;
   var out = {}
@@ -252,6 +273,7 @@ router.get("/getAll",async (req,res) =>{
         maxPart:cur.maxpart,
         poster:cur.poster,
         is_team:cur.is_team,
+        is_reg:cur.is_reg,
         participants:participants,
         teams:admin ? cur.teams : null
       });
@@ -259,10 +281,6 @@ router.get("/getAll",async (req,res) =>{
     out.status = 200;
     out.description = "Successfuly fetched";
     out.content = data;
-   // res.json(out);
- //  return;
-//  });
-    //console.log(out);
   res.json(out);
   return;
   }catch(e){
@@ -272,7 +290,7 @@ router.get("/getAll",async (req,res) =>{
   }
 })
 router.post("/edit",async (req,res) => {
-  var {id=null,name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null} = req.body;
+  var {id=null,name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
   var out = {status:400}
   if(id == null) out.description = "ID Not given";
   else {
@@ -302,6 +320,7 @@ router.post("/edit",async (req,res) => {
       if(minPart != null) ev.minpart = minPart;
       if(poster != null) ev.poster = poster;
       if(docs != null) ev.docs = docs;
+      ev.is_reg = is_reg;
       await ev.save();
       out.status = 200;
       out.description = "Event saved ("+name+")";
@@ -318,7 +337,7 @@ router.post("/edit",async (req,res) => {
   }
 });
 router.post("/create",async (req,res) => {
-  var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null} = req.body;
+  var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
   var out = {status:400}
   if(name == null) out.description = "Name not provided";
   else if(description == null) out.description = "description not provided";
@@ -345,7 +364,8 @@ router.post("/create",async (req,res) => {
       maxpart:maxPart,
       is_team:minPart > 1,
       type:type,
-      poster:poster
+      poster:poster,
+      is_reg:is_reg
     });
     await ev.save();
     out.status = 200;

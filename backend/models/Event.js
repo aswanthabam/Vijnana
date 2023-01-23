@@ -19,6 +19,10 @@ const eventSchema = new Schema({
     type:String,
     required:true
   },
+  is_reg:{
+    type:Boolean,
+    default:true
+  },
   image:{
     type:String
   },
@@ -43,7 +47,7 @@ const eventSchema = new Schema({
   is_team:{
     type:Boolean,
     default:false
-  },participants:[{type:mongoose.ObjectId,ref:"Users"}],
+  },participants:[{type:mongoose.ObjectId,ref:"EventRegs"}],
   teams:{
     type:[mongoose.ObjectId],
     ref:"Teams"

@@ -39,7 +39,7 @@ const userSchema = new Schema({
     type:mongoose.ObjectId,
     ref:"Teams"
   },
-  participate:[{type:Schema.Types.ObjectId,ref:"Events"}],
+  participate:[{type:Schema.Types.ObjectId,ref:"EventRegs"}],
   token:{
     type:String
   },
