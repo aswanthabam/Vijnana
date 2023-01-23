@@ -7,7 +7,7 @@ const Admin = require("../../models/Admin");
 const Event = require("../../models/Event");
 const EventReg = require("../../models/EventReg");
 
-
+// Edited
 var router = express.Router();
 
 // Route : /api/event/register (POST)
