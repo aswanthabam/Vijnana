@@ -90,40 +90,38 @@ router.post("/getMyDetails",async (req,res)=>{
   }
   try{
     // FETCH THE USER
-    var tt = await User.find({userId:userId}).populate("participate").then(p=>{
-      out.status = 400;
-      if(p == null) out.description = "Invalid userId";
-      else if(p.length != 1) out.description = "User not found";
-      else{
-        p = p[0];
-        console.log("Current user : ")
-        console.log(p);
-        console.log("TOKEN: "+p.token+" | "+token)
-        if(p.token != token){
-          out.description = "Invalid token";
-        }else{
-          // USER IS FETCHED CORRECTLY
-          // CHECK FOR THE CORRESPONDING EVENT INSTANCES FOR THE IDS 
-          var participate = await Event.find({id:{$in:p.participate.map({eventId} => eventId)}});
-          console.log("The events the user is participating is :-");
-          console.log(participate);
-          out.status = 200;
-          out.description = "User found";
-          out.content = {
-            userId:p.userId,
-            name:p.name,
-            email:p.email,
-            dob:p.dob,
-            course:p.course,
-            phone:p.phone,
-            picture:p.picture,
-            participate:participate
-          }
+    var p = await User.find({userId:userId}).populate("participate");
+    out.status = 400;
+    if(p == null) out.description = "Invalid userId";
+    else if(p.length != 1) out.description = "User not found";
+    else{
+      p = p[0];
+      console.log("Current user : ")
+      console.log(p);
+      console.log("TOKEN: "+p.token+" | "+token)
+      if(p.token != token){
+        out.description = "Invalid token";
+      }else{
+        // USER IS FETCHED CORRECTLY
+        // CHECK FOR THE CORRESPONDING EVENT INSTANCES FOR THE IDS 
+        var participate = await Event.find({id:{$in:p.participate.map({eventId} => eventId)}});
+        console.log("The events the user is participating is :-");
+        console.log(participate);
+        out.status = 200;
+        out.description = "User found";
+        out.content = {
+          userId:p.userId,
+          name:p.name,
+          email:p.email,
+          dob:p.dob,
+          course:p.course,
+          phone:p.phone,
+          picture:p.picture,
+          participate:participate
         }
       }
-      res.json(out)
-      return;
-    });
+    }
+    res.json(out)
     return;
   }catch(e){
     console.log("Error occured");
