@@ -170,7 +170,9 @@ router.get("/get",async (req,res)=>{
     out.description = "Id not given";
     res.json(out);
     return;
-  }/*
+  }
+  console.log("Event data get : "+id);
+  /*
   if(token != null) {
     var p = await Admin.find({token:token});
     if(p == null){
@@ -200,6 +202,7 @@ router.get("/get",async (req,res)=>{
       res.json(out)
       return;
     }
+    console.log(p);
     out.status = 200;
     out.description = "Success";
     out.content = {
@@ -208,6 +211,8 @@ router.get("/get",async (req,res)=>{
     res.json(out);
     return;
   }catch(e){
+    console.log("Error occured");
+    console.log(e);
     out.status = 500;
     out.description = "Error while fetching data";
     res.json(out);
@@ -215,7 +220,7 @@ router.get("/get",async (req,res)=>{
   }
 })
 router.get("/getAll",async (req,res) =>{
-  console.log(req.query)
+  // console.log(req.query)
   var {token=null,count=-1} = req.query;
   var out = {status:200};
   try{
@@ -238,10 +243,10 @@ router.get("/getAll",async (req,res) =>{
         }else admin = true;
       }
       if(!admin) {
-        console.log("❌");
+        console.log("Not an Admin ❌");
         res.json(out);
         return;
-      }else console.log("✔️")
+      }else console.log("Admin ✔️")
     }
     if(count == -1) var p = await Event.find().populate("participants").sort({date:1});//.then(p =>{
     else var p = await Event.find().populate("participants").sort({date:1}).limit(count);//.then(p =>{
@@ -251,6 +256,8 @@ router.get("/getAll",async (req,res) =>{
       res.json(out);
       return;
     }
+    console.log("Events:-");
+    console.log(p);
     var data = [];
     for(var i = 0;i < p.length;i++){
       var cur = p[i];
@@ -281,14 +288,17 @@ router.get("/getAll",async (req,res) =>{
     out.status = 200;
     out.description = "Successfuly fetched";
     out.content = data;
-  res.json(out);
-  return;
+    res.json(out);
+    return;
   }catch(e){
+    console.log("Error occurred ");
+    console.log(e);
     out.status = 500;
     out.description = "Error while fetching";
     out.error = e;
   }
 })
+//
 router.post("/edit",async (req,res) => {
   var {id=null,name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
   var out = {status:400}
