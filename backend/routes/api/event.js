@@ -10,13 +10,17 @@ const EventReg = require("../../models/EventReg");
 
 var router = express.Router();
 
+// Route : /api/event/register (POST)
+
 router.post("/register",async (req,res) => {
+  // Register To Event
   var {id = null, userId=null} = req.body;
   var out = {status:400};
   if(id == null) out.description = "ID not provided";
   else if(userId == null) out.description = "UserID not provided";
   else out.status = 200;
   if(out.status != 200) {
+    // not a valid request
     res.json(out);
     return;
   }
@@ -31,6 +35,7 @@ router.post("/register",async (req,res) => {
       out.status = 400;
       out.description = "User error";
     }else {
+      // valid user
       var event = await Event.find({id:id});
       if(user == null) {
         out.status = 400;
@@ -39,28 +44,33 @@ router.post("/register",async (req,res) => {
         out.status = 400;
         out.description = "Event not found error";
       }else {
+        // Valid event
         user = user[0];
         event = event[0];
         console.log("User instance:-");
         console.log(user);
         console.log("Event instance:-");
         console.log(event);
+        // Gets the event registration instance of the perticular event and user
         var eventReg = await EventReg.find({userId:user .userId,eventId:event.id});
         var has = true;
         if(eventReg == null) has = false;
         else if(eventReg.length <= 0) has = false;
         if(has) {
+          // Event is already registered
           console.log("Already registered, instance:-");
           console.log(eventReg)
           out.status = 400;
           out.description = "Already registered";
         }else {
+          // creaete a new Event registration instance
           var eventReg = new EventReg({
             userId:user.userId,
             eventId:event.id,
             date:new Date()
           });
           await eventReg.save();
+          // update the event and user with the perticular event and user 
           event.participants.push(mongoose.Types.ObjectId(eventReg._id));
           await event.save();
           user.participate.push(mongoose.Types.ObjectId(eventReg._id));
@@ -79,6 +89,7 @@ router.post("/register",async (req,res) => {
     }
     res.json(out);
   }catch(e) {
+    // Unexpected error is occured
     console.log("Error Occured");
     console.log(e);
     out.status = 500;
@@ -88,7 +99,11 @@ router.post("/register",async (req,res) => {
     return;
   }
 });
+
+// Route : /api/event/delete (GET)
+
 router.post("/delete",async (req,res) =>{
+  // Event deletion request from the admin
   var {id = null,token=null} = req.body;
   var out = {}
   var admin = false;
@@ -100,6 +115,7 @@ router.post("/delete",async (req,res) =>{
   }
   console.log("Deletion "+id+" token "+token);
   if(token != null) {
+    // Admin validation
     console.log("Checking admin");
     var p = await Admin.find({token:token});
     if(p == null){
@@ -129,6 +145,7 @@ router.post("/delete",async (req,res) =>{
     return;
   }
   try {
+    // Delete the event
     await Event.deleteOne({id:id}).then((err)=>{
       try {
         if(err.deletedCount< 1) {
@@ -151,6 +168,7 @@ router.post("/delete",async (req,res) =>{
     res.json(out);
     return;
   }catch(e){
+    // An umnknown error occured
     console.log("Error occured");
     console.log(e)
     out.status = 500;
@@ -160,7 +178,9 @@ router.post("/delete",async (req,res) =>{
     return;
   }
 });
-//
+
+// Route : /api/event/get (GET)
+
 router.get("/get",async (req,res)=>{
   var {id = null} = req.query;
   var out = {}
@@ -195,6 +215,7 @@ router.get("/get",async (req,res)=>{
     }
   }*/
   try{
+    // Find all events and link the particular events with EventReg
     var p = await Event.find({id:id}).populate("participants");
     if(p == null || p.length != 1) {
       out.status = 400;
@@ -219,13 +240,16 @@ router.get("/get",async (req,res)=>{
     return;
   }
 })
+
+// Route : /api/event/getAll (GET)
+
 router.get("/getAll",async (req,res) =>{
-  // console.log(req.query)
   var {token=null,count=-1} = req.query;
   var out = {status:200};
   try{
     var admin = false;
     if(token != null) {
+      // Check if admin
       console.log("Admin Check ");
       var p = await Admin.find({token:token});
       if(p == null){
@@ -248,6 +272,7 @@ router.get("/getAll",async (req,res) =>{
         return;
       }else console.log("Admin ✔️")
     }
+    // Get the corresponding event list
     if(count == -1) var p = await Event.find().populate("participants").sort({date:1});//.then(p =>{
     else var p = await Event.find().populate("participants").sort({date:1}).limit(count);//.then(p =>{
     if(p == null) {
@@ -260,14 +285,16 @@ router.get("/getAll",async (req,res) =>{
     console.log(p);
     var data = [];
     for(var i = 0;i < p.length;i++){
+      // push each event to the data and return it as responce
       var cur = p[i];
+      // Participant data giving accourding to admin and normal user
       var participants = [];
       if(!admin) {
         for(var j = 0;j < cur.participants.length;j++){
           participants.push({userId:cur.participants[j].userId});
         }
       }else participants = cur.participants;
-     // console.log(participants)
+      console.log(participants)
       data.push({
         id:cur.id,
         name:cur.name,
@@ -298,7 +325,9 @@ router.get("/getAll",async (req,res) =>{
     out.error = e;
   }
 })
-//
+
+// Route : /api/event/edit (POST)
+
 router.post("/edit",async (req,res) => {
   var {id=null,name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
   var out = {status:400}
@@ -311,6 +340,7 @@ router.post("/edit",async (req,res) => {
     return;
   }
   try{
+    //Find the event
     var ev = await Event.find({id:id});
     console.log(ev);
     if(ev == null) {
@@ -320,7 +350,8 @@ router.post("/edit",async (req,res) => {
       out.status = 400;
       out.description = "No event with the id";
     }else {
-      ev = ev[0];
+      ev = ev[0]; 
+      // Update the corresponding values
       if(name != null) ev.name = name;
       if(description != null) ev.description = description;
       if(date != null) ev.date = date;
@@ -331,7 +362,7 @@ router.post("/edit",async (req,res) => {
       if(poster != null) ev.poster = poster;
       if(docs != null) ev.docs = docs;
       ev.is_reg = is_reg;
-      await ev.save();
+      await ev.save(); //save
       out.status = 200;
       out.description = "Event saved ("+name+")";
       out.content = ev;
@@ -346,6 +377,9 @@ router.post("/edit",async (req,res) => {
     return;
   }
 });
+
+// Route : /api/event/create
+
 router.post("/create",async (req,res) => {
   var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
   var out = {status:400}
@@ -362,6 +396,7 @@ router.post("/create",async (req,res) => {
     return;
   }
   try{
+    // Create an id fpr the event
     var id = (type+"-"+name.replace(" ","").toLowerCase()+"-"+new Date(date).getDate()).replace("/","").replace("&","").replace("?","").replace("+","");//btoa("Event"+type+name+new Date()).replace("=","");
     var ev = new Event({
       id:id,
@@ -377,7 +412,7 @@ router.post("/create",async (req,res) => {
       poster:poster,
       is_reg:is_reg
     });
-    await ev.save();
+    await ev.save(); // save
     out.status = 200;
     out.description = "Event created ("+name+")";
     out.content = ev;
@@ -392,4 +427,5 @@ router.post("/create",async (req,res) => {
     return;
   }
 });
+
 module.exports = router;
