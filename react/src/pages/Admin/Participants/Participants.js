@@ -6,6 +6,16 @@ import {useParams} from "react-router-dom";
 
 export default function Participants(){
   const [event,setEvent] = useState({loaded:false});
+  const [contents,setContents] = useState({
+    userId:true,
+    name:true,
+    course:true,
+    email:true,
+    phone:true,
+    date:true,
+    remarks:false,
+    sd:true
+  });
   const showNotification = useNotification();
   const [token] = useAdmin();
   const {id=null} = useParams();
@@ -47,34 +57,85 @@ export default function Participants(){
   }
   return (
     <div className="participants-page">
-     <div id="pdfCont">
+     <span>Display Items</span><br/>
+     <div className="item">
+       <input checked={contents.userId} onChange={e=>{
+         setContents({...contents,userId:e.currentTarget.checked});
+       }} type="checkbox" ></input><label>User ID</label>
+     </div>
+     <div className="item">
+       <input checked={contents.name} onChange={e=>{
+         setContents({...contents,name:e.currentTarget.checked});
+       }} type="checkbox" /><label>Name</label>
+     </div>
+     <div className="item">
+       <input checked={contents.course} onChange={e=>{
+         setContents({...contents,course:e.currentTarget.checked});
+       }} type="checkbox" /><label>Course</label>
+     </div>
+     <div className="item">
+       <input checked={contents.email} onChange={e=>{
+         setContents({...contents,email:e.currentTarget.checked});
+       }} type="checkbox" /><label>Email ID</label>
+     </div>
+     <div className="item">
+       <input checked={contents.phone} onChange={e=>{
+         setContents({...contents,phone:e.currentTarget.checked});
+       }} type="checkbox" /><label>Phone</label>
+     </div>
+     <div className="item">
+       <input checked={contents.date} onChange={e=>{
+         setContents({...contents,date:e.currentTarget.checked});
+       }} type="checkbox" /><label>Registered On</label>
+     </div>
+     <div className="item">
+       <input checked={contents.remarks} onChange={e=>{
+         setContents({...contents,remarks:e.currentTarget.checked});
+       }} type="checkbox" /><label>Remarks Column</label>
+     </div>
+     <div className="item">
+       <input checked={contents.sd} onChange={e=>{
+         setContents({...contents,sd:e.currentTarget.checked});
+       }} type="checkbox" /><label>Sign Column</label>
+     </div>
+     <div id="pdfCont"><center>
      {event.loaded && <>
-     <center><h3>Participants List</h3>
-     <h4 className="underlined">{event.name}</h4></center>
+     <h3>Participants List</h3>
+     <h2 className="underlined">{event.name}</h2>
+     <hr/><br/>
        </>
      }
       {event.loaded && <table>
        <tr>
-         <td><b>User ID</b></td>
-         <td><b>Name</b></td>
-         <td><b>Course</b></td>
-         <td><b>Email</b></td>
-         <td><b>Phone</b></td>
-         <td><b>Remarks</b></td>
-         <td><b>S/D</b></td>
+         { contents.userId && <td><b>User ID</b></td> }
+         { contents.name && <td><b>Name</b></td> }
+         { contents.course && <td><b>Course</b></td> }
+         { contents.email && <td><b>Email</b></td> }
+         { contents.phone && <td><b>Phone</b></td> }
+         { contents.date && <td><b>Reg. On</b></td> }
+         { contents.remarks && <td><b>Remarks</b></td> }
+         { contents.sd && <td><b>S/D</b></td> }
        </tr>
         { event.participants.map(user=><tr>
-          <td>{user.userId}</td>
-          <td>{user.name}</td>
-          <td>{user.course}</td>
-          <td>{user.email}</td>
-          <td>{user.phone}</td>
-          <td></td>
-          <td></td>
+          { contents.userId && <td>{user.userId}</td> }
+          { contents.name && <td>{user.name}</td> }
+          { contents.course && <td>{user.course}</td> } 
+          { contents.email && <td>{user.email}</td> }
+          { contents.phone && <td>{user.phone}</td> }
+          { contents.date && <td>{new Date(user.date).toLocaleString("en-us", {
+                hour12: true,
+                hour: "numeric",
+                month: "short",
+                day:"numeric",
+                minute:"numeric",
+                year:"numeric"
+              })}</td> }
+          { contents.remarks && <td></td> }
+          { contents.sd && <td></td> }
         </tr>) }
-      </table>}
+      </table>}</center>
       </div>
-      <span onClick={printDocument}>Print</span>
+      <button onClick={printDocument}>Print</button>
     </div>
   )
 }

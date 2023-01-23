@@ -27,7 +27,7 @@ export default function Dashboard(){
        setUser({...res.data.content,loaded:true});
      }else{
        setUser({loaded:true,error:true});
-       showNotification(res.data.description+JSON.stringify(res.data),"error");
+       showNotification(res.data.description,"error");
        redirect("/register");
      }
       //showNotification("hi");

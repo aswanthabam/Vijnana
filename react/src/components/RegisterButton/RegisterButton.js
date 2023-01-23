@@ -18,7 +18,7 @@ export default function RegisterButton({event}){
   const showNotification = useNotification();
   return (
     <div onClick={()=>{
-     if(!reg && event) registerEvent(event.id,user.userId).then(res=>{
+     if(!reg && event && event.is_reg) registerEvent(event.id,user.userId).then(res=>{
         if(res.data.status === 200){
           showNotification(res.data.description,"success");
           setReg(true);
@@ -28,8 +28,8 @@ export default function RegisterButton({event}){
       }).catch(err=>{
         showNotification("Error registering","error");
       });
-    }} className={"register-button"+(reg?" registered":"")}>
-      {reg?"Registered":"Register"}
+    }} className={"register-button"+((reg || !event.is_reg)?" registered":"")}>
+      {event.is_reg ? (reg?"Registered":"Register") : "OPEN TO ALL"}
     </div>
   );
 }

@@ -104,7 +104,7 @@ router.post("/getMyDetails",async (req,res)=>{
       }else{
         // USER IS FETCHED CORRECTLY
         // CHECK FOR THE CORRESPONDING EVENT INSTANCES FOR THE IDS 
-        var participate = await Event.find({id:{$in:p.participate.map({eventId} => eventId)}});
+        var participate = await Event.find({id:{$in:p.participate.map(({eventId}) => eventId)}});
         console.log("The events the user is participating is :-");
         console.log(participate);
         out.status = 200;

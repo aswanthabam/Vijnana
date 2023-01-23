@@ -1,6 +1,6 @@
 import axios from "axios";
 import {api} from "../config";
-export const editEvent = ({id=null,name=null, description=null,date=null,type=null,image=null,minPart=null,maxPart=null,poster=null,docs=null}) =>{
+export const editEvent = ({id=null,name=null, description=null,date=null,type=null,image=null,minPart=null,maxPart=null,poster=null,docs=null,is_reg=true}) =>{
   return axios.post(api+"/api/event/edit",{
     id:id,
     name:name,
@@ -11,7 +11,8 @@ export const editEvent = ({id=null,name=null, description=null,date=null,type=nu
     minPart:minPart != null ? minPart : 1,
     maxPart:maxPart != null ? maxPart : 1,
     poster:poster,
-    docs:docs
+    docs:docs,
+    is_reg:is_reg
   });
 };
 export const createEvent = ({name=null, description=null,date=null,type=null,image=null,minPart=null,maxPart=null,poster=null,docs=null}) =>{

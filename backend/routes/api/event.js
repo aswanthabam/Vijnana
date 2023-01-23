@@ -217,17 +217,31 @@ router.get("/get",async (req,res)=>{
   try{
     // FIND ALL EVENTS AND LINK THE PARTICULAR EVENTS WITH EVENTREG
     var p = await Event.find({id:id}).populate("participants");
-    if(p == null || p.length != 1) {
+    if(p == null) {
+      out.status = 400;
+      out.description = "Event not found";
+      res.json(out)
+      return;
+    }
+    else if(p.length != 1) {
       out.status = 400;
       out.description = "Event not found";
       res.json(out)
       return;
     }
     console.log(p);
+    console.log("Populating with user Instance");
+    var participants = (await User.find({userId:{$in:p[0].participants.map(({userId})=>userId)}})).map((user,i) => {
+      return {...user._doc,
+      date:p[0].participants[i].date};
+    });
+    console.log("participants fetched");
+    console.log(participants);
     out.status = 200;
     out.description = "Success";
     out.content = {
-      ...p[0]._doc
+      ...p[0]._doc,
+      participants:participants
     }
     res.json(out);
     return;
@@ -370,6 +384,8 @@ router.post("/edit",async (req,res) => {
     res.json(out);
     return;
   }catch(e){
+    console.log("Error occured");
+    console.log(e)
     out.status = 500;
     out.description = "Error when saving data";
     out.error = e;
@@ -381,6 +397,7 @@ router.post("/edit",async (req,res) => {
 // ROUTE : /API/EVENT/CREATE
 
 router.post("/create",async (req,res) => {
+  console.log("Create event request")
   var {name=null, description=null,date=null,type=null,image=null,maxPart=1,minPart=1,poster=null,docs=null,is_reg=true} = req.body;
   var out = {status:400}
   if(name == null) out.description = "Name not provided";
@@ -417,10 +434,12 @@ router.post("/create",async (req,res) => {
     out.description = "Event created ("+name+")";
     out.content = ev;
     res.json(out);
+    console.log("Event created");
     return;
   }catch(e){
     out.status = 500;
     out.description = "Error when saving data";
+    console.log("Error occured")
     console.log(e);
     out.error = e;
     res.json(out);

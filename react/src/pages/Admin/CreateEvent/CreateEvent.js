@@ -121,6 +121,13 @@ export default function CreateEvent({edit=false}){
         }} type="text" placeholder=" "></input>
         <label>Other Documents (Url,optional)</label>
       </div>
+      <div className="item">
+        <input checked={edit?event.is_reg:true} value="true" onChange={(e)=>{
+          setEvent({...event,is_reg:e.currentTarget.checked});
+        }} type="checkbox" placeholder=" "></input>
+        <label>Is registerable?</label>
+      </div>
+      
       
       
       <input type="submit" value={edit?"Save Event":"Create Event"}></input>

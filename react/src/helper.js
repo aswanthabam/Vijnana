@@ -51,19 +51,19 @@ export const useAdmin = () =>{
       expiry = new Date();
       expiry.setDate(expiry.getDate() + 14);
     }else expiry = new Date(expiry);
-    setCookie("token",token,{path:'/',expires:expiry});
+    setCookie("admintoken",token,{path:'/',expires:expiry});
    // setCookie("expiry",token,{path:'/',expires:date});
     // setToken(token);
   }
   const logout = () =>{
-    setCookie("token",null,{path:'/'});
+    setCookie("admintoken",null,{path:'/'});
    // setCookie("expiry",token,{path:'/',expires:date});
   //  setToken(null);
   }/*
   useEffect(()=>{
     setToken(cookies.token);
   },[cookies]);*/
-  return [cookies.token, login,logout];
+  return [cookies.admintoken, login,logout];
 }
 export const useLogin = () => {
   const [user,setUser] = useState({is_logged:false});
