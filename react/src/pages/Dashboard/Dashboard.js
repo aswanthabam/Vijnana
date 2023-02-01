@@ -3,13 +3,13 @@ import LogoutButton from "../../components/LogoutButton/LogoutButton";
 // import Notification from "../../components/Notification/Notification";
 import UserCard from "../../components/UserCard/UserCard";
 import PreLoader from "../../components/PreLoader/PreLoader";
-import Event from "../../components/Event/Event";
+// import Event from "../../components/Event/Event";
 import {useSelector} from "react-redux";
 import {getMyDetails} from "../../services/UserService";
 import {useNotification} from "../../helper";
 import {useEffect,useState} from "react"
 import {useNavigate} from "react-router-dom";
-
+import Events from "../../components/EventsContainer/Events"
 export default function Dashboard(){
   const state = useSelector(state => state);
   const showNotification = useNotification();
@@ -20,6 +20,7 @@ export default function Dashboard(){
       setUser({loaded:true,error:true});
       return;
     }
+    
     getMyDetails(state.user.userId,state.user.token).then(res =>{
      //showNotification(JSON.stringify(res.data),"info",false);
      // document.getElementsByClassName("email")[0].textContent = JSON.stringify(res.data);
@@ -44,14 +45,12 @@ export default function Dashboard(){
       <PreLoader visible={!user.loaded}/>
       <UserCard user={user}/>
       <br/><LogoutButton/>
-      <div className="registered" >
-      <h3 className="underlined">Registered Events</h3>
+        {!user.participate && <span>No events registered</span>}
         { user.participate &&
         <div className="container">
-           { user.participate.map(event => <Event event={{...event,date:new Date(event.date)}}/> ) }
+           {/* user.participate.map(event => <Event event={{...event,date:new Date(event.date)}}/> ) */}
+           <Events/>
         </div>}
-        {!user.participate && <span>No events registered</span>}
-      </div>
     </div>
   );
 };

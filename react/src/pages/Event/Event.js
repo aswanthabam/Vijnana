@@ -38,11 +38,11 @@ export default function Event(){
       <PreLoader visible={!loaded}/>
       { event ? <div>
       <p className="type"><span>{event.type}</span></p>
-      <img className="image" src={event.image} alt={event.name} ></img>
+      <div className="image-container"><img className="image" src={event.image} alt={event.name} ></img></div>
       <h3 className="underlined name">{event.name}</h3>
       <p className="date"><span>{event.date}</span></p>
-      <p className="description">
-        {event.description}
+      <p dangerouslySetInnerHTML={{__html: event.description}} className="description">
+        
       </p>
       <RegisterButton event={event}/>
       {event.poster && <><h4>Poster</h4><img src={event.poster} alt={"poster-"+event.name} className="poster"/></> }

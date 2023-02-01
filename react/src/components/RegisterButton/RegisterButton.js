@@ -2,6 +2,7 @@ import "./RegisterButton.css";
 import {useState,useEffect} from "react";
 import {registerEvent} from "../../services/EventServices";
 import {useLogin,useNotification} from "../../helper"
+import { useNavigate } from "react-router-dom";
 export default function RegisterButton({event}){
   const [reg,setReg] = useState(false);
   const [user] = useLogin();
@@ -14,11 +15,12 @@ export default function RegisterButton({event}){
     }
     
   },[event,user]);
-  
+  const redirect = useNavigate();
   const showNotification = useNotification();
   return (
     <div onClick={()=>{
-     if(!reg && event && event.is_reg) registerEvent(event.id,user.userId).then(res=>{
+      if(!user.is_logged) redirect("/register");
+      else if(!reg && event && event.is_reg) registerEvent(event.id,user.userId).then(res=>{
         if(res.data.status === 200){
           showNotification(res.data.description,"success");
           setReg(true);

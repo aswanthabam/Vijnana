@@ -1,5 +1,7 @@
 .main .content {
+  position: relative;
   margin-top: 60px;
+  height: auto;
 }
 .main {
   position: fixed;

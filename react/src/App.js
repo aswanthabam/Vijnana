@@ -128,6 +128,7 @@ function App() {
       <Main className={""+(sidebar.visible ? "opened":"closed")}>
         {/*<h6 onClick={()=>{showNotification("Hello","info")}} className="underlined">{JSON.stringify(state)}</h6>*/}
         <Router user={user} setUser={setUser}/>
+        
       </Main>
     </div>
   );

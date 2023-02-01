@@ -4,6 +4,7 @@ import Notification from "../Notification/Notification"
 import TopBar from "../TopBar/TopBar";
 import {useLocation} from "react-router-dom"
 import {useSidebar} from "../../helper"
+import Footer from "../Footer/Footer";
 export default function Main({className,children})
 {
   const location = useLocation();
@@ -18,6 +19,7 @@ export default function Main({className,children})
       <Notification />
       <div className="content">
       { children }
+      <Footer/>
       </div>
     </div>
   );

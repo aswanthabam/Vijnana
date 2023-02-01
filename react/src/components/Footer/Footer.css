@@ -1,0 +1,15 @@
+.footer {
+    width: calc(100% - 20px);
+    max-width: calc(100vw - 20px);
+    padding: 10px;
+    background: var(--bg-2);
+    font-size: 15px;
+    text-align: center;
+    bottom: 0;
+}
+.footer a {
+    color: lightblue;
+}
+.footer .inaugurate-link {
+    font-size: 7px;
+}

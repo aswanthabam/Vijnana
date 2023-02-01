@@ -3,6 +3,7 @@
   width: calc(100% - 40px);
   height: auto;
   color: var(--text);
+  min-height: 100vh;
 }
 .event-page .image {
   width: 100%;
@@ -29,4 +30,26 @@
 .event-page .poster {
   width: 100%;
   height: auto;
+  max-width: 800px;
+}
+.event-page .image-container {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (min-width: 700px) {
+  .event-page .description {
+    font-size: 15px;
+  }
+  .event-page .name {
+    font-size: 18px;
+  }
+  .event-page .image {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
 }
