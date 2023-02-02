@@ -189,6 +189,19 @@ export default function Register({user=null,setUser})
             <option value="msc">MSc Computer Science</option>
           </select>
         </div>
+        <div className="form-item">
+          <select onChange={(e)=>{
+            setUser({
+              ...user,
+              year:e.target.value
+            });
+          }}  name="year" required>
+            <option value="" disabled={true} selected>Year *</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+          </select>
+        </div>
         <button>Register</button>
       </form> }
     </div>

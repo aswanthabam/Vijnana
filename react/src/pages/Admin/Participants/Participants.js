@@ -14,7 +14,8 @@ export default function Participants(){
     phone:true,
     date:true,
     remarks:false,
-    sd:true
+    sd:true,
+    year:true
   });
   const showNotification = useNotification();
   const [token] = useAdmin();
@@ -74,6 +75,11 @@ export default function Participants(){
        }} type="checkbox" /><label>Course</label>
      </div>
      <div className="item">
+       <input checked={contents.year} onChange={e=>{
+         setContents({...contents,year:e.currentTarget.checked});
+       }} type="checkbox" /><label>Year</label>
+     </div>
+     <div className="item">
        <input checked={contents.email} onChange={e=>{
          setContents({...contents,email:e.currentTarget.checked});
        }} type="checkbox" /><label>Email ID</label>
@@ -110,6 +116,7 @@ export default function Participants(){
          { contents.userId && <td><b>User ID</b></td> }
          { contents.name && <td><b>Name</b></td> }
          { contents.course && <td><b>Course</b></td> }
+         { contents.year && <td><b>Year</b></td> }
          { contents.email && <td><b>Email</b></td> }
          { contents.phone && <td><b>Phone</b></td> }
          { contents.date && <td><b>Reg. On</b></td> }
@@ -120,6 +127,7 @@ export default function Participants(){
           { contents.userId && <td>{user.userId}</td> }
           { contents.name && <td>{user.name}</td> }
           { contents.course && <td>{user.course}</td> } 
+          { contents.year && <td>{user.year}</td> } 
           { contents.email && <td>{user.email}</td> }
           { contents.phone && <td>{user.phone}</td> }
           { contents.date && <td>{new Date(user.date).toLocaleString("en-us", {
