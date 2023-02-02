@@ -31,6 +31,10 @@ const userSchema = new Schema({
     type:String,
     required:true,
   },
+  year:{
+    type:Number,
+    default:1
+  },
   phone:{
     type:String,
     required:true

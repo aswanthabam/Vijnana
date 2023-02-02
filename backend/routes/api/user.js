@@ -179,7 +179,7 @@ router.post("/login",async (req,res) =>{
 
 router.post("/create",async (req,res)=>{
   console.log("Create user request");
-  var {name=null,email=null,picture=null,phone=null,course=null,aud=null,password=null} = req.body;
+  var {name=null,email=null,picture=null,phone=null,course=null,aud=null,password=null,year=1} = req.body;
   var out = {status:400};
   if(name==null) out.description = "Name not provided";
   else if(email==null) out.description = "Email not provided";
@@ -231,7 +231,8 @@ router.post("/create",async (req,res)=>{
       picture:picture,
       phone:phone,
       course:course,
-      password:password
+      password:password,
+      year:year
     });
    await user.save();
    console.log("User saved temp. creating id")
