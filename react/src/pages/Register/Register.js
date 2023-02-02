@@ -186,6 +186,7 @@ export default function Register({user=null,setUser})
             <option value="bca">BCA</option>
             <option value="ba">BA History</option>
             <option value="bcom">BCom</option>
+            <option value="msc">MSc Computer Science</option>
           </select>
         </div>
         <button>Register</button>
