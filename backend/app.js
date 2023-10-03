@@ -35,7 +35,7 @@ app.use("/api/admin",adminApiRouter);
 app.use("/api/event",eventRouter);
 app.use("/admin",adminRouter);
 
-const uri = "mongodb+srv://avctech:avctech@cluster0.4wxlu7g.mongodb.net/Tech-Fest?retryWrites=true&w=majority";
+const uri = env.MONGO_PATH;
 mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true})
   .then((result) =>{
     console.log("CONNECTED TO DB");
