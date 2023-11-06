@@ -3,11 +3,12 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: calc(100% - 30px);
+  width: calc(100% - 30px - 1.4rem);
   height: auto;
   padding: 10px 15px;
   border-radius: 30px;
   font-size: 1.3rem;
+  margin: 0.7rem;
 }
 .icon-button .text {
   margin-left: 1rem;
