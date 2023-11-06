@@ -1,0 +1,25 @@
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: calc(100% - 30px);
+  height: auto;
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-size: 1.3rem;
+}
+.icon-button .text {
+  margin-left: 1rem;
+}
+.icon-button.type-primary {
+  background: var(--color-4);
+  box-shadow: 0px 1px 10px var(--color-3);
+  color: var(--color-1);
+}
+
+.icon-button.type-secondary {
+  background: var(--color-3);
+  box-shadow: 0px 1px 10px var(--color-4);
+  color: var(--color-1);
+}
