@@ -1,6 +1,4 @@
 import './IconButton.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'boxicons/css/boxicons.css'
 import React from 'react';
 interface IconButtonProps {
   icon : string;

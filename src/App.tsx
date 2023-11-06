@@ -1,12 +1,11 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import './App.css'
-import IconButton from './components/buttons/IconButton/IconButton'
-import TextButton from './components/buttons/TextButton/TextButton'
+import TopBar from './components/topbar/topbar'
 
 function App() {
   return (
     <div className='app dark'>
-      <IconButton icon='bi bi-door-open' text='login' type='primary'/>
+      <TopBar/>
     </div>
   )
 }

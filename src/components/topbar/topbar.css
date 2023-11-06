@@ -1,0 +1,34 @@
+.topbar > div {
+  justify-content: space-between;
+  width: 100%;
+  height: 5rem;
+  background: var(--color-2);
+}
+
+.topbar .mobile {
+  display: flex;
+}
+.topbar .desktop {
+  display: none;
+}
+
+/* Target tablet devices */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Your CSS styles for tablet devices go here */
+  .topbar .mobile {
+    display: none;
+  }
+  .topbar .desktop {
+    display: flex;
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
+  .topbar .mobile {
+    display: none;
+  }
+  .topbar .desktop {
+    display: flex;
+  }
+}
