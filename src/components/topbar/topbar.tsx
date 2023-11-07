@@ -1,28 +1,30 @@
-import './topbar.css';
-import IconButton from "../buttons/IconButton/IconButton";
+import LoginButton from '../buttons/LoginButton/LoginButton';
+import style from './topbar.module.css';
 
 function TopBar() {
-  return <div className="topbar">
-    <div className="mobile">
-      <div className="menu-button">
-        <IconButton text={null} icon='bx- bx-menu' type='transparent'/>
-        <i className="bx bx-menu"></i>
+  return <>
+    <div className={style.topbar + ' ' + style.mobile}>
+      <div className={style.menuButton}>
+
       </div>
-      <div className="account">
-        <IconButton text={'Login'} icon="bx bx-open-door" type="primary"/>
+      <div className={style.account}>
+        <LoginButton/>
       </div>
     </div>
 
-    <div className="desktop">
-      <div className="menu-button">
-        <IconButton text={null} icon='bx- bx-menu' type='transparent'/>
-        <i className="bx bx-menu"></i>
+    <div className={style.topbar + ' ' + style.desktop}>
+      <div className={style.menuButton}>
+        <span>Vijnana</span>
       </div>
-      <div className="account">
-        <IconButton text={'Login'} icon="bx bx-open-door" type="primary"/>
+      <div className={style.account}>
+        <span className={style.menuItem}>Home</span>
+        <span className={style.menuItem}>Events</span>
+        <span className={style.menuItem}>About</span>
+        <span className={style.menuItem}>Contact</span>
+        <LoginButton/>
       </div>
     </div>
-  </div>
+  </>
 }
 
 export default TopBar;

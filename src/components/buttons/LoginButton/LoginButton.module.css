@@ -1,0 +1,19 @@
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: var(--color-4);
+  color: var(--color-1);
+  box-shadow: 1px 1px 10px var(--color-2);
+  font-size: 20px;
+  .icon {
+    margin-right: 10px;
+  }
+}
+
+.loginButton:hover {
+  background: var(--color-3);
+  color: var(--color-4);
+}

@@ -1,0 +1,57 @@
+.topbar {
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  height: 5rem;
+  background: var(--color-2);
+  padding: 0px 20px;
+
+  .account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.mobile {
+  display: flex;
+}
+.desktop {
+  display: none;
+  
+  .menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+  }
+
+  .account {
+    width: calc(65%);
+    justify-content: space-between;
+    .menuItem {
+      /* margin-right: 50px; */
+      font-size: 20px;
+    }
+  }
+}
+
+/* Target tablet devices */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Your CSS styles for tablet devices go here */
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: flex;
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: flex;
+  }
+}
