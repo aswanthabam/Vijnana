@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import LoginButton from '../buttons/LoginButton/LoginButton';
 import style from './topbar.module.css';
 
@@ -15,16 +16,16 @@ function TopBar() {
     <div className={style.topbar + ' ' + style.desktop}>
       <div className={style.menuItems}>
         <div className={style.menuButton}>
-          <span>Home</span>
+          <Link to='/'>Home</Link>
         </div>
         <div className={style.menuButton}>
-          <span>Events</span>
+          <Link to='/events'>Events</Link>
         </div>
         <div className={style.menuButton}>
-          <span>About</span>
+          <Link to='/about'>About</Link>
         </div>
         <div className={style.menuButton}>
-          <span>Contact</span>
+          <Link to='/contact'>Contact</Link>
         </div>
       </div>
       <div className={style.loginButton}>

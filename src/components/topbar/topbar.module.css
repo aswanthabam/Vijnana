@@ -29,12 +29,16 @@
 
     .menuButton {
       margin-right: 20px;
-      color: #744524;
       font-family: Wallpoet;
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
+
+      & a {
+        text-decoration: none;
+        color: var(--color-orange);
+      }
     }  
   }
 
