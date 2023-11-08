@@ -1,5 +1,6 @@
 import styles from './LoginButton.module.css';
 import React from 'react';
+import googleIcon from '../../../assets/google.png';
 
 interface LoginButtonProps {
   
@@ -8,10 +9,10 @@ interface LoginButtonProps {
 const LoginButton : React.FC<LoginButtonProps> = ({}) => {
   return <div className={styles.loginButton}>
     <div className={styles.icon}>
-      <i className='bi bi-door-open'></i>
+      <img src={googleIcon}/>
     </div>
     <div className={styles.text}>
-      <span>Login</span>
+      <span>Register</span>
     </div>
   </div>;
 }

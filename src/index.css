@@ -3,16 +3,25 @@
   --color-2: #183D3D;
   --color-3: #5C8374;
   --color-4: #93B1A6;
+  --color-green: #2F6838;
+  --color-orange: #744524;
+  --color-dark-green: #202F25;
+  --color-white: #FFF;
 }
 .light {
   --color-1: #FAF1E4;
   --color-2: #CEDEBD;
   --color-3: #9EB384;
   --color-4: #435334;
+  --color-green: #2F6838;
+  --color-orange: #744524;
+  --color-dark-green: #202F25;
+  --color-white: #FFF;
 }
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Wallpoet', sans-serif;
 }
 .app {
   margin: 0;

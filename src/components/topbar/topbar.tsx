@@ -13,14 +13,21 @@ function TopBar() {
     </div>
 
     <div className={style.topbar + ' ' + style.desktop}>
-      <div className={style.menuButton}>
-        <span>Vijnana</span>
+      <div className={style.menuItems}>
+        <div className={style.menuButton}>
+          <span>Home</span>
+        </div>
+        <div className={style.menuButton}>
+          <span>Events</span>
+        </div>
+        <div className={style.menuButton}>
+          <span>About</span>
+        </div>
+        <div className={style.menuButton}>
+          <span>Contact</span>
+        </div>
       </div>
-      <div className={style.account}>
-        <span className={style.menuItem}>Home</span>
-        <span className={style.menuItem}>Events</span>
-        <span className={style.menuItem}>About</span>
-        <span className={style.menuItem}>Contact</span>
+      <div className={style.loginButton}>
         <LoginButton/>
       </div>
     </div>

@@ -1,15 +1,27 @@
 .loginButton {
   display: flex;
+  height: auto;
+  padding: 9px 15px;
   align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  border-radius: 20px;
-  background: var(--color-4);
-  color: var(--color-1);
-  box-shadow: 1px 1px 10px var(--color-2);
+  border-radius: 30px;
+  background: var(--color-orange);
   font-size: 20px;
+
   .icon {
     margin-right: 10px;
+
+    & img {
+      width: 25px;
+    }
+  }
+
+  .text {
+    color: var(--color-white);
+    font-family: Wallpoet;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }
 

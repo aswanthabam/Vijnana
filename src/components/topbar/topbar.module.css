@@ -2,7 +2,6 @@
   justify-content: space-between;
   width: calc(100% - 40px);
   height: 5rem;
-  background: var(--color-2);
   padding: 0px 20px;
 
   .account {
@@ -14,24 +13,36 @@
 
 .mobile {
   display: flex;
+  /* Un implemented */
 }
+
 .desktop {
   display: none;
-  
-  .menuButton {
+  width: calc(100% - 140px);
+  padding: 10px 50px;
+
+  .menuItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    .menuButton {
+      margin-right: 20px;
+      color: #744524;
+      font-family: Wallpoet;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }  
+  }
+
+  .loginButton {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-  }
-
-  .account {
-    width: calc(65%);
-    justify-content: space-between;
-    .menuItem {
-      /* margin-right: 50px; */
-      font-size: 20px;
-    }
   }
 }
 
