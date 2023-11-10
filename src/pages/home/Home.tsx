@@ -13,6 +13,7 @@ const Home : React.FC<HomeProps> = ({}) => {
         <path d="M-3 0L187.476 221.429L295.81 125.794L597 484.921H-3V0Z" fill="#2F6838"/>
       </svg>
     </div>
+    
   </div>
 }
 

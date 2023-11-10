@@ -2,9 +2,14 @@
   background: red;
 
   .background {
-
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    
     .topGradient {
-      background: radial-gradient(50% 50% at 50% 50%, #2F6838 0%, rgba(217, 217, 217, 0.00) 100%);
+      background: radial-gradient(50% 50% at 50% 50%, var(--color-green) 0%, rgba(217, 217, 217, 0.00) 100%);
       width: 40%;
       height: 40%;
       flex-shrink: 0;
@@ -14,12 +19,14 @@
       z-index: -0;
       transform: translate(50%,-50%);
     }
+
     .bottomDesign {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 30%;
       height: auto;
+      z-index: 0;
     }
   }
 }

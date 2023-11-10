@@ -1,0 +1,27 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background:#2F6838;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #744524;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: var(--color-green); */
+}
