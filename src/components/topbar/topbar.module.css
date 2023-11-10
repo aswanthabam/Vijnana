@@ -1,11 +1,11 @@
 .topbar {
   justify-content: space-between;
   width: calc(100% - 40px);
-  height: 5rem;
-  padding: 0px 20px;
+  height: var(--topbar-height);
+  padding: var(--topbar-padding-top) var(--topbar-padding-side);
   z-index: 10;
   position: relative;
-  
+
   .account {
     display: flex;
     align-items: center;

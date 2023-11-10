@@ -1,6 +1,7 @@
 // import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import './app-variables.css'
+import { Route, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
 import About from './pages/about/About'
 import Error404 from './pages/errors/404/Error404'
