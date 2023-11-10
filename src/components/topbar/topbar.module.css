@@ -3,7 +3,9 @@
   width: calc(100% - 40px);
   height: 5rem;
   padding: 0px 20px;
-
+  z-index: 10;
+  position: relative;
+  
   .account {
     display: flex;
     align-items: center;
