@@ -9,6 +9,7 @@
   --color-orange: #744524;
   --color-dark-green: #202F25;
   --color-white: #FFF;
+  --color-black: #0d0d00;
 }
 
 .light {
@@ -20,6 +21,7 @@
   --color-orange: #744524;
   --color-dark-green: #202F25;
   --color-white: #FFF;
+  --color-black: #0d0d00;
 }
 
 /* Responsive values */
@@ -28,6 +30,9 @@
   --topbar-height: 5rem;
   --topbar-padding-top: 10px;
   --topbar-padding-side: 50px;
+  --topbar-total-height: calc(5rem + 10px);
+  
+  --bottom-spacing: 50px;
 }
 
 /* Target tablet devices */

@@ -13,7 +13,11 @@ const Home : React.FC<HomeProps> = ({}) => {
         <path d="M-3 0L187.476 221.429L295.81 125.794L597 484.921H-3V0Z" fill="#2F6838"/>
       </svg>
     </div>
-    
+    <div className={style.header}>
+      <h1>Vijnana <span>2.0</span></h1>
+      <span className={style.mottoText}>KBM Government College</span>
+      <span className={style.infoText}>"Welcome to Tech Fest 2023, where innovation knows no bounds and technology takes center stage. Our motto, 'Unleash Your Digital Dreams,' embodies our commitment to providing a platform for creative minds to explore, experiment, and excel. Join us in this exhilarating journey, where cutting-edge advancements and imaginative ideas converge to shape the future. Together, we will push the boundaries of what's possible and ignite a new era of possibilities."</span>
+    </div>
   </div>
 }
 

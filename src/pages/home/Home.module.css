@@ -1,5 +1,4 @@
 .home {
-  background: red;
 
   .background {
     position: absolute;
@@ -7,7 +6,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    
+
     .topGradient {
       background: radial-gradient(50% 50% at 50% 50%, var(--color-green) 0%, rgba(217, 217, 217, 0.00) 100%);
       width: 40%;
@@ -27,6 +26,50 @@
       width: 30%;
       height: auto;
       z-index: 0;
+    }
+  }
+
+  .header {
+    width: 100vw;
+    height: calc(100vh - var(--topbar-total-height) - var(--bottom-spacing));
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    & h1 {
+      color: var(--color-black);
+      font-family: Wallpoet;
+      font-size: 90px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 80px;
+
+      & span {
+        color: var(--color-green);
+      }
+    }
+
+    .mottoText {
+      color: #202F25;
+      font-family: Wallpoet;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-top: 50px;
+    }
+    .infoText {
+      color: #404040;
+      text-align: center;
+      font-family: Wallpoet;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 65%;
+      margin-top: 50px;
     }
   }
 }
