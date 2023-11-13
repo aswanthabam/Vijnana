@@ -23,6 +23,12 @@ const Home : React.FC<HomeProps> = ({}) => {
         <SecondaryButton onClick={()=>{return}}>Register &gt;&gt;</SecondaryButton>
         <SecondaryButton onClick={()=>{return}}>Get Connected &gt;&gt;</SecondaryButton>
       </div>
+      <div className={style.date}>
+        <span className={style.day}>24</span>
+        <span className={style.dayTH}>th</span><br/><br/>
+        <span className={style.month}>November</span>
+        <span className={style.year}>2023</span>
+      </div>
     </div>
   </div>
 }

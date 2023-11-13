@@ -82,5 +82,31 @@
       right: 30px;
       bottom: 30px;
     }
+
+    .date {
+      position: absolute;
+      bottom: 55px;
+      left: 60px;
+
+      .day {
+        color: var(--color-orange);
+        font-size: 45px;
+        padding-right: 20px;
+      }
+      .dayTH {
+        color: var(--color-white);
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .month {
+        font-size: 25px;
+        color: var(--color-white);
+        padding-right: 20px;
+      }
+      .year {
+        color: var(--color-white);
+        font-size: 23px;
+      }
+    }
   }
 }
