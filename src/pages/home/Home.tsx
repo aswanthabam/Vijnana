@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './Home.module.css';
+import SecondaryButton from '../../components/buttons/secondary_button/SecondaryButton';
 
 interface HomeProps {
 
@@ -17,6 +18,11 @@ const Home : React.FC<HomeProps> = ({}) => {
       <h1>Vijnana <span>2.0</span></h1>
       <span className={style.mottoText}>KBM Government College</span>
       <span className={style.infoText}>"Welcome to Tech Fest 2023, where innovation knows no bounds and technology takes center stage. Our motto, 'Unleash Your Digital Dreams,' embodies our commitment to providing a platform for creative minds to explore, experiment, and excel. Join us in this exhilarating journey, where cutting-edge advancements and imaginative ideas converge to shape the future. Together, we will push the boundaries of what's possible and ignite a new era of possibilities."</span>
+      <div className={style.headerButtons}>
+        <SecondaryButton onClick={()=>{return}}>Explore Events &gt;&gt;</SecondaryButton>
+        <SecondaryButton onClick={()=>{return}}>Register &gt;&gt;</SecondaryButton>
+        <SecondaryButton onClick={()=>{return}}>Get Connected &gt;&gt;</SecondaryButton>
+      </div>
     </div>
   </div>
 }
