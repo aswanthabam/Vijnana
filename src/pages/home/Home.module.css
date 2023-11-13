@@ -54,7 +54,7 @@
     .mottoText {
       color: #202F25;
       font-family: Wallpoet;
-      font-size: 30px;
+      font-size: 20px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -64,11 +64,11 @@
       color: #404040;
       text-align: center;
       font-family: Wallpoet;
-      font-size: 20px;
+      font-size: 15px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-      width: 65%;
+      width: 50%;
       margin-top: 50px;
     }
 
