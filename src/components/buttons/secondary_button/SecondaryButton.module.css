@@ -1,0 +1,9 @@
+.secondaryButton {
+  color: var(--color-orange);
+  font-size: 25px;
+  padding: 5px;
+
+  &:hover {
+    color: var(--color-green);
+  }
+}
