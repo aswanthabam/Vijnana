@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import LoginButton from '../buttons/LoginButton/LoginButton';
 import style from './topbar.module.css';
+import { useContext } from 'react';
+import { ThemeContext } from '../../layers/themelayer/ThemeLayer';
 
 function TopBar() {
+  const [theme,setTheme] = useContext(ThemeContext);
   return <>
     <div className={style.topbar + ' ' + style.mobile}>
       <div className={style.menuButton}>
@@ -29,6 +32,7 @@ function TopBar() {
         </div>
       </div>
       <div className={style.loginButton}>
+        <span onClick={()=>{setTheme('dark')}}>Theme</span>
         <LoginButton/>
       </div>
     </div>
