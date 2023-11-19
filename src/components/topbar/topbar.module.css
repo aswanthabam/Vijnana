@@ -53,6 +53,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .themeButton {
+      color: var(--color-black);
+      font-size: 35px;
+      margin-right: 25px;
+    }
   }
 }
 

@@ -6,7 +6,8 @@
     height: 100vh;
     top: 0;
     left: 0;
-
+    background: linear-gradient(230deg, rgba(47, 104, 56, 0.00) 23.61%, rgba(37, 105, 48, 0.46) 83.24%);
+    
     .topGradient {
       background: radial-gradient(50% 50% at 50% 50%, var(--color-green) 0%, rgba(217, 217, 217, 0.00) 100%);
       width: 40%;
@@ -23,55 +24,66 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 30%;
+      width: 35%;
       height: auto;
       z-index: 0;
     }
   }
 
   .header {
+    position: relative;
     width: 100vw;
     height: calc(100vh - var(--topbar-total-height) - var(--bottom-spacing));
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: start;
     flex-direction: column;
+     */
+    .content {
+      position: absolute;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      flex-direction: column;
+      right: 35%;
+      top: 5%;
+      transform: translate(50%,50%);
+      & h1 {
+        color: var(--color-black);
+        font-family: Wallpoet;
+        font-size: 90px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 80px;
 
-    & h1 {
-      color: var(--color-black);
-      font-family: Wallpoet;
-      font-size: 90px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      margin-top: 80px;
-
-      & span {
-        color: var(--color-green);
+        & span {
+          color: var(--color-green);
+        }
       }
-    }
 
-    .mottoText {
-      color: var(--color-text-secondary);
-      font-family: Wallpoet;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      margin-top: 50px;
+      .mottoText {
+        color: var(--color-text-secondary);
+        font-family: Wallpoet;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 50px;
+      }
+      /* .infoText {
+        color: var(--color-text-secondary);
+        text-align: center;
+        font-family: Wallpoet;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 50%;
+        margin-top: 50px;
+      } */
     }
-    .infoText {
-      color: var(--color-text-secondary);
-      text-align: center;
-      font-family: Wallpoet;
-      font-size: 15px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      width: 50%;
-      margin-top: 50px;
-    }
-
     .headerButtons {
       position: absolute;
       display: flex;
@@ -83,7 +95,7 @@
       bottom: 30px;
     }
 
-    .date {
+    /* .date {
       position: absolute;
       bottom: 55px;
       left: 60px;
@@ -107,6 +119,12 @@
         color: var(--color-white);
         font-size: 23px;
       }
-    }
+    } */
+  }
+
+  .alien {
+    position: absolute;
+    bottom: 2%;
+    left: -5%;
   }
 }

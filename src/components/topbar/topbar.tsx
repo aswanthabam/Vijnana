@@ -34,10 +34,10 @@ const TopBar : React.FC<TopBarProps> = ({setTheme,theme}) => {
         </div>
       </div>
       <div className={style.loginButton}>
-        <span onClick={()=>{
+        <span className={style.themeButton} onClick={()=>{
           if (theme == 'light') setTheme('dark');
           else setTheme('light');
-        }}>Theme</span>
+        }}>{theme == 'light' ? <i className="bi bi-brightness-high-fill"></i> : <i className="bi bi-sun"></i>}</span>
         <LoginButton/>
       </div>
     </div>
