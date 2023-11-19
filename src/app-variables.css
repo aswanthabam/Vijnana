@@ -5,11 +5,12 @@
   --color-2: #183D3D;
   --color-3: #5C8374;
   --color-4: #93B1A6;
-  --color-green: #2F6838;
-  --color-orange: #744524;
-  --color-dark-green: #202F25;
-  --color-white: #FFF;
-  --color-black: #0d0d00;
+  --color-green: #1d3d22;
+  --color-orange: #c07641;
+  --color-dark-green: #557560;
+  --color-white: #0e0d0d;
+  --color-black: #f7f7f4;
+  --color-text-secondary: #dbdada;
 }
 
 .light {
@@ -22,6 +23,7 @@
   --color-dark-green: #202F25;
   --color-white: #FFF;
   --color-black: #0d0d00;
+  --color-text-secondary: #404040;
 }
 
 /* Responsive values */

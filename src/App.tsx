@@ -6,15 +6,16 @@ import Home from './pages/home/Home'
 import About from './pages/about/About'
 import Error404 from './pages/errors/404/Error404'
 import TopBarLayer from './layers/topbarlayer/TopBarLayer'
-import ThemeLayer from './layers/themelayer/ThemeLayer'
+import { useState } from 'react'
 
 function App() {
+  const [theme,setTheme] = useState('light');
   return (
-    <div className='app light'>
+    <div className={'app '+theme}>
       {/* <ThemeLayer> */}
         <Routes>
-          <Route path='/' element={<TopBarLayer><Home/></TopBarLayer>}></Route>
-          <Route path='/about' element={<TopBarLayer><About/></TopBarLayer>}></Route>
+          <Route path='/' element={<TopBarLayer setTheme={setTheme} theme={theme}><Home/></TopBarLayer>}></Route>
+          <Route path='/about' element={<TopBarLayer setTheme={setTheme} theme={theme}><About/></TopBarLayer>}></Route>
           <Route path='*' element={<Error404/>}></Route>
         </Routes>
       {/* </ThemeLayer> */}

@@ -52,7 +52,7 @@
     }
 
     .mottoText {
-      color: #202F25;
+      color: var(--color-text-secondary);
       font-family: Wallpoet;
       font-size: 20px;
       font-style: normal;
@@ -61,7 +61,7 @@
       margin-top: 50px;
     }
     .infoText {
-      color: #404040;
+      color: var(--color-text-secondary);
       text-align: center;
       font-family: Wallpoet;
       font-size: 15px;

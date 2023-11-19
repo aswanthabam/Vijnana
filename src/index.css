@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: 'Wallpoet', sans-serif;
+  transition: all 0.5s ease;
 }
 .app {
   margin: 0;
