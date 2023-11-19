@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Home.module.css';
-import SecondaryButton from '../../components/buttons/secondary_button/SecondaryButton';
+// import SecondaryButton from '../../components/buttons/secondary_button/SecondaryButton';
 import alien from '../../assets/dehill-spacelove-1-dribble.gif';
 
 interface HomeProps {
