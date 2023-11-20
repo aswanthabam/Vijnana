@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'Wallpoet', sans-serif;
+  font-family: "Wallpoet", sans-serif;
   transition: all 0.5s ease;
 }
 .app {
@@ -12,4 +12,11 @@
   overflow-y: auto;
   overflow-x: hidden;
   background: var(--color-1);
+}
+.line {
+  display: block;
+  width: 50%;
+  margin-top: 20px;
+  height: 5px;
+  background: var(--color-green);
 }

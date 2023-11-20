@@ -1,11 +1,11 @@
 /* Dark and light theme colours */
 
 .dark {
-  --color-1: #040D12;
-  --color-2: #183D3D;
-  --color-3: #5C8374;
-  --color-4: #93B1A6;
-  --color-green: #1d3d22;
+  --color-1: #040d12;
+  --color-2: #183d3d;
+  --color-3: #5c8374;
+  --color-4: #93b1a6;
+  --color-green: #6bd47b;
   --color-orange: #c07641;
   --color-dark-green: #557560;
   --color-white: #0e0d0d;
@@ -14,14 +14,14 @@
 }
 
 .light {
-  --color-1: #FAF1E4;
-  --color-2: #CEDEBD;
-  --color-3: #9EB384;
+  --color-1: #faf1e4;
+  --color-2: #cedebd;
+  --color-3: #9eb384;
   --color-4: #435334;
-  --color-green: #2F6838;
+  --color-green: #2f6838;
   --color-orange: #744524;
-  --color-dark-green: #202F25;
-  --color-white: #FFF;
+  --color-dark-green: #202f25;
+  --color-white: #fff;
   --color-black: #0d0d00;
   --color-text-secondary: #404040;
 }
@@ -33,7 +33,7 @@
   --topbar-padding-top: 10px;
   --topbar-padding-side: 50px;
   --topbar-total-height: calc(5rem + 10px);
-  
+
   --bottom-spacing: 50px;
 }
 
@@ -43,7 +43,7 @@
     --topbar-height: 5rem;
     --topbar-padding-top: 0;
     --topbar-padding-side: 20px;
-  }  
+  }
 }
 /* Target desktop devices */
 @media screen and (min-width: 1024px) {
@@ -51,5 +51,5 @@
     --topbar-height: 5rem;
     --topbar-padding-top: 0;
     --topbar-padding-side: 20px;
-  }  
+  }
 }
