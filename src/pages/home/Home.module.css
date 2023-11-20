@@ -1,15 +1,22 @@
 .home {
-
   .background {
     position: absolute;
     width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
-    background: linear-gradient(230deg, rgba(47, 104, 56, 0.00) 23.61%, rgba(37, 105, 48, 0.46) 83.24%);
-    
+    background: linear-gradient(
+      230deg,
+      rgba(47, 104, 56, 0) 23.61%,
+      rgba(37, 105, 48, 0.46) 83.24%
+    );
+
     .topGradient {
-      background: radial-gradient(50% 50% at 50% 50%, var(--color-green) 0%, rgba(217, 217, 217, 0.00) 100%);
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color-green) 0%,
+        rgba(217, 217, 217, 0) 100%
+      );
       width: 40%;
       height: 40%;
       flex-shrink: 0;
@@ -17,7 +24,7 @@
       top: 0;
       right: 0;
       z-index: -0;
-      transform: translate(50%,-50%);
+      transform: translate(50%, -50%);
     }
 
     .bottomDesign {
@@ -48,7 +55,7 @@
       flex-direction: column;
       right: 35%;
       top: 5%;
-      transform: translate(50%,50%);
+      transform: translate(50%, 50%);
       & h1 {
         color: var(--color-black);
         font-family: Wallpoet;
@@ -126,5 +133,6 @@
     position: absolute;
     bottom: 2%;
     left: -5%;
+    height: 90%;
   }
 }
