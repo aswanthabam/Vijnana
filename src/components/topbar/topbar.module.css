@@ -29,6 +29,7 @@
   .menuButton {
     font-size: 30px;
     font-weight: 900;
+    color: var(--color-black);
   }
 }
 
