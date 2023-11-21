@@ -1,10 +1,21 @@
 .counter {
   color: #24746f;
   font-family: "Orbitron";
-  font-size: 50px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   /* letter-spacing: 5px; */
   margin: 30px 0px;
+}
+/* Target tablet devices */
+@media screen and (min-width: 768px) {
+  /* Your CSS styles for tablet devices go here */
+  .counter {
+    font-size: 50px;
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
 }

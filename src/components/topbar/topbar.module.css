@@ -1,11 +1,11 @@
 .topbar {
   justify-content: space-between;
-  width: calc(100% - 40px);
+  width: calc(100% - calc(2 * var(--topbar-padding-side)));
   height: var(--topbar-height);
   padding: var(--topbar-padding-top) var(--topbar-padding-side);
   z-index: 10;
   position: relative;
-
+  /* background: red; */
   .account {
     display: flex;
     align-items: center;
@@ -16,6 +16,20 @@
 .mobile {
   display: flex;
   /* Un implemented */
+  .loginButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .themeButton {
+      color: var(--color-black);
+      font-size: 25px;
+      margin-right: 25px;
+    }
+  }
+  .menuButton {
+    font-size: 30px;
+    font-weight: 900;
+  }
 }
 
 .desktop {
@@ -36,7 +50,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-      
+
       & a {
         text-decoration: none;
         color: var(--color-orange);
@@ -45,7 +59,7 @@
           color: var(--color-green);
         }
       }
-    }  
+    }
   }
 
   .loginButton {

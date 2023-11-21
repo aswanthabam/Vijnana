@@ -1,24 +1,24 @@
 .loginButton {
   display: flex;
   height: auto;
-  padding: 9px 15px;
+  padding: 10px 10px;
   align-items: center;
   border-radius: 30px;
   background: var(--color-orange);
-  font-size: 20px;
+  /* font-size: 20px; */
 
   .icon {
     margin-right: 10px;
 
     & img {
-      width: 25px;
+      width: 15px;
     }
   }
 
   .text {
     color: var(--color-white);
     font-family: Wallpoet;
-    font-size: 20px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -28,4 +28,26 @@
 .loginButton:hover {
   background: var(--color-3);
   color: var(--color-4);
+}
+
+/* Target tablet devices */
+@media screen and (min-width: 768px) {
+  /* Your CSS styles for tablet devices go here */
+  .loginButton {
+    padding: 9px 15px;
+    .text {
+      font-size: 20px;
+    }
+    .icon {
+      margin-right: 10px;
+
+      & img {
+        width: 25px;
+      }
+    }
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
 }

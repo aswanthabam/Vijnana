@@ -29,9 +29,9 @@
 /* Responsive values */
 
 .app {
-  --topbar-height: 5rem;
+  --topbar-height: 3rem;
   --topbar-padding-top: 10px;
-  --topbar-padding-side: 50px;
+  --topbar-padding-side: 10px;
   --topbar-total-height: calc(5rem + 10px);
 
   --bottom-spacing: 50px;

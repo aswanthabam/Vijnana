@@ -31,9 +31,16 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 35%;
+      width: 90%;
       height: auto;
       z-index: 0;
+    }
+
+    .alien {
+      position: absolute;
+      bottom: 8%;
+      left: -5%;
+      width: 100vw;
     }
   }
 
@@ -48,18 +55,18 @@
      */
     .content {
       position: absolute;
-      width: auto;
+      width: 100vw;
       display: flex;
       align-items: center;
       justify-content: start;
       flex-direction: column;
-      right: 20%;
-      top: 50%;
-      transform: translate(0%, -50%);
+      right: 0%;
+      top: -5%;
+      transform: translate(0%, -0%);
       & h1 {
         color: var(--color-black);
         font-family: Wallpoet;
-        font-size: 90px;
+        font-size: 47px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -92,8 +99,9 @@
       } */
       .daysLeft {
         color: var(--color-orange);
-        font-size: 20px;
+        font-size: 15px;
         margin-top: 50px;
+        text-align: center;
       }
     }
     .headerButtons {
@@ -140,4 +148,37 @@
     left: -5%;
     width: 45vw;
   }
+}
+/* Target tablet devices */
+@media screen and (min-width: 768px) {
+  /* Your CSS styles for tablet devices go here */
+  .home {
+    .background {
+      .bottomDesign {
+        width: 35%;
+      }
+      .alien {
+        width: 45%;
+      }
+    }
+    .header {
+      .content {
+        width: auto;
+        right: 20%;
+        top: 50%;
+        transform: translate(0%, -50%);
+        & h1 {
+          font-size: 90px;
+        }
+
+        .daysLeft {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
 }

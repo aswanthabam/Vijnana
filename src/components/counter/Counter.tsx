@@ -52,7 +52,7 @@ const Counter: React.FC<CounterProps> = ({ date }) => {
       m: minutes,
       s: 60 - now.getSeconds(),
     });
-    console.log(diff);
+    // console.log(diff);
   }, 1000);
   return (
     <div className={style.counter}>

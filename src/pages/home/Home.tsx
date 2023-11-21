@@ -41,6 +41,8 @@ const Home: React.FC<HomeProps> = ({}) => {
             </linearGradient>
           </defs>
         </svg>
+
+        <img className={style.alien} src={alien} />
       </div>
       <div className={style.header}>
         <div className={style.content}>
@@ -60,7 +62,6 @@ const Home: React.FC<HomeProps> = ({}) => {
           <SecondaryButton onClick={()=>{return}}>Get Connected &gt;&gt;</SecondaryButton>
         </div> */}
         </div>
-        <img className={style.alien} src={alien} />
         {/* <div className={style.date}>
         <span className={style.day}>24</span>
         <span className={style.dayTH}>th</span><br/><br/>
