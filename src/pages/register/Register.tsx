@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Register.module.css";
 import { Link } from "react-router-dom";
-import logo from "../../assets/Logo KBM.png";
+// import logo from "../../assets/Logo KBM.png";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
 
 interface RegisterProps {}
