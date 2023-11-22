@@ -7,10 +7,13 @@
   --color-4: #93b1a6;
   --color-green: #6bd47b;
   --color-orange: #c07641;
+  --color-orange-shade: #c0764170;
   --color-dark-green: #557560;
   --color-white: #0e0d0d;
   --color-black: #f7f7f4;
   --color-text-secondary: #dbdada;
+  --color-green-transparent: #2f68385a;
+  --color-grey: #ced9cf;
 }
 
 .light {
@@ -20,10 +23,13 @@
   --color-4: #435334;
   --color-green: #2f6838;
   --color-orange: #744524;
+  --color-orange-shade: #74452470;
   --color-dark-green: #202f25;
   --color-white: #fff;
   --color-black: #0d0d00;
   --color-text-secondary: #404040;
+  --color-green-transparent: #9dfbab5a;
+  --color-grey: #ced9cf;
 }
 
 /* Responsive values */
@@ -33,7 +39,6 @@
   --topbar-padding-top: 10px;
   --topbar-padding-side: 10px;
   --topbar-total-height: calc(5rem + 10px);
-
   --bottom-spacing: 50px;
 }
 

@@ -3,6 +3,7 @@
   height: 100vh;
   overflow-x: auto;
   position: relative;
+  color: var(--color-black);
 }
 
 /* width */
@@ -12,7 +13,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background:#2F6838;
+  background: #2f6838;
 }
 
 /* Handle */
@@ -24,4 +25,19 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   /* background: var(--color-green); */
+}
+.underline {
+  position: relative;
+}
+.underline::after {
+  content: "";
+  display: block;
+  width: 70%;
+  padding: 2px;
+  background: var(--color-dark-green);
+  position: absolute;
+  bottom: -13px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 10px;
 }

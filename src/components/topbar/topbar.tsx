@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginButton from "../buttons/LoginButton/LoginButton";
 import style from "./topbar.module.css";
 
@@ -8,6 +8,10 @@ interface TopBarProps {
 }
 
 const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {
+  const redirect = useNavigate();
+  const handleLoginClick = () => {
+    redirect("/register");
+  };
   return (
     <>
       <div className={style.topbar + " " + style.mobile}>
@@ -28,7 +32,7 @@ const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {
               <i className="bi bi-sun"></i>
             )}
           </span>
-          <LoginButton />
+          <LoginButton onClick={handleLoginClick} />
         </div>
       </div>
 
@@ -61,7 +65,7 @@ const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {
               <i className="bi bi-sun"></i>
             )}
           </span>
-          <LoginButton />
+          <LoginButton onClick={handleLoginClick} />
         </div>
       </div>
     </>
