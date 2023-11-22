@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: start;
+  background: linear-gradient(
+    180deg,
+    rgba(47, 104, 56, 0) 23.61%,
+    rgba(37, 105, 48, 0.46) 83.24%
+  );
   .left {
     width: 50%;
     /* background: red; */
