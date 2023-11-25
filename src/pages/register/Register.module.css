@@ -4,13 +4,18 @@
   display: flex;
   align-items: center;
   justify-content: start;
+  flex-direction: column;
   background: linear-gradient(
     180deg,
     rgba(47, 104, 56, 0) 23.61%,
     rgba(37, 105, 48, 0.46) 83.24%
   );
+  position: relative;
   .left {
-    width: 50%;
+    position: absolute;
+    top: 0;
+    filter: blur(10px);
+    width: 100%;
     /* background: red; */
     height: 100vh;
     position: relative;
@@ -35,19 +40,20 @@
 
       .alien {
         position: absolute;
-        bottom: 15%;
+        bottom: 5%;
         left: -5%;
         width: 90%;
       }
     }
   }
   .right {
-    width: 50%;
+    position: absolute;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     & form {
-      width: 70%;
+      width: calc(100% - 50px);
       padding: 25px;
       /* background: var(--color-green-transparent); */
       border-radius: 20px;
@@ -85,6 +91,38 @@
         border-radius: 10px;
         color: var(--color-white);
       }
+      & span {
+        text-align: center;
+      }
     }
   }
+}
+/* Target tablet devices */
+@media screen and (min-width: 768px) {
+  /* Your CSS styles for tablet devices go here */
+  .register {
+    flex-direction: row;
+    .left {
+      width: 50%;
+      filter: none;
+      position: relative;
+      .background {
+        .alien {
+          bottom: 15%;
+        }
+      }
+    }
+    .right {
+      width: 50%;
+      position: relative;
+      & form {
+        width: 70%;
+        padding: 25px;
+      }
+    }
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
 }
