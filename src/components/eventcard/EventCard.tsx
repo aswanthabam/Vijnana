@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginButton from "../buttons/LoginButton/LoginButton";
 import style from "./EventCard.module.css";
 import logo from "../../assets/logo.png";
+import SecondaryButton from "../buttons/secondary_button/SecondaryButton";
 interface EventCardProps {
   event: _Event;
 }
@@ -21,8 +22,15 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <span>{event.description}</span>
       </div>
       <div className={style.buttons}>
-        <Link to={"/event/" + event.id}>Learn More</Link>
-        <Link to={"/event/" + event.id + "/register"}>Register</Link>
+        <Link className="primary-button" to={"/event/" + event.id}>
+          Learn More
+        </Link>
+        <Link
+          className="primary-button"
+          to={"/event/" + event.id + "/register"}
+        >
+          Register
+        </Link>
       </div>
     </div>
   );

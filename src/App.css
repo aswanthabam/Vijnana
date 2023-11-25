@@ -45,3 +45,12 @@
 a {
   color: var(--color-green);
 }
+
+.primary-button {
+  color: var(--color-white);
+  background: var(--color-green);
+  padding: 15 px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
+}

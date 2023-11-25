@@ -1,9 +1,9 @@
 .eventCard {
-  width: 500px;
+  width: 300px;
   height: 400px;
   padding: 10px;
   background: var(--color-white);
-  box-shadow: -1px 1px 10px var(--color-orange);
+  box-shadow: -1px 1px 10px var(--color-orange-shade);
   border-radius: 40px;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
   gap: 20px;
   flex-direction: column;
   position: relative;
-
+  background: var(--color-grey2);
   .top {
     width: 100%;
 
@@ -28,6 +28,13 @@
       font-size: 20px;
       margin-bottom: 20px;
     }
+    & span {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-align: center;
+    }
   }
   .buttons {
     position: absolute;
@@ -35,8 +42,8 @@
     bottom: 30px;
     display: flex;
     align-items: center;
-    justify-content: end;
-    gap: 30px;
+    justify-content: center;
+    gap: 10px;
     margin-right: 25px;
   }
 }

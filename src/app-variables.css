@@ -14,6 +14,7 @@
   --color-text-secondary: #dbdada;
   --color-green-transparent: #2f68385a;
   --color-grey: #08390c;
+  --color-grey2: #252525;
 }
 
 .light {
@@ -30,6 +31,7 @@
   --color-text-secondary: #404040;
   --color-green-transparent: #9dfbab5a;
   --color-grey: #ced9cf;
+  --color-grey2: #d9d9d9;
 }
 
 /* Responsive values */

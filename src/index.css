@@ -11,7 +11,7 @@
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  background: var(--color-1);
+  background: var(--color-white);
 }
 .line {
   display: block;
