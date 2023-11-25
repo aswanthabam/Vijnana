@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import LoginButton from "../buttons/LoginButton/LoginButton";
 import style from "./topbar.module.css";
-
+import logo from "../../assets/logo.png";
 interface TopBarProps {
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
@@ -38,6 +38,9 @@ const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {
 
       <div className={style.topbar + " " + style.desktop}>
         <div className={style.menuItems}>
+          <div className={style.menuButton}>
+            <img className={style.logo} src={logo} />
+          </div>
           <div className={style.menuButton}>
             <Link to="/">Home</Link>
           </div>

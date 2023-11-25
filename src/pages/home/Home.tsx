@@ -2,6 +2,7 @@ import style from "./Home.module.css";
 // import SecondaryButton from '../../components/buttons/secondary_button/SecondaryButton';
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
 import Counter from "../../components/counter/Counter";
+import EventList from "../../components/eventlist/EventList";
 // for build commit
 interface HomeProps {}
 
@@ -46,27 +47,21 @@ const Home: React.FC<HomeProps> = ({}) => {
       <div className={style.header}>
         <div className={style.content}>
           <h1>
-            Vijnana <span>2.0</span>
+            VIJÑĀNA <span>2.0</span>
           </h1>
+          {/* <img style={{ height: 300 }} src="/logo.png" /> */}
           <span className={style.mottoText}>KBM Government College</span>
           <span className="line"></span>
           <span className={style.daysLeft}>
             The countdown to awesomeness begins...
           </span>
           <Counter date={new Date("2023-12-15 00:00:00")} />
-          {/* <span className={style.infoText}>"Welcome to Tech Fest 2023, where innovation knows no bounds and technology takes center stage. Our motto, 'Unleash Your Digital Dreams,' embodies our commitment to providing a platform for creative minds to explore, experiment, and excel. Join us in this exhilarating journey, where cutting-edge advancements and imaginative ideas converge to shape the future. Together, we will push the boundaries of what's possible and ignite a new era of possibilities."</span> */}
-          {/* <div className={style.headerButtons}>
-          <SecondaryButton onClick={()=>{return}}>Explore Events &gt;&gt;</SecondaryButton>
-          <SecondaryButton onClick={()=>{return}}>Register &gt;&gt;</SecondaryButton>
-          <SecondaryButton onClick={()=>{return}}>Get Connected &gt;&gt;</SecondaryButton>
-        </div> */}
         </div>
-        {/* <div className={style.date}>
-        <span className={style.day}>24</span>
-        <span className={style.dayTH}>th</span><br/><br/>
-        <span className={style.month}>November</span>
-        <span className={style.year}>2023</span>
-      </div> */}
+      </div>
+      <div className={style.page2}>
+        <h2>Events</h2>
+        <br />
+        <EventList />
       </div>
     </div>
   );

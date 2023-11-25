@@ -1,0 +1,4 @@
+.eventList {
+  display: flex;
+  gap: 20px;
+}
