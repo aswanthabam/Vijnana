@@ -114,6 +114,8 @@
     }
     .right {
       width: 50%;
+      right: 40%;
+      transform: translateX(50%);
       position: relative;
       & form {
         width: 70%;

@@ -6,7 +6,7 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
 import TopBarLayer from "./layers/topbarlayer/TopBarLayer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Register from "./pages/register/Register";
 import TopLoader from "./components/toploader/TopLoader";
 import { LoaderStateProvider } from "./components/toploader/useLoader";
