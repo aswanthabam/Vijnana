@@ -1,17 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import LoginButton from "../buttons/LoginButton/LoginButton";
+import { Link } from "react-router-dom";
 import style from "./EventCard.module.css";
-import logo from "../../assets/logo.png";
-import SecondaryButton from "../buttons/secondary_button/SecondaryButton";
 interface EventCardProps {
   event: _Event;
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event }) => {
-  const redirect = useNavigate();
-  const handleLoginClick = () => {
-    redirect("/register");
-  };
   return (
     <div className={style.eventCard}>
       <div className={style.top}>

@@ -1,13 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import LoginButton from "../buttons/LoginButton/LoginButton";
 import style from "./EventList.module.css";
-import logo from "../../assets/logo.png";
 import { useState } from "react";
 import EventCard from "../eventcard/EventCard";
 interface EventListProps {}
 
 const EventList: React.FC<EventListProps> = ({}) => {
-  const [events, setEvents] = useState<Array<_Event>>([
+  const [events, setEvents] = useState<Array<_Event>>([]);
+  setEvents([
     {
       id: "myis",
       name: "Event Name",
