@@ -6,41 +6,47 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
 import TopBarLayer from "./layers/topbarlayer/TopBarLayer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Register from "./pages/register/Register";
+import TopLoader from "./components/toploader/TopLoader";
+import { LoaderStateProvider } from "./components/toploader/useLoader";
 
 function App() {
   const [theme, setTheme] = useState("light");
+
   return (
     <div className={"app " + theme}>
-      {/* <ThemeLayer> */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
-              <Home />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route
-          path="/about"
-          element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
-              <About />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route
-          path="/register"
-          element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
-              <Register />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route path="*" element={<Error404 />}></Route>
-      </Routes>
+      <LoaderStateProvider>
+        {/* <ThemeLayer> */}
+        <TopLoader />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <TopBarLayer setTheme={setTheme} theme={theme}>
+                <Home />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="/about"
+            element={
+              <TopBarLayer setTheme={setTheme} theme={theme}>
+                <About />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="/register"
+            element={
+              <TopBarLayer setTheme={setTheme} theme={theme}>
+                <Register />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route path="*" element={<Error404 />}></Route>
+        </Routes>
+      </LoaderStateProvider>
       {/* </ThemeLayer> */}
     </div>
   );

@@ -24,7 +24,7 @@ function addLeadingZero(number: number): string {
   return number < 10 ? `0${number}` : `${number}`;
 }
 const Counter: React.FC<CounterProps> = ({ date }) => {
-  console.log(date);
+  // console.log(date);
   const [diff, setDiff] = useState({
     d: 0,
     h: 0,

@@ -1,0 +1,18 @@
+.toploader {
+  width: 100vw;
+  height: 5px;
+  background: var(--color-orange);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  .loader {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    background: var(--color-green);
+  }
+}

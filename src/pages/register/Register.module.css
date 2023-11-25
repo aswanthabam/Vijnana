@@ -1,6 +1,6 @@
 .register {
   width: 100%;
-  min-height: 80%;
+  min-height: calc(100vh - var(--topbar-total-height));
   display: flex;
   align-items: center;
   justify-content: start;
