@@ -17,6 +17,10 @@ This is the repository of the official website website of Vijnana Tech fest GCT
 - First clone the repo
 - Run `npm install`
 - Run `npm run dev`
+- Setup enviornment `.env`
+  ```env
+
+  ```
 - Go to http://localhost:5123
 
 ## Building
