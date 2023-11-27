@@ -3,6 +3,7 @@ import style from "./Home.module.css";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
 import Counter from "../../components/counter/Counter";
 import EventList from "../../components/eventlist/EventList";
+import Footer from "../../components/footer/Footer";
 // for build commit
 interface HomeProps {}
 
@@ -63,6 +64,7 @@ const Home: React.FC<HomeProps> = ({}) => {
         <br />
         <EventList />
       </div>
+      <Footer />
     </div>
   );
 };

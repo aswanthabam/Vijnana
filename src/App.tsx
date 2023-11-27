@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import Register from "./pages/register/Register";
 import TopLoader from "./components/toploader/TopLoader";
 import { LoaderStateProvider } from "./components/toploader/useLoader";
+
 function getTheme() {
   var theme = localStorage.getItem("theme");
   if (theme == null) {
