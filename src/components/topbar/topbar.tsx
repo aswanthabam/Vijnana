@@ -4,7 +4,7 @@ import style from "./topbar.module.css";
 import logo from "../../assets/logo.png";
 interface TopBarProps {
   theme: string;
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  setTheme: (theme: string) => void;
 }
 
 const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {

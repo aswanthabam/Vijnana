@@ -52,7 +52,7 @@ const EventList: React.FC<EventListProps> = ({}) => {
         venue: "MSc Lab",
       },
     ]);
-  });
+  }, []);
 
   return (
     <div className={style.eventList}>

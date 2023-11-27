@@ -6,13 +6,31 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
 import TopBarLayer from "./layers/topbarlayer/TopBarLayer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Register from "./pages/register/Register";
 import TopLoader from "./components/toploader/TopLoader";
 import { LoaderStateProvider } from "./components/toploader/useLoader";
-
+function getTheme() {
+  var theme = localStorage.getItem("theme");
+  if (theme == null) {
+    localStorage.setItem("theme", "dark");
+    return "dark";
+  } else if (theme == "light") {
+    return "light";
+  } else {
+    return "dark";
+  }
+}
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setThemeState] = useState("dark");
+  const setTheme = (theme: string) => {
+    setThemeState(theme);
+    localStorage.setItem("theme", theme);
+  };
+  useEffect(() => {
+    var the = getTheme();
+    setTheme(the);
+  }, []);
 
   return (
     <div className={"app " + theme}>
