@@ -152,7 +152,19 @@
   .page2 {
     position: absolute;
     top: 100vh;
-    padding: 30px 50px;
+    padding: 25px;
+    width: calc(100% - 50px);
+    background: linear-gradient(
+      180deg,
+      rgba(47, 104, 56, 0.33) 0%,
+      rgba(255, 211, 180, 0.38) 100%
+    );
+    & h2 {
+      margin-bottom: 20px;
+      font-size: 30px;
+      color: var(--color-green);
+      width: 200px;
+    }
   }
 }
 /* Target tablet devices */
@@ -181,6 +193,10 @@
           font-size: 20px;
         }
       }
+    }
+    .page2 {
+      padding: 30px 50px;
+      width: calc(100% - 100px);
     }
   }
 }

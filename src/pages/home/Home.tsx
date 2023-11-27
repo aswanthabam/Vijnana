@@ -59,7 +59,7 @@ const Home: React.FC<HomeProps> = ({}) => {
         </div>
       </div>
       <div className={style.page2}>
-        <h2>Events</h2>
+        <h2 className="underline start">Events</h2>
         <br />
         <EventList />
       </div>

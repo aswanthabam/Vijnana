@@ -4,4 +4,7 @@ type _Event = {
   description: string;
   link: string;
   img: string;
+  date: string;
+  time: string;
+  venue: string;
 };
