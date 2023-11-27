@@ -7,6 +7,6 @@
   .eventList {
     /* grid-template-columns: 30% 30% 30%; */
     grid-template-columns: 23% 23% 23% 23%;
-    gap: 50px;
+    gap: 40px;
   }
 }
