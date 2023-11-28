@@ -18,7 +18,7 @@
   .top {
     width: 100%;
     position: relative;
-    height: 140px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,9 +62,11 @@
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      text-align: center;
-      font-size: 13px;
+      text-align: start;
+      font-size: 15px;
       color: var(--color-black-shade);
+      padding: 0 10px;
+      margin-top: 20px;
     }
     .datecard {
       display: block;

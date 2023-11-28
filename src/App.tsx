@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 import Register from "./pages/register/Register";
 import TopLoader from "./components/toploader/TopLoader";
 import { LoaderStateProvider } from "./components/toploader/useLoader";
+import Events from "./pages/events/Events";
+import Event from "./pages/event/Event";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -60,6 +62,22 @@ function App() {
             element={
               <TopBarLayer setTheme={setTheme} theme={theme}>
                 <Register />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="/events"
+            element={
+              <TopBarLayer setTheme={setTheme} theme={theme}>
+                <Events />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="/event/:eventId"
+            element={
+              <TopBarLayer setTheme={setTheme} theme={theme}>
+                <Event />
               </TopBarLayer>
             }
           ></Route>

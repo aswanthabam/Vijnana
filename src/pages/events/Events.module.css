@@ -1,0 +1,13 @@
+.events {
+  width: calc(100% - 20px);
+  padding: 10px;
+
+  .page {
+    width: calc(100% - 100px);
+    padding: 50px;
+    & h2 {
+      margin-bottom: 20px;
+      width: 100px;
+    }
+  }
+}

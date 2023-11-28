@@ -8,12 +8,11 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   return (
     <div className={style.eventCard}>
       <div className={style.top}>
-        <img src={event.img} />
+        {/* <img src={event.img} /> */}
         <h1 className="underline w50">{event.name}</h1>
         <div className={style.overlay}></div>
       </div>
       <div className={style.content}>
-        <span className={style.description}>{event.description}</span>
         <span className={style.datecard}>
           <span className={style.date}>
             <i className="bi bi-calendar2-x"></i>&nbsp; Date : {event.date}{" "}
@@ -26,6 +25,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             <i className="bi bi-geo-alt"></i>&nbsp; Venue : {event.venue}
           </span>
         </span>
+        <span className={style.description}>{event.description}</span>
       </div>
       <div className={style.buttons}>
         <Link className="primary-button" to={"/event/" + event.id}>
