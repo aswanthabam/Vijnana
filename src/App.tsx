@@ -12,6 +12,7 @@ import TopLoader from "./components/toploader/TopLoader";
 import { LoaderStateProvider } from "./components/toploader/useLoader";
 import Events from "./pages/events/Events";
 import Event from "./pages/event/Event";
+import Contact from "./pages/contact/Contact";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -70,6 +71,14 @@ function App() {
             element={
               <TopBarLayer setTheme={setTheme} theme={theme}>
                 <Events />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="/contact"
+            element={
+              <TopBarLayer setTheme={setTheme} theme={theme}>
+                <Contact />
               </TopBarLayer>
             }
           ></Route>

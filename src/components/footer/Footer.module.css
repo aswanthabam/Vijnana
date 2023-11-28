@@ -13,13 +13,13 @@
     & div {
       width: 100%;
       display: flex;
-      align-items: start;
+      align-items: center;
       justify-content: center;
       flex-direction: column;
       & h2 {
         transform: translateX(-20px);
         margin-bottom: 30px;
-        text-align: start;
+        text-align: center;
         width: 70%;
       }
       & ul {

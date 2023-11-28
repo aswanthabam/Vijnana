@@ -5,6 +5,7 @@ import Counter from "../../components/counter/Counter";
 import EventList from "../../components/eventlist/EventList";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
+import { _EventInfo } from "../../types";
 // for build commit
 interface EventProps {
   // event: _Event;
@@ -40,7 +41,7 @@ const Event: React.FC<EventProps> = ({}) => {
       time: "12 Pm IST",
       venue: "MSc Lab",
       is_open: true,
-      details: `&nbsp; Ea irure ad eu eiusmod eiusmod aliquip voluptate consectetur. Ipsum minim veniam commodo consectetur Lorem sint est adipisicing fugiat laborum duis enim aliqua. Exercitation laborum sint in ex laboris magna aute voluptate anim enim pariatur voluptate. Nulla irure tempor sint magna dolore ut qui. Deserunt cillum pariatur duis ipsum nulla minim nostrud anim id. Ullamco fugiat amet adipisicing sunt culpa ut ad qui tempor consectetur. Ad consectetur deserunt proident occaecat ex in Lorem cillum ut dolore aute ipsum enim ut.<br/>
+      details: `<h3 className="underline start clr2 heading2">About the Event</h3>&nbsp; Ea irure ad eu eiusmod eiusmod aliquip voluptate consectetur. Ipsum minim veniam commodo consectetur Lorem sint est adipisicing fugiat laborum duis enim aliqua. Exercitation laborum sint in ex laboris magna aute voluptate anim enim pariatur voluptate. Nulla irure tempor sint magna dolore ut qui. Deserunt cillum pariatur duis ipsum nulla minim nostrud anim id. Ullamco fugiat amet adipisicing sunt culpa ut ad qui tempor consectetur. Ad consectetur deserunt proident occaecat ex in Lorem cillum ut dolore aute ipsum enim ut.<br/>
 <br/>
 &nbsp; Non ex ullamco ipsum elit occaecat quis et duis duis duis occaecat. Proident labore velit aliqua tempor tempor. Duis ea officia aliquip veniam ex enim aute pariatur nostrud excepteur. Aute non dolore fugiat cupidatat amet. Cupidatat irure magna anim consectetur ex eu irure ullamco do dolore nostrud. Laboris sint sit consequat deserunt nostrud.<br/>
 <br/>
@@ -72,7 +73,6 @@ const Event: React.FC<EventProps> = ({}) => {
               <i className="bi bi-geo-alt"></i>&nbsp; Venue : {event.venue}
             </span>
           </div>
-          <h3 className="underline start clr2">About the Event</h3>
           <p dangerouslySetInnerHTML={{ __html: event.details }}></p>
           <div className={style.buttons}>
             <a href={event.link}>Register</a>

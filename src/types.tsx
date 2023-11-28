@@ -1,4 +1,4 @@
-type _Event = {
+export type _Event = {
   id: string;
   name: string;
   description: string;
@@ -9,7 +9,7 @@ type _Event = {
   venue: string;
   is_open: boolean;
 };
-type _EventInfo = {
+export type _EventInfo = {
   id: string;
   name: string;
   description: string;

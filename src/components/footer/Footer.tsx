@@ -7,7 +7,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
     <div className={style.footer}>
       <div className={style.grid}>
         <div className={style.contact}>
-          <h2 className="underline start">Contact</h2>
+          <h2 className="underline">Contact</h2>
           <ul>
             <li>
               Phone : <a href="tel:9999999999">9999999999</a>
@@ -28,13 +28,13 @@ const Footer: React.FC<FooterProps> = ({}) => {
           </ul>
         </div>
         <div className={style.Links}>
-          <h2 className="underline start">Links</h2>
+          <h2 className="underline">Links</h2>
           <ul>
             <li>Bla bla bla</li>
-            <li>Bla bla bla</li>
-            <li>Bla bla bla</li>
-            <li>Bla bla bla</li>
-            <li>Bla bla bla</li>
+            <li>Bla bla bladfdsf</li>
+            <li>Bla b</li>
+            <li>Bla bla </li>
+            <li>Bla bla blvca</li>
           </ul>
         </div>
         <div className={style.logo}>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./EventCard.module.css";
+import { _Event } from "../../types";
 interface EventCardProps {
   event: _Event;
 }
