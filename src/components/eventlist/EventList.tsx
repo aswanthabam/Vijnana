@@ -9,7 +9,7 @@ const EventList: React.FC<EventListProps> = ({}) => {
     setEvents([
       {
         id: "myis",
-        name: "Event Name",
+        name: "Event Name is big onedasdsss dfa",
         description:
           "Cillum quis sint adipisicing culpa ut. Do exercitation fugiat sint culpa adipisicing et. Ea minim reprehenderit cupidatat ut id officia id adipisicing nostrud reprehenderit esse. Irure ad commodo excepteur incididunt velit et nulla minim in enim. Minim esse velit dolor cupidatat cupidatat eu aliqua enim excepteur irure.",
         link: "https://google.com",
@@ -17,6 +17,7 @@ const EventList: React.FC<EventListProps> = ({}) => {
         date: "15 Oct 2022",
         time: "12 Pm IST",
         venue: "MSc Lab",
+        is_open: true,
       },
       {
         id: "myis",
@@ -28,6 +29,7 @@ const EventList: React.FC<EventListProps> = ({}) => {
         date: "15 Oct 2022",
         time: "12 Pm IST",
         venue: "MSc Lab",
+        is_open: true,
       },
       {
         id: "myis",
@@ -39,6 +41,7 @@ const EventList: React.FC<EventListProps> = ({}) => {
         date: "15 Oct 2022",
         time: "12 Pm IST",
         venue: "MSc Lab",
+        is_open: true,
       },
       {
         id: "myis",
@@ -50,6 +53,7 @@ const EventList: React.FC<EventListProps> = ({}) => {
         date: "15 Oct 2022",
         time: "12 Pm IST",
         venue: "MSc Lab",
+        is_open: true,
       },
     ]);
   }, []);

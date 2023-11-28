@@ -73,6 +73,7 @@
         margin-top: 80px;
 
         & span {
+          font-family: Wallpoet;
           color: var(--color-green);
         }
       }
@@ -199,6 +200,11 @@
       padding: 30px 50px;
       width: calc(100% - 100px);
       margin-top: 40px;
+      & h2 {
+        width: 100%;
+        font-size: 40px;
+        text-align: center;
+      }
     }
   }
 }

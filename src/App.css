@@ -51,6 +51,9 @@
   left: 0;
   transform: none;
 }
+.underline.clr2::after {
+  background: var(--color-2);
+}
 a {
   color: var(--color-green);
 }
