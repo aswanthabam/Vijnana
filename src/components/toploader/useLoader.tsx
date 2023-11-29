@@ -1,10 +1,8 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
 interface LoaderState {
-  status: { status: boolean; much: number };
-  setStatus: React.Dispatch<
-    React.SetStateAction<{ status: boolean; much: number }>
-  >;
+  status: { status: boolean };
+  setStatus: React.Dispatch<React.SetStateAction<{ status: boolean }>>;
 }
 
 const LoaderStateContext = createContext<LoaderState | undefined>(undefined);
@@ -16,7 +14,7 @@ interface LoaderStateProviderProps {
 export const LoaderStateProvider: React.FC<LoaderStateProviderProps> = ({
   children,
 }) => {
-  const [status, setStatus] = useState({ status: false, much: 0 });
+  const [status, setStatus] = useState({ status: false });
 
   const loaderState: LoaderState = {
     status,
@@ -35,13 +33,12 @@ export const useLoader = () => {
   if (!context) {
     throw new Error("useLoaderState must be used within a SharedStateProvider");
   }
-  function setLoaderStatus(status: boolean, percentage: number) {
-    context!.setStatus({ status: status, much: percentage });
+  function setLoaderStatus(status: boolean) {
+    context!.setStatus({ status: status });
   }
   const props = {
     status: context!.status.status,
     setLoaderStatus: setLoaderStatus,
-    percentage: context!.status.much,
     // setLoaderPercentage: setLoaderPercentage,
   };
   //   window.lstatus = status;

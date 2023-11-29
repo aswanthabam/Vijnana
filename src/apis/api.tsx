@@ -1,7 +1,10 @@
 import axios from "axios";
 import { _EventInfo } from "../types";
 import { baseURL } from "../config";
+import { useLoader } from "../components/toploader/useLoader";
+
 export const publicRouter = axios.create({ baseURL: baseURL });
+
 interface EventInfoData {
   event_id: string;
   name: string;
@@ -15,7 +18,12 @@ interface EventInfoData {
   poster: string;
   is_open: boolean;
 }
-export const getEvents = async (eventId: string | null | undefined) => {
+
+export const getEvents = async (
+  eventId: string | null | undefined,
+  setLoading: (status: boolean) => void
+) => {
+  setLoading(true);
   if (eventId) {
     var res = await publicRouter.get("/api/v2/events/?event_id=" + eventId);
   } else {
@@ -59,5 +67,6 @@ export const getEvents = async (eventId: string | null | undefined) => {
       alert(res.data["message"]);
     }
   }
+  setLoading(false);
   return d2!;
 };

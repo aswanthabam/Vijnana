@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import EventCard from "../eventcard/EventCard";
 import { getEvents } from "../../apis/api";
 import { _Event } from "../../types";
+import { useLoader } from "../toploader/useLoader";
 interface EventListProps {}
 
 const EventList: React.FC<EventListProps> = ({}) => {
+  var { setLoaderStatus } = useLoader();
   const [events, setEvents] = useState<Array<_Event>>([]);
   useEffect(() => {
-    getEvents(null).then((e) => {
+    getEvents(null, setLoaderStatus).then((e) => {
       console.log(e);
       setEvents(e);
     });

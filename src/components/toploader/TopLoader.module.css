@@ -1,3 +1,11 @@
+@keyframes animation_loader {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
 .toploader {
   width: 100vw;
   height: 5px;
@@ -14,5 +22,6 @@
     top: 0;
     width: 20%;
     background: var(--color-green);
+    animation: animation_loader 0.65s linear infinite;
   }
 }
