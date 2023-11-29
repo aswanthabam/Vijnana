@@ -1,6 +1,7 @@
 import axios from "axios";
 import { _EventInfo } from "../types";
-export const publicRouter = axios.create({ baseURL: "http://localhost:8000" });
+import { baseURL } from "../config";
+export const publicRouter = axios.create({ baseURL: baseURL });
 interface EventInfoData {
   event_id: string;
   name: string;
