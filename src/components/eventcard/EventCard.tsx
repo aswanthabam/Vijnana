@@ -32,7 +32,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <Link className="primary-button" to={"/event/" + event.id}>
           Learn More
         </Link>
-        <a href={event.link} className="primary-button clr2">
+        <a href={event.reg_link} className="primary-button clr2">
           Register
         </a>
       </div>

@@ -1,11 +1,10 @@
-.loginButton {
+/* .loginButton {
   display: flex;
   height: auto;
   padding: 10px 10px;
   align-items: center;
   border-radius: 30px;
   background: var(--color-orange);
-  /* font-size: 20px; */
 
   .icon {
     margin-right: 10px;
@@ -30,9 +29,7 @@
   color: var(--color-4);
 }
 
-/* Target tablet devices */
 @media screen and (min-width: 768px) {
-  /* Your CSS styles for tablet devices go here */
   .loginButton {
     padding: 9px 15px;
     .text {
@@ -46,8 +43,4 @@
       }
     }
   }
-}
-/* Target desktop devices */
-@media screen and (min-width: 1024px) {
-  /* Your CSS styles for desktop devices go here */
-}
+} */
