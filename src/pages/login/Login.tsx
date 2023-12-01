@@ -3,16 +3,15 @@ import style from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 // import logo from "../../assets/Logo KBM.png";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
-import { _EventInfo, _UserDetails, _UserStep1 } from "../../types";
-import { createAccount } from "../../apis/userApi";
+import { _EventInfo, _UserDetails, _UserLogin, _UserStep1 } from "../../types";
+import { createAccount, loginEmail } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
 
 interface LoginProps {}
 
 const Login: React.FC<LoginProps> = ({}) => {
-  const [data, setData] = useState<_UserStep1>({
-    name: "",
+  const [data, setData] = useState<_UserLogin>({
     email: "",
     password: "",
   });
@@ -21,12 +20,12 @@ const Login: React.FC<LoginProps> = ({}) => {
   var redirect = useNavigate();
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    if (await createAccount(data, setLoaderStatus, setToastStatus)) {
-      redirect("/Login/details");
+    if (await loginEmail(data, setLoaderStatus, setToastStatus)) {
+      redirect("/dashboard");
     }
   };
   return (
-    <div className={style.Login}>
+    <div className={style.login}>
       <div className={style.left}>
         {/* <img className={style.logo} src={logo} /> */}
         <div className={style.background}>
@@ -69,20 +68,9 @@ const Login: React.FC<LoginProps> = ({}) => {
           <h2 className="underline">Login to Vijnana</h2>
           <input
             onChange={(e) => {
-              data.name = e.target.value;
-              setData(data);
-            }}
-            // value={data.name}
-            type="text"
-            placeholder="Full Name *"
-            required
-          />
-          <input
-            onChange={(e) => {
               data.email = e.target.value;
               setData(data);
             }}
-            // value={data.email}
             type="email"
             placeholder="E-Mail ID *"
             required
@@ -92,14 +80,13 @@ const Login: React.FC<LoginProps> = ({}) => {
               data.password = e.target.value;
               setData(data);
             }}
-            // value={data.password}
             type="password"
             placeholder="Password *"
             required
           />
           <button>Login</button>
           <span>
-            Already have an account? <Link to="/login">Login</Link>
+            Don't have an account? <Link to="/register">Register</Link>
           </span>
           <div
             className="g_id_signin"
