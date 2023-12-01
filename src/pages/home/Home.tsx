@@ -37,8 +37,8 @@ const Home: React.FC<HomeProps> = ({}) => {
               y2="487.521"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#2F6838" />
-              <stop offset="1" stop-color="#072F0D" stop-opacity="0.89" />
+              <stop stopColor="#2F6838" />
+              <stop offset="1" stopColor="#072F0D" stopOpacity="0.89" />
             </linearGradient>
           </defs>
         </svg>

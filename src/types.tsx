@@ -11,6 +11,7 @@ export type _Event = {
   venue: string;
   closed: boolean;
 };
+
 export type _EventInfo = {
   details: string;
   poster: string;
@@ -33,12 +34,12 @@ export type _UserDetails = {
   // dob: Date,
   // picture: string | null,
 };
+
 export type _User = {
   userId: string | null;
   name: string;
   email: string;
   passsword: string;
-  dob: Date;
   picture: string;
   college: string;
   course: string;
@@ -47,4 +48,22 @@ export type _User = {
   participate: [];
   token: string;
   expiry: string;
+};
+
+/* User Step 1 Registration Data*/
+
+export type _UserStep1 = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+/* User Step 2 Registration Data */
+
+export type _UserStep2 = {
+  phone: string;
+  college: string | null;
+  course: string;
+  year: number;
+  gctian: boolean | null;
 };

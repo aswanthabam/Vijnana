@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./Register.module.css";
+import style from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 // import logo from "../../assets/Logo KBM.png";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
@@ -8,9 +8,9 @@ import { createAccount } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
 
-interface RegisterProps {}
+interface LoginProps {}
 
-const Register: React.FC<RegisterProps> = ({}) => {
+const Login: React.FC<LoginProps> = ({}) => {
   const [data, setData] = useState<_UserStep1>({
     name: "",
     email: "",
@@ -22,11 +22,11 @@ const Register: React.FC<RegisterProps> = ({}) => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     if (await createAccount(data, setLoaderStatus, setToastStatus)) {
-      redirect("/register/details");
+      redirect("/Login/details");
     }
   };
   return (
-    <div className={style.register}>
+    <div className={style.Login}>
       <div className={style.left}>
         {/* <img className={style.logo} src={logo} /> */}
         <div className={style.background}>
@@ -66,7 +66,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
       </div>
       <div className={style.right}>
         <form className={style.form} onSubmit={onSubmit}>
-          <h2 className="underline">Register to Vijnana</h2>
+          <h2 className="underline">Login to Vijnana</h2>
           <input
             onChange={(e) => {
               data.name = e.target.value;
@@ -97,7 +97,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
             placeholder="Password *"
             required
           />
-          <button>Register</button>
+          <button>Login</button>
           <span>
             Already have an account? <Link to="/login">Login</Link>
           </span>
@@ -116,4 +116,4 @@ const Register: React.FC<RegisterProps> = ({}) => {
   );
 };
 
-export default Register;
+export default Login;

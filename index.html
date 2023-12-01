@@ -50,21 +50,23 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/x-icon" href="/logo.png" />
-    <script src="https://accounts.google.com/gsi/client" async></script>
+    <!-- <script src="https://accounts.google.com/gsi/client" async></script> -->
     <title>Vijñāna'2.0</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <div
+    <!-- <div
       id="g_id_onload"
       data-client_id="1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com"
-      data-context="signup"
+      data-context="signin"
       data-ux_mode="popup"
       data-callback="googleSignIn"
       data-auto_select="true"
       data-itp_support="true"
-    ></div>
+    ></div> -->
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
     <script>
       function googleSignIn(e) {
         console.log("Sign In");
