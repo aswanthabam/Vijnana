@@ -9,14 +9,11 @@ import TopBarLayer from "./layers/topbarlayer/TopBarLayer";
 import { useState, useEffect } from "react";
 import Register from "./pages/register/Register";
 import TopLoader from "./components/toploader/TopLoader";
-import {
-  LoaderStateProvider,
-  useLoader,
-} from "./components/toploader/useLoader";
+import { useLoader } from "./components/toploader/useLoader";
 import Events from "./pages/events/Events";
 import Event from "./pages/event/Event";
 import Contact from "./pages/contact/Contact";
-import ToastStateProvider, { useToast } from "./components/toast/useToast";
+import { useToast } from "./components/toast/useToast";
 import Toast from "./components/toast/Toast";
 import { createAccountGoogle } from "./apis/userApi";
 import RegisterStep2 from "./pages/register/RegisterStep2";

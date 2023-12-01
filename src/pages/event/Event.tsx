@@ -13,7 +13,7 @@ interface EventProps {
 }
 
 const Event: React.FC<EventProps> = ({}) => {
-  var { status, setLoaderStatus } = useLoader();
+  var { setLoaderStatus } = useLoader();
   var { setToastStatus } = useToast();
 
   const [event, setEvent] = useState<_EventInfo | null>(null);

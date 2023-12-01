@@ -50,6 +50,13 @@ export type _User = {
   expiry: string;
 };
 
+/* User Login Data */
+
+export type _UserLogin = {
+  email: string;
+  password: string;
+};
+
 /* User Step 1 Registration Data*/
 
 export type _UserStep1 = {

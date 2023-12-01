@@ -10,6 +10,7 @@ export const getEvents = async (
     hideAfter: number | null
   ) => void
 ) => {
+  setToast(false, null, null);
   setLoading(true);
   if (eventId) {
     var res = await publicRouter.get("/api/v2/events/get?id=" + eventId);
