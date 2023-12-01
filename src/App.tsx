@@ -13,6 +13,8 @@ import { LoaderStateProvider } from "./components/toploader/useLoader";
 import Events from "./pages/events/Events";
 import Event from "./pages/event/Event";
 import Contact from "./pages/contact/Contact";
+import ToastStateProvider from "./components/toast/useToast";
+import Toast from "./components/toast/Toast";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -39,59 +41,62 @@ function App() {
   return (
     <div className={"app " + theme}>
       <LoaderStateProvider>
-        {/* <ThemeLayer> */}
-        <TopLoader />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <TopBarLayer setTheme={setTheme} theme={theme}>
-                <Home />
-              </TopBarLayer>
-            }
-          ></Route>
-          <Route
-            path="/about"
-            element={
-              <TopBarLayer setTheme={setTheme} theme={theme}>
-                <About />
-              </TopBarLayer>
-            }
-          ></Route>
-          <Route
-            path="/register"
-            element={
-              <TopBarLayer setTheme={setTheme} theme={theme}>
-                <Register />
-              </TopBarLayer>
-            }
-          ></Route>
-          <Route
-            path="/events"
-            element={
-              <TopBarLayer setTheme={setTheme} theme={theme}>
-                <Events />
-              </TopBarLayer>
-            }
-          ></Route>
-          <Route
-            path="/contact"
-            element={
-              <TopBarLayer setTheme={setTheme} theme={theme}>
-                <Contact />
-              </TopBarLayer>
-            }
-          ></Route>
-          <Route
-            path="/event/:eventId"
-            element={
-              <TopBarLayer setTheme={setTheme} theme={theme}>
-                <Event />
-              </TopBarLayer>
-            }
-          ></Route>
-          <Route path="*" element={<Error404 />}></Route>
-        </Routes>
+        <ToastStateProvider>
+          {/* <ThemeLayer> */}
+          <Toast />
+          <TopLoader />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TopBarLayer setTheme={setTheme} theme={theme}>
+                  <Home />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="/about"
+              element={
+                <TopBarLayer setTheme={setTheme} theme={theme}>
+                  <About />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="/register"
+              element={
+                <TopBarLayer setTheme={setTheme} theme={theme}>
+                  <Register />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="/events"
+              element={
+                <TopBarLayer setTheme={setTheme} theme={theme}>
+                  <Events />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="/contact"
+              element={
+                <TopBarLayer setTheme={setTheme} theme={theme}>
+                  <Contact />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="/event/:eventId"
+              element={
+                <TopBarLayer setTheme={setTheme} theme={theme}>
+                  <Event />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route path="*" element={<Error404 />}></Route>
+          </Routes>
+        </ToastStateProvider>
       </LoaderStateProvider>
       {/* </ThemeLayer> */}
     </div>

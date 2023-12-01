@@ -3,7 +3,12 @@ import { handle_error_message, publicRouter } from "./api";
 
 export const registerUser = async (
   user: _UserDetails,
-  setLoading: (status: boolean) => void
+  setLoading: (status: boolean) => void,
+  setToast: (
+    status: boolean,
+    message: string | null,
+    hideAfter: number | null
+  ) => void
 ): Promise<boolean> => {
   setLoading(true);
   var status = true;
@@ -15,17 +20,21 @@ export const registerUser = async (
         if (val.data["data"] && val.data["data"]["token"]) {
           localStorage.setItem("token", val.data["data"]["token"]);
           localStorage.setItem("userId", val.data["data"]["userId"]);
+          setToast(true, "Successfully Created Account!", 3000);
+          console.log("Token: ", val.data["data"]["token"]);
         } else {
           status = false;
+
+          setToast(true, "An Unexpected Issue occured!", 3000);
         }
       } else {
         // api_error_code
-        handle_error_message(val);
+        handle_error_message(val, setToast);
         status = false;
       }
     })
     .catch((err) => {
-      handle_error_message(err.response);
+      handle_error_message(err.response, setToast);
       status = false;
     });
   setLoading(false);

@@ -3,7 +3,12 @@ import { publicRouter } from "./api";
 
 export const getEvents = async (
   eventId: string | null | undefined,
-  setLoading: (status: boolean) => void
+  setLoading: (status: boolean) => void,
+  setToast: (
+    status: boolean,
+    message: string | null,
+    hideAfter: number | null
+  ) => void
 ) => {
   setLoading(true);
   if (eventId) {

@@ -6,6 +6,7 @@ import alien from "../../assets/dehill-spacelove-1-dribble.gif";
 import { _EventInfo, _UserDetails } from "../../types";
 import { registerUser } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
+import { useToast } from "../../components/toast/useToast";
 
 interface RegisterProps {}
 
@@ -20,9 +21,10 @@ const Register: React.FC<RegisterProps> = ({}) => {
     password: undefined,
   });
   var { setLoaderStatus } = useLoader();
+  var { setToastStatus } = useToast();
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    await registerUser(data, setLoaderStatus);
+    await registerUser(data, setLoaderStatus, setToastStatus);
   };
   return (
     <div className={style.register}>

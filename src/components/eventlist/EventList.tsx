@@ -4,13 +4,15 @@ import EventCard from "../eventcard/EventCard";
 import { getEvents } from "../../apis/eventApi";
 import { _Event } from "../../types";
 import { useLoader } from "../toploader/useLoader";
+import { useToast } from "../toast/useToast";
 interface EventListProps {}
 
 const EventList: React.FC<EventListProps> = ({}) => {
   var { setLoaderStatus } = useLoader();
+  var { setToastStatus } = useToast();
   const [events, setEvents] = useState<Array<_Event>>([]);
   useEffect(() => {
-    getEvents(null, setLoaderStatus).then((e) => {
+    getEvents(null, setLoaderStatus, setToastStatus).then((e) => {
       console.log(e);
       setEvents(e);
     });

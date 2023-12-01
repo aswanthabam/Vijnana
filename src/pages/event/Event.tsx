@@ -6,6 +6,7 @@ import { _EventInfo } from "../../types";
 import { getEvents } from "../../apis/eventApi";
 import { useParams } from "react-router-dom";
 import { useLoader } from "../../components/toploader/useLoader";
+import { useToast } from "../../components/toast/useToast";
 // for build commit
 interface EventProps {
   // event: _Event;
@@ -13,10 +14,12 @@ interface EventProps {
 
 const Event: React.FC<EventProps> = ({}) => {
   var { status, setLoaderStatus } = useLoader();
+  var { setToastStatus } = useToast();
+
   const [event, setEvent] = useState<_EventInfo | null>(null);
   var { eventId } = useParams();
   useEffect(() => {
-    getEvents(eventId, setLoaderStatus).then((val) => {
+    getEvents(eventId, setLoaderStatus, setToastStatus).then((val) => {
       console.log("VAL", val);
       setEvent(val[0]);
     });

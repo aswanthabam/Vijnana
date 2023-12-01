@@ -1,0 +1,21 @@
+.toast {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(calc(-50% - 20px));
+  width: calc(100% - 40px);
+  margin: 20px;
+  height: 50px;
+  z-index: 20;
+  text-align: center;
+  background: var(--color-2);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 5px var(--color-orange-shade);
+  transition: all 0.5s ease;
+}
+.toast.show {
+  top: 10px;
+}
