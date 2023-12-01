@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import "./App.css";
 import "./app-variables.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, redirect } from "react-router-dom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
@@ -17,6 +17,7 @@ import { useToast } from "./components/toast/useToast";
 import Toast from "./components/toast/Toast";
 import { createAccountGoogle } from "./apis/userApi";
 import RegisterStep2 from "./pages/register/RegisterStep2";
+import Login from "./pages/login/Login";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -52,11 +53,15 @@ function App() {
           "1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com",
         callback: async (e: any) => {
           console.log(e);
-          await createAccountGoogle(
-            e["credential"],
-            setLoaderStatus,
-            setToastStatus
-          );
+          if (
+            await createAccountGoogle(
+              e["credential"],
+              setLoaderStatus,
+              setToastStatus
+            )
+          ) {
+            redirect("/dashboard");
+          }
         },
       });
       (window as any).google.accounts.id.prompt();
@@ -90,6 +95,7 @@ function App() {
           <Route path="" element={<Register />}></Route>
           <Route path="details" element={<RegisterStep2 />}></Route>
         </Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route
           path="/events"
           element={
