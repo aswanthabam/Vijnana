@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Register.module.css";
 import { Link } from "react-router-dom";
 // import logo from "../../assets/Logo KBM.png";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
+import { _EventInfo, _UserDetails } from "../../types";
+import { registerUser } from "../../apis/userApi";
+import { useLoader } from "../../components/toploader/useLoader";
 
 interface RegisterProps {}
 
 const Register: React.FC<RegisterProps> = ({}) => {
+  const [data, setData] = useState<_UserDetails>({
+    name: undefined,
+    email: undefined,
+    phone: undefined,
+    college: undefined,
+    course: undefined,
+    year: undefined,
+    password: undefined,
+  });
+  var { setLoaderStatus } = useLoader();
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    await registerUser(data, setLoaderStatus);
+  };
   return (
     <div className={style.register}>
       <div className={style.left}>
@@ -47,15 +64,78 @@ const Register: React.FC<RegisterProps> = ({}) => {
         </div>
       </div>
       <div className={style.right}>
-        <form className={style.form}>
+        <form className={style.form} onSubmit={onSubmit}>
           <h2 className="underline">Register to Vijnana</h2>
-          <input type="text" placeholder="First Name" required />
-          <input type="text" placeholder="Second Name" required />
-          <input type="email" placeholder="E-Mail ID" required />
-          <input type="phone" placeholder="Phone No" required />
-          <input type="text" placeholder="College Name" required />
-          <input type="text" placeholder="Course" required />
-          <input type="password" placeholder="Password" required />
+          <input
+            onChange={(e) => {
+              data.name = e.target.value;
+              setData(data);
+            }}
+            value={data.name}
+            type="text"
+            placeholder="Full Name *"
+            required
+          />
+          <input
+            onChange={(e) => {
+              data.email = e.target.value;
+              setData(data);
+            }}
+            value={data.email}
+            type="email"
+            placeholder="E-Mail ID *"
+            required
+          />
+          <input
+            onChange={(e) => {
+              data.phone = e.target.value;
+              setData(data);
+            }}
+            value={data.phone}
+            type="phone"
+            placeholder="Phone No *"
+            required
+          />
+          <input
+            onChange={(e) => {
+              data.college = e.target.value;
+              setData(data);
+            }}
+            value={data.college}
+            type="text"
+            placeholder="College Name *"
+            required
+          />
+          <input
+            onChange={(e) => {
+              data.course = e.target.value;
+              setData(data);
+            }}
+            value={data.course}
+            type="text"
+            placeholder="Course *"
+            required
+          />
+          <input
+            onChange={(e) => {
+              data.year = e.target.value;
+              setData(data);
+            }}
+            value={data.year}
+            type="number"
+            placeholder="Year *"
+            required
+          />
+          <input
+            onChange={(e) => {
+              data.password = e.target.value;
+              setData(data);
+            }}
+            value={data.password}
+            type="password"
+            placeholder="Password *"
+            required
+          />
           <button>Register</button>
           <span>
             Already have an account? <Link to="/login">Login</Link>

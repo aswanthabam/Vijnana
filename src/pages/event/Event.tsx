@@ -3,7 +3,7 @@ import style from "./Event.module.css";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
 import { _EventInfo } from "../../types";
-import { getEvents } from "../../apis/api";
+import { getEvents } from "../../apis/eventApi";
 import { useParams } from "react-router-dom";
 import { useLoader } from "../../components/toploader/useLoader";
 // for build commit

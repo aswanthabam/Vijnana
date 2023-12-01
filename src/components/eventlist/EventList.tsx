@@ -1,7 +1,7 @@
 import style from "./EventList.module.css";
 import { useEffect, useState } from "react";
 import EventCard from "../eventcard/EventCard";
-import { getEvents } from "../../apis/api";
+import { getEvents } from "../../apis/eventApi";
 import { _Event } from "../../types";
 import { useLoader } from "../toploader/useLoader";
 interface EventListProps {}

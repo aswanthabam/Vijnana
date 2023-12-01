@@ -21,3 +21,30 @@ export type _EventInfo = {
   participants: any[];
   teams: any[];
 } & _Event;
+
+export type _UserDetails = {
+  name: string | undefined;
+  email: string | undefined;
+  phone: string | undefined;
+  college: string | undefined;
+  course: string | undefined;
+  year: string | undefined;
+  password: string | undefined;
+  // dob: Date,
+  // picture: string | null,
+};
+export type _User = {
+  userId: string | null;
+  name: string;
+  email: string;
+  passsword: string;
+  dob: Date;
+  picture: string;
+  college: string;
+  course: string;
+  year: string;
+  phone: string;
+  participate: [];
+  token: string;
+  expiry: string;
+};

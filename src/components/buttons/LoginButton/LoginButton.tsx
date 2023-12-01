@@ -5,19 +5,16 @@ import googleIcon from "../../../assets/google.png";
 interface LoginButtonProps {
   onClick: () => void;
 }
-const googleSignIn = () => {
-  console.log("III");
-};
 const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
   return (
     <div onClick={onClick} className={styles.loginButton}>
-      {/* <div className={styles.icon}>
+      <div className={styles.icon}>
         <img src={googleIcon} />
       </div>
       <div className={styles.text}>
         <span>Register</span>
-      </div> */}
-      <div
+      </div>
+      {/* <div
         className="g_id_signin"
         data-type="standard"
         data-shape="pill"
@@ -25,7 +22,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
         data-text="signin"
         data-size="large"
         data-logo_alignment="left"
-      ></div>
+      ></div> */}
       {/* <div
         id="g_id_onload"
         data-client_id="1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com"
