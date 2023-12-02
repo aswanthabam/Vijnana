@@ -7,6 +7,7 @@ import { _EventInfo, _UserDetails, _UserLogin, _UserStep1 } from "../../types";
 import { loginEmail } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
+import { LoginStatus } from "../../apis/api";
 
 interface LoginProps {}
 
@@ -20,8 +21,11 @@ const Login: React.FC<LoginProps> = ({}) => {
   var redirect = useNavigate();
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    if (await loginEmail(data, setLoaderStatus, setToastStatus)) {
+    var status = await loginEmail(data, setLoaderStatus, setToastStatus);
+    if (status == LoginStatus.STEP2) {
       redirect("/dashboard");
+    } else if (status == LoginStatus.STEP1) {
+      redirect("/register/details");
     }
   };
   return (
