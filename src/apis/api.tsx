@@ -1,6 +1,19 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 import { _EventInfo } from "../types";
 import { baseURL } from "../config";
+
+/* set the token */
+
+export const set_token = (user_id: string, token: string) => {
+  localStorage.setItem("userId", user_id);
+  localStorage.setItem("token", token);
+  // publicRouter.defaults.headers.common.Authorization = "Bearer " + token;
+};
 
 /* get the auth token if exists */
 
@@ -12,8 +25,20 @@ export const get_token = (): string | null => {
 
 export const publicRouter = axios.create({
   baseURL: baseURL,
-  headers: { authorization: "Bearer " + get_token() },
 });
+
+publicRouter.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const token = get_token();
+    if (token) {
+      config.headers.authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 /* Validate a given api response, format the given AxiosResponse to ApiResponse with the nessesary params */
 
@@ -78,6 +103,7 @@ export const validateResponse = async (
 /* API Response types and enums */
 
 export enum LoginStatus {
+  ERROR = "Invalid",
   STEP1 = "Step 1",
   STEP2 = "Step 2",
 }

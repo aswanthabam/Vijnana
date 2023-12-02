@@ -1,14 +1,16 @@
 import { _UserDetails, _UserLogin, _UserStep1, _UserStep2 } from "../types";
 import {
+  LoginStatus,
   ResponseStatus,
   ResponseType,
   publicRouter,
+  set_token,
   validateResponse,
 } from "./api";
 
 /* STATUS AND DETAILS ENDPOINT */
 
-export const loginStatus = async (
+export const userDetails = async (
   setLoading: (status: boolean) => void,
   setToast: (
     status: boolean,
@@ -17,7 +19,7 @@ export const loginStatus = async (
   ) => void
 ): Promise<{} | null | undefined> => {
   setLoading(true);
-  var res = publicRouter.post("/api/v2/users/status");
+  var res = publicRouter.post("/api/v2/users/details");
   var val = await validateResponse(res);
   if (val.status == ResponseStatus.FAILED) {
     setToast(true, val.data.message, 3000);
@@ -42,7 +44,7 @@ export const loginEmail = async (
     message: string | null,
     hideAfter: number | null
   ) => void
-): Promise<boolean> => {
+): Promise<LoginStatus> => {
   setLoading(true);
   var res = publicRouter.post("/api/v2/users/login", user);
   var val = await validateResponse(res);
@@ -51,14 +53,16 @@ export const loginEmail = async (
     if (val.contentType == ResponseType.DATA) {
       var token = (val.data.data as any)["token"] as string;
       var userId = (val.data.data as any)["userId"] as string;
-      localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
+      var step = (val.data.data as any)["step"] as string;
+      set_token(userId, token);
+      localStorage.setItem("step", step);
       setLoading(false);
-      return true;
+      if (step == "2") return LoginStatus.STEP2;
+      else return LoginStatus.STEP1;
     }
   }
   setLoading(false);
-  return false;
+  return LoginStatus.ERROR;
 };
 
 /* REGISTRATION ENDPOINTS */
@@ -111,8 +115,7 @@ export const createAccount = async (
       var token = (val.data.data as any)["token"] as string;
       var userId = (val.data.data as any)["userId"] as string;
       var step = (val.data.data as any)["step"] as string;
-      localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
+      set_token(userId, token);
       localStorage.setItem("step", step);
       setLoading(false);
       return true;
@@ -132,7 +135,7 @@ export const createAccountGoogle = async (
     message: string | null,
     hideAfter: number | null
   ) => void
-): Promise<boolean> => {
+): Promise<LoginStatus> => {
   setLoading(true);
   var res = publicRouter.post("/api/v2/users/createAccount/google", {
     credential: credential,
@@ -144,13 +147,13 @@ export const createAccountGoogle = async (
       var token = (val.data.data as any)["token"] as string;
       var userId = (val.data.data as any)["userId"] as string;
       var step = (val.data.data as any)["step"] as string;
-      localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
+      set_token(userId, token);
       localStorage.setItem("step", step);
       setLoading(false);
-      return true;
+      if (step == "2") return LoginStatus.STEP2;
+      else return LoginStatus.STEP1;
     }
   }
   setLoading(false);
-  return false;
+  return LoginStatus.ERROR;
 };

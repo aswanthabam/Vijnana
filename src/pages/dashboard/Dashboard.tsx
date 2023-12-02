@@ -1,7 +1,7 @@
 import style from "./Dashboard.module.css";
 import Footer from "../../components/footer/Footer";
 import { useEffect } from "react";
-import { loginStatus } from "../../apis/userApi";
+import { userDetails } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const Dashboard: React.FC<DashboardProps> = ({}) => {
   var { setToastStatus } = useToast();
   var redirect = useNavigate();
   useEffect(() => {
-    loginStatus(setLoaderStatus, setToastStatus).then(
+    userDetails(setLoaderStatus, setToastStatus).then(
       (val: {} | null | undefined) => {
         if (!val) {
           setToastStatus(true, "Please login to continue!", 3000);

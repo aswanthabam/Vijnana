@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import "./App.css";
 import "./app-variables.css";
-import { Route, Routes, redirect } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
@@ -20,6 +20,7 @@ import RegisterStep2 from "./pages/register/RegisterStep2";
 import Login from "./pages/login/Login";
 import Sidebar from "./components/sidebar/Sidebar";
 import Dashboard from "./pages/dashboard/Dashboard";
+import { LoginStatus } from "./apis/api";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -37,6 +38,7 @@ function App() {
   var { setLoaderStatus } = useLoader();
   var { setToastStatus } = useToast();
   const [sidebarState, setSidebarState] = useState<boolean>(false);
+  const redirect = useNavigate();
   const setTheme = (theme: string) => {
     setThemeState(theme);
     localStorage.setItem("theme", theme);
@@ -57,14 +59,16 @@ function App() {
           "1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com",
         callback: async (e: any) => {
           console.log(e);
-          if (
-            await createAccountGoogle(
-              e["credential"],
-              setLoaderStatus,
-              setToastStatus
-            )
-          ) {
+          var status = await createAccountGoogle(
+            e["credential"],
+            setLoaderStatus,
+            setToastStatus
+          );
+          console.log(status);
+          if (status == LoginStatus.STEP1) redirect("/register/details");
+          else if (status == LoginStatus.STEP2) {
             redirect("/dashboard");
+            console.log("EWEWE");
           }
         },
       });
