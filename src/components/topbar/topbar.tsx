@@ -5,9 +5,16 @@ import logo from "../../assets/logo.png";
 interface TopBarProps {
   theme: string;
   setTheme: (theme: string) => void;
+  setSidebarState: (state: boolean) => void;
+  sidebarState: boolean;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {
+const TopBar: React.FC<TopBarProps> = ({
+  setTheme,
+  theme,
+  setSidebarState,
+  sidebarState,
+}) => {
   const redirect = useNavigate();
   const handleLoginClick = () => {
     redirect("/register");
@@ -15,7 +22,12 @@ const TopBar: React.FC<TopBarProps> = ({ setTheme, theme }) => {
   return (
     <>
       <div className={style.topbar + " " + style.mobile}>
-        <div className={style.menuButton}>
+        <div
+          onClick={() => {
+            setSidebarState(!sidebarState);
+          }}
+          className={style.menuButton}
+        >
           <i className="bi bi-list"></i>
         </div>
         <div className={style.loginButton}>
