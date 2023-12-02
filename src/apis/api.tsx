@@ -1,11 +1,9 @@
 import axios, {
   AxiosError,
-  AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
 import { _EventInfo } from "../types";
-import { baseURL } from "../config";
 
 /* set the token */
 
@@ -22,9 +20,10 @@ export const get_token = (): string | null => {
 };
 
 /* Public Router that passes the token as bearer and get the api domain form config */
+export const api_url = import.meta.env.VITE_API_URL;
 
 export const publicRouter = axios.create({
-  baseURL: baseURL,
+  baseURL: api_url,
 });
 
 publicRouter.interceptors.request.use(
