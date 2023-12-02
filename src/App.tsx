@@ -18,6 +18,7 @@ import Toast from "./components/toast/Toast";
 import { createAccountGoogle } from "./apis/userApi";
 import RegisterStep2 from "./pages/register/RegisterStep2";
 import Login from "./pages/login/Login";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -32,12 +33,14 @@ function getTheme() {
 }
 function App() {
   const [theme, setThemeState] = useState("dark");
+  var { setLoaderStatus } = useLoader();
+  var { setToastStatus } = useToast();
+  const [sidebarState, setSidebarState] = useState<boolean>(false);
   const setTheme = (theme: string) => {
     setThemeState(theme);
     localStorage.setItem("theme", theme);
   };
-  var { setLoaderStatus } = useLoader();
-  var { setToastStatus } = useToast();
+
   useEffect(() => {
     var the = getTheme();
     setTheme(the);
@@ -74,11 +77,17 @@ function App() {
       {/* <ThemeLayer> */}
       <Toast />
       <TopLoader />
+      <Sidebar state={sidebarState} setState={setSidebarState} />
       <Routes>
         <Route
           path="/"
           element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
               <Home />
             </TopBarLayer>
           }
@@ -86,7 +95,12 @@ function App() {
         <Route
           path="/about"
           element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
               <About />
             </TopBarLayer>
           }
@@ -99,7 +113,12 @@ function App() {
         <Route
           path="/events"
           element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
               <Events />
             </TopBarLayer>
           }
@@ -107,7 +126,12 @@ function App() {
         <Route
           path="/contact"
           element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
               <Contact />
             </TopBarLayer>
           }
@@ -115,7 +139,12 @@ function App() {
         <Route
           path="/event/:eventId"
           element={
-            <TopBarLayer setTheme={setTheme} theme={theme}>
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
               <Event />
             </TopBarLayer>
           }
