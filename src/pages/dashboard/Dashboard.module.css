@@ -1,0 +1,8 @@
+.dashboard {
+  width: 100%;
+  height: auto;
+  .page {
+    width: calc(100% - 100px);
+    padding: 50px;
+  }
+}

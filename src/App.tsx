@@ -19,6 +19,7 @@ import { createAccountGoogle } from "./apis/userApi";
 import RegisterStep2 from "./pages/register/RegisterStep2";
 import Login from "./pages/login/Login";
 import Sidebar from "./components/sidebar/Sidebar";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -133,6 +134,19 @@ function App() {
               theme={theme}
             >
               <Contact />
+            </TopBarLayer>
+          }
+        ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
+              <Dashboard />
             </TopBarLayer>
           }
         ></Route>

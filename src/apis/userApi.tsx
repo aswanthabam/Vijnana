@@ -6,6 +6,32 @@ import {
   validateResponse,
 } from "./api";
 
+/* STATUS AND DETAILS ENDPOINT */
+
+export const loginStatus = async (
+  setLoading: (status: boolean) => void,
+  setToast: (
+    status: boolean,
+    message: string | null,
+    hideAfter: number | null
+  ) => void
+): Promise<{} | null | undefined> => {
+  setLoading(true);
+  var res = publicRouter.post("/api/v2/users/status");
+  var val = await validateResponse(res);
+  if (val.status == ResponseStatus.FAILED) {
+    setToast(true, val.data.message, 3000);
+  }
+  if (val.contentType == ResponseType.DATA) {
+    var step = (val.data.data as any)["step"] as number;
+    localStorage.setItem("step", step + "");
+    setLoading(false);
+    return val.data.data as {} | null | undefined;
+  }
+  setLoading(false);
+  return null;
+};
+
 /* LOGIN ENDPOINT */
 
 export const loginEmail = async (
