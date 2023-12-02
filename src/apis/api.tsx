@@ -85,7 +85,7 @@ export type ApiResponse = {
 
 export type ResponseData = {
   message: string;
-  data: {} | [] | null | undefined;
+  data: ResponseDataType;
 };
 
 export enum ResponseType {
@@ -98,3 +98,5 @@ export enum ResponseStatus {
   SUCCESS = 5,
   FAILED = 6,
 }
+
+export type ResponseDataType = {} | [] | null | undefined;
