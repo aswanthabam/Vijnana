@@ -26,11 +26,12 @@ const Dashboard: React.FC<DashboardProps> = ({}) => {
             "Your registration is not complete! Please complete the registration to contine",
             3000
           );
+          redirect("/register/details");
           return;
         }
       }
     );
-  });
+  }, []);
   return (
     <div className={style.dashboard}>
       <div className={style.page}>

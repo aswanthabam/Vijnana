@@ -77,6 +77,11 @@ export const validateResponse = async (
 
 /* API Response types and enums */
 
+export enum LoginStatus {
+  STEP1 = "Step 1",
+  STEP2 = "Step 2",
+}
+
 export type ApiResponse = {
   status: ResponseStatus;
   contentType: ResponseType;
