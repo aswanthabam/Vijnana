@@ -1,6 +1,5 @@
 import style from "./UserCard.module.css";
 import { _Event, _UserDetails } from "../../types";
-import { useEffect } from "react";
 import defaultProfile from "../../assets/frlIf.png";
 
 interface UserCardProps {
