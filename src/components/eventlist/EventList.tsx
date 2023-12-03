@@ -13,8 +13,8 @@ const EventList: React.FC<EventListProps> = ({}) => {
   const [events, setEvents] = useState<Array<_Event>>([]);
   useEffect(() => {
     getEvents(null, setLoaderStatus, setToastStatus).then((e) => {
-      console.log(e);
-      setEvents(e);
+      if (e) setEvents(e);
+      else console.log("error : no event data got");
     });
   }, []);
 
