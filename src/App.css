@@ -8,12 +8,12 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  /* background: #2f6838; */
+  background: #2f6838;
 }
 
 /* Handle */
