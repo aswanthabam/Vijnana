@@ -7,6 +7,7 @@
   position: relative;
   /* background: red; */
   .account {
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,7 +36,7 @@
 
 .desktop {
   display: none;
-  width: calc(100% - 140px);
+  width: calc(100% - 100px);
   padding: 10px 50px;
 
   .menuItems {

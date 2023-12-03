@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginButton from "../buttons/LoginButton/LoginButton";
 import style from "./topbar.module.css";
 import logo from "../../assets/logo.png";
+import React from "react";
 interface TopBarProps {
   theme: string;
   setTheme: (theme: string) => void;
@@ -15,10 +16,32 @@ const TopBar: React.FC<TopBarProps> = ({
   setSidebarState,
   sidebarState,
 }) => {
+  const [text, setText] = React.useState<string>("Register");
+  const [link, setLink] = React.useState<string>("");
+  const [iconVisible, setIconVisible] = React.useState<boolean>(true);
   const redirect = useNavigate();
+
   const handleLoginClick = () => {
-    redirect("/register");
+    redirect(link);
   };
+  React.useEffect(() => {
+    var step = localStorage.getItem("step") as any as number;
+    if (step)
+      if (step == 1) {
+        setText("Continue Registration");
+        setLink("/register/details");
+        setIconVisible(false);
+        return;
+      } else if (step == 2) {
+        setText("Dashboard");
+        setLink("/dashboard");
+        setIconVisible(false);
+        return;
+      }
+    setText("Register");
+    setLink("/register");
+    setIconVisible(true);
+  });
   return (
     <>
       <div className={style.topbar + " " + style.mobile}>
@@ -44,7 +67,11 @@ const TopBar: React.FC<TopBarProps> = ({
               <i className="bi bi-sun"></i>
             )}
           </span>
-          <LoginButton onClick={handleLoginClick} />
+          <LoginButton
+            onClick={handleLoginClick}
+            text={text}
+            iconVisible={iconVisible}
+          />
         </div>
       </div>
 
@@ -80,7 +107,11 @@ const TopBar: React.FC<TopBarProps> = ({
               <i className="bi bi-sun"></i>
             )}
           </span>
-          <LoginButton onClick={handleLoginClick} />
+          <LoginButton
+            onClick={handleLoginClick}
+            text={text}
+            iconVisible={iconVisible}
+          />
         </div>
       </div>
     </>
