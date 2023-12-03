@@ -23,17 +23,17 @@ export type _EventInfo = {
   teams: any[];
 } & _Event;
 
-// export type _UserDetails = {
-//   name: string | undefined;
-//   email: string | undefined;
-//   phone: string | undefined;
-//   college: string | undefined;
-//   course: string | undefined;
-//   year: string | undefined;
-//   password: string | undefined;
-//   // dob: Date,
-//   // picture: string | null,
-// };
+export type _UserDetails = {
+  name: string | undefined;
+  email: string | undefined;
+  phone: string | undefined;
+  college: string | undefined;
+  course: string | undefined;
+  year: string | undefined;
+  password: string | undefined;
+  // dob: Date,
+  // picture: string | null,
+};
 
 export type _User = {
   userId: string | null;
@@ -48,20 +48,6 @@ export type _User = {
   participate: [];
   token: string;
   expiry: string;
-};
-
-/* User Details */
-
-export type _UserDetails = {
-  userId: string;
-  name: string;
-  email: string;
-  picture: string | null;
-  gctian: boolean;
-  college: string;
-  course: string;
-  year: number;
-  step: number;
 };
 
 /* User Login Data */

@@ -1,32 +1,5 @@
 import { _EventInfo } from "../types";
-import {
-  ResponseStatus,
-  ResponseType,
-  publicRouter,
-  validateResponse,
-} from "./api";
-
-export const myEvents = async (
-  setLoading: (status: boolean) => void,
-  setToast: (
-    status: boolean,
-    message: string | null,
-    hideAfter: number | null
-  ) => void
-): Promise<[] | null> => {
-  setLoading(true);
-  var res = publicRouter.post("/api/v2/events/myEvents");
-  var val = await validateResponse(res);
-  if (val.status == ResponseStatus.SUCCESS) {
-    if (val.contentType == ResponseType.DATA) {
-      var data = val.data.data;
-      var events: [] = (data as any)["events"];
-      return events;
-    }
-  }
-  setToast(true, val.data.message, 3000);
-  return null;
-};
+import { publicRouter } from "./api";
 
 export const getEvents = async (
   eventId: string | null | undefined,
