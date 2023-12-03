@@ -17,7 +17,7 @@ export const userDetails = async (
     message: string | null,
     hideAfter: number | null
   ) => void
-): Promise<{} | null | undefined> => {
+): Promise<_UserDetails | null> => {
   setLoading(true);
   var res = publicRouter.post("/api/v2/users/details");
   var val = await validateResponse(res);
@@ -28,7 +28,7 @@ export const userDetails = async (
     var step = (val.data.data as any)["step"] as number;
     localStorage.setItem("step", step + "");
     setLoading(false);
-    return val.data.data as {} | null | undefined;
+    return val.data.data as _UserDetails;
   }
   setLoading(false);
   return null;
