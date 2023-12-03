@@ -2,7 +2,7 @@ import style from "./Event.module.css";
 // import SecondaryButton from '../../components/buttons/secondary_button/SecondaryButton';
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
-import { _EventInfo } from "../../types";
+import { _EventInfo } from "../../utils/types";
 import { getEvents } from "../../apis/eventApi";
 import { useParams } from "react-router-dom";
 import { useLoader } from "../../components/toploader/useLoader";

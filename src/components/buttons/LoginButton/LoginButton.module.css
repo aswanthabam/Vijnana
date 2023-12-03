@@ -3,24 +3,28 @@
   height: auto;
   padding: 10px 10px;
   align-items: center;
+  justify-content: center;
   border-radius: 30px;
   background: var(--color-orange);
 
   .icon {
     margin-right: 10px;
-
+    display: flex;
+    align-items: center;
     & img {
       width: 15px;
     }
   }
 
   .text {
-    color: var(--color-white);
-    font-family: Wallpoet;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    & span {
+      color: var(--color-black);
+      /* font-family: Wallpoet; */
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
   }
 }
 

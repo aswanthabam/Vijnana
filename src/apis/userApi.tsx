@@ -1,4 +1,9 @@
-import { _UserDetails, _UserLogin, _UserStep1, _UserStep2 } from "../types";
+import {
+  _UserDetails,
+  _UserLogin,
+  _UserStep1,
+  _UserStep2,
+} from "../utils/types";
 import {
   LoginStatus,
   ResponseStatus,
