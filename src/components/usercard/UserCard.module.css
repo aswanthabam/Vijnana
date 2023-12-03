@@ -55,6 +55,8 @@
       border-radius: 0 0 20px 20px;
       display: flex;
       justify-content: space-between;
+      color: var(--color-orange);
+      font-weight: 600;
 
       .email {
         font-size: 13px;
@@ -62,9 +64,29 @@
       }
     }
     .participate {
-      width: calc(100% - 4px);
+      width: calc(100% - 0px);
       height: 100px;
-      border: 2px solid var(--color-black);
+      padding: 10px 0;
+      /* padding: 10px; */
+      border-top: 2px solid var(--color-4);
+      color: var(--color-black);
+      & h5 {
+        font-size: 15px;
+      }
+      .events {
+        display: block;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--color-green);
+
+        & span {
+          display: inline-block;
+          background: var(--color-3);
+          padding: 5px 10px;
+          border-radius: 5px;
+          margin-right: 10px;
+        }
+      }
     }
   }
 }
