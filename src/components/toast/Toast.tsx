@@ -1,5 +1,5 @@
 import style from "./Toast.module.css";
-import { _Event } from "../../types";
+import { _Event } from "../../utils/types";
 import { useEffect } from "react";
 import { useToast } from "./useToast";
 interface ToastProps {}

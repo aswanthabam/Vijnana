@@ -5,7 +5,7 @@ import { userDetails } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
 import { useNavigate } from "react-router-dom";
-import { _UserDetails } from "../../types";
+import { _UserDetails } from "../../utils/types";
 import UserCard from "../../components/usercard/UserCard";
 import EventList from "../../components/eventlist/EventList";
 import { myEvents } from "../../apis/eventApi";

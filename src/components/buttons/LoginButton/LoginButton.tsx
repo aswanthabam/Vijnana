@@ -1,5 +1,4 @@
 import styles from "./LoginButton.module.css";
-import React, { useEffect } from "react";
 import googleIcon from "../../../assets/google.png";
 
 interface LoginButtonProps {
