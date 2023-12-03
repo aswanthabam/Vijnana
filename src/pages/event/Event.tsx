@@ -20,8 +20,8 @@ const Event: React.FC<EventProps> = ({}) => {
   var { eventId } = useParams();
   useEffect(() => {
     getEvents(eventId, setLoaderStatus, setToastStatus).then((val) => {
-      console.log("VAL", val);
-      setEvent(val[0]);
+      if (val) setEvent(val[0]);
+      else console.log("error : no event data got");
     });
   }, []);
   return (

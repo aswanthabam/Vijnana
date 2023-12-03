@@ -6,6 +6,13 @@ import {
   validateResponse,
 } from "./api";
 
+/*
+  myEvents() function returns a list of events participating events from the backend.
+  @param setLoading: (status: boolean) => void
+  @param setToast: (status: boolean, message: string | null, hideAfter: number | null) => void
+  @returns [] | null
+*/
+
 export const myEvents = async (
   setLoading: (status: boolean) => void,
   setToast: (
@@ -28,6 +35,14 @@ export const myEvents = async (
   return null;
 };
 
+/* 
+  getEvents() function returns a list of events from the backend.
+  @param eventId: string | null | undefined
+  @param setLoading: (status: boolean) => void
+  @param setToast: (status: boolean, message: string | null, hideAfter: number | null) => void
+  @returns Array<_EventInfo> | null
+*/
+
 export const getEvents = async (
   eventId: string | null | undefined,
   setLoading: (status: boolean) => void,
@@ -36,23 +51,22 @@ export const getEvents = async (
     message: string | null,
     hideAfter: number | null
   ) => void
-) => {
+): Promise<Array<_EventInfo> | null> => {
   setToast(false, null, null);
   setLoading(true);
   if (eventId) {
-    var res = await publicRouter.get("/api/v2/events/get?id=" + eventId);
+    var res = publicRouter.get("/api/v2/events/get?id=" + eventId);
   } else {
-    var res = await publicRouter.get("/api/v2/events/getAll");
+    var res = publicRouter.get("/api/v2/events/getAll");
   }
+  var val = await validateResponse(res);
+
   var d2: Array<_EventInfo> = [];
-  // console.log("data", res.data["data"] as _EventInfo[]);
-  if (res.data["status"] && res.data["status"] == "success") {
-    if (res.data["data"] != undefined && res.data["data"] != null) {
-      // var data: EventInfoData[] = res.data["data"] as EventInfoData[];
-      console.log(res.data["data"]);
-      var data: Array<_EventInfo> = res.data["data"] as Array<_EventInfo>;
+
+  if (val.status == ResponseStatus.SUCCESS) {
+    if (val.contentType == ResponseType.DATA) {
+      var data = val.data.data as Array<_EventInfo>;
       console.log(data);
-      //   console.log(data);
       for (var i = 0; i < data.length; i++) {
         var data2 = data[i];
         var date: Date = new Date(data2!["date"]);
@@ -71,13 +85,11 @@ export const getEvents = async (
         console.log(data2);
         d2.push(data2);
       }
-      console.log(d2);
-    } else {
-      alert(res.data["message"]);
+      setLoading(false);
+      return d2;
     }
-  } else {
-    // api_error_code
   }
+  setToast(true, val.data.message, 3000);
   setLoading(false);
-  return d2;
+  return null;
 };
