@@ -1,4 +1,4 @@
-import { _EventInfo } from "../types";
+import { _EventInfo } from "../utils/types";
 import {
   ResponseStatus,
   ResponseType,

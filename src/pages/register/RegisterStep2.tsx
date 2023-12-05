@@ -3,7 +3,12 @@ import style from "./Register.module.css";
 import { Link, useNavigate } from "react-router-dom";
 // import logo from "../../assets/Logo KBM.png";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
-import { _EventInfo, _UserDetails, _UserStep1, _UserStep2 } from "../../types";
+import {
+  _EventInfo,
+  _UserDetails,
+  _UserStep1,
+  _UserStep2,
+} from "../../utils/types";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
 import { completeRegistration } from "../../apis/userApi";
