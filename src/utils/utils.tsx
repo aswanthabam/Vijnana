@@ -1,16 +1,23 @@
 export class GoogleIdentity {
-  static initializer: Promise<boolean>;
+  static initializer: Promise<boolean> | null;
   static is_initialized: boolean = false;
+  static callbackFuncion: ((response: any) => void) | null = null;
 
   constructor() {
-    GoogleIdentity.initializer = this.initializeGoogleIdentity().then((val) => {
-      GoogleIdentity.is_initialized = val;
-      return val;
-    });
+    GoogleIdentity.initializer = GoogleIdentity.initializeGoogleIdentity().then(
+      (val) => {
+        GoogleIdentity.is_initialized = val;
+        return val;
+      }
+    );
   }
 
-  initializeGoogleIdentity(): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
+  /*
+    Initialize google identity service
+  */
+
+  static initializeGoogleIdentity(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
       var script = document.createElement("script");
       script.src = "https://accounts.google.com/gsi/client";
       script.defer = true;
@@ -19,7 +26,7 @@ export class GoogleIdentity {
         (window as any).google.accounts.id.initialize({
           client_id:
             "1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com",
-          callback: this.handleGoogleSignIn,
+          callback: GoogleIdentity.callbackFuncion,
         });
         console.log("Google Identity initialized");
         resolve(true);
@@ -28,26 +35,47 @@ export class GoogleIdentity {
     });
   }
 
-  handleGoogleSignIn(response: any) {
-    console.log(response);
+  /*
+   Call back function that handles google sign in action
+  */
+
+  static setCallBack(callbackFuncion: (response: any) => void) {
+    GoogleIdentity.callbackFuncion = callbackFuncion;
   }
 
-  showGoogleOneTapPopup() {
-    if (GoogleIdentity.is_initialized)
-      (window as any).google.accounts.id.prompt();
+  /*
+   Show google one tap popup for sign in
+  */
+
+  static showGoogleOneTapPopup() {
+    if (!GoogleIdentity.initializer) new GoogleIdentity();
+    GoogleIdentity.initializer!.then((val) => {
+      if (val) {
+        (window as any).google.accounts.id.prompt();
+      }
+    });
   }
 
-  renderGoogleSignInButton(parentElement: HTMLElement) {
-    if (GoogleIdentity.is_initialized)
-      (window as any).google.accounts.id.renderButton(parentElement, {
-        theme: "outline",
-        size: "large",
-        text: "Sign in with Google",
-        shape: "rectangular",
-        width: "auto",
-        height: "auto",
-        longtitle: true,
-        onsuccess: this.handleGoogleSignIn,
-      });
+  /*
+   Render google sign in button
+  */
+
+  static renderGoogleSignInButton(parentElement: HTMLElement) {
+    if (!GoogleIdentity.initializer) new GoogleIdentity();
+    GoogleIdentity.initializer!.then((val) => {
+      if (val) {
+        (window as any).google.accounts.id.renderButton(parentElement, {
+          theme: "dark",
+          size: "large",
+          type: "standard",
+          text: "signin",
+          shape: "pill",
+          longtitle: false,
+          onsuccess: GoogleIdentity.callbackFuncion,
+        });
+      } else {
+        console.log("Google Identity not initialized");
+      }
+    });
   }
 }

@@ -48,36 +48,22 @@ function App() {
   useEffect(() => {
     var the = getTheme();
     setTheme(the);
-    var identity = new GoogleIdentity();
-    identity.showGoogleOneTapPopup();
-    // var script = document.createElement("script");
-    // script.src = "https://accounts.google.com/gsi/client";
-    // // console.log(script);
-    // script.defer = true;
-    // script.async = true;
-    // script.onload = (data) => {
-    //   console.log(data);
-    //   (window as any).google.accounts.id.initialize({
-    //     client_id:
-    //       "1025507377861-ksv14u42p6c0bes203hkbki7n56u6v80.apps.googleusercontent.com",
-    //     callback: async (e: any) => {
-    //       console.log(e);
-    //       var status = await createAccountGoogle(
-    //         e["credential"],
-    //         setLoaderStatus,
-    //         setToastStatus
-    //       );
-    //       console.log(status);
-    //       if (status == LoginStatus.STEP1) redirect("/register/details");
-    //       else if (status == LoginStatus.STEP2) {
-    //         redirect("/dashboard");
-    //         console.log("EWEWE");
-    //       }
-    //     },
-    //   });
-    //   (window as any).google.accounts.id.prompt();
-    // };
-    // document.body.appendChild(script);
+    GoogleIdentity.initializeGoogleIdentity();
+    GoogleIdentity.setCallBack(async (e: any) => {
+      console.log(e);
+      var status = await createAccountGoogle(
+        e["credential"],
+        setLoaderStatus,
+        setToastStatus
+      );
+      console.log(status);
+      if (status == LoginStatus.STEP1) redirect("/register/details");
+      else if (status == LoginStatus.STEP2) {
+        redirect("/dashboard");
+        console.log("EWEWE");
+      }
+    });
+    GoogleIdentity.showGoogleOneTapPopup();
   }, []);
 
   return (

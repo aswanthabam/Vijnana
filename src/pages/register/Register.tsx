@@ -7,6 +7,7 @@ import { _EventInfo, _UserDetails, _UserStep1 } from "../../types";
 import { createAccount } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
+import GoogleButton from "../../components/buttons/GoogleButton/GoogleButton";
 
 interface RegisterProps {}
 
@@ -101,15 +102,7 @@ const Register: React.FC<RegisterProps> = ({}) => {
           <span>
             Already have an account? <Link to="/login">Login</Link>
           </span>
-          <div
-            className="g_id_signin"
-            data-type="standard"
-            data-shape="pill"
-            data-theme="outline"
-            data-text="signin"
-            data-size="large"
-            data-logo_alignment="left"
-          ></div>
+          <GoogleButton />
         </form>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { loginEmail } from "../../apis/userApi";
 import { useLoader } from "../../components/toploader/useLoader";
 import { useToast } from "../../components/toast/useToast";
 import { LoginStatus } from "../../apis/api";
+import GoogleButton from "../../components/buttons/GoogleButton/GoogleButton";
 
 interface LoginProps {}
 
@@ -92,15 +93,7 @@ const Login: React.FC<LoginProps> = ({}) => {
           <span>
             Don't have an account? <Link to="/register">Register</Link>
           </span>
-          <div
-            className="g_id_signin"
-            data-type="standard"
-            data-shape="pill"
-            data-theme="outline"
-            data-text="signin"
-            data-size="large"
-            data-logo_alignment="left"
-          ></div>
+          <GoogleButton />
         </form>
       </div>
     </div>
