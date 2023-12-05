@@ -1,10 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { GoogleIdentity } from "../../../utils/utils";
 
-interface GoogleButtonProps {
-  // onSuccess: (googleUser: any) => void;
-  // onFailure: () => void;
-}
+interface GoogleButtonProps {}
 
 const GoogleButton: React.FC<GoogleButtonProps> = ({}) => {
   const googleButtonRef = useRef<HTMLDivElement>(null);
