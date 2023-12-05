@@ -1,5 +1,5 @@
 import style from "./Sidebar.module.css";
-import { _Event } from "../../types";
+import { _Event } from "../../utils/types";
 
 interface SidebarProps {
   state: boolean;

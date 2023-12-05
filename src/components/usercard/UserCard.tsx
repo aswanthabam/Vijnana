@@ -1,5 +1,5 @@
 import style from "./UserCard.module.css";
-import { _Event, _UserDetails } from "../../types";
+import { _Event, _UserDetails } from "../../utils/types";
 import defaultProfile from "../../assets/frlIf.png";
 
 interface UserCardProps {

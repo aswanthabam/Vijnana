@@ -3,7 +3,7 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import { _EventInfo } from "../types";
+import { _EventInfo } from "../utils/types";
 
 /* set the token */
 
