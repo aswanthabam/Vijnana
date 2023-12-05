@@ -11,16 +11,6 @@ const GoogleButton: React.FC<GoogleButtonProps> = ({}) => {
 
   useEffect(() => {
     GoogleIdentity.renderGoogleSignInButton(googleButtonRef.current!);
-    // Render the Google sign-in button
-    // (window as any).google.accounts.id.renderButton(
-    //   googleButtonRef.current,
-    //   {}
-    // );
-
-    return () => {
-      // Clean up the script when the component unmounts
-      //   (window as any).google.accounts.id.cancel();
-    };
   }, []);
 
   return <div ref={googleButtonRef} />;
