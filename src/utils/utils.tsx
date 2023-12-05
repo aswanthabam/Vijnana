@@ -79,3 +79,7 @@ export class GoogleIdentity {
     });
   }
 }
+
+export const isLoggedIn = () => {
+  return localStorage.getItem("token") ? true : false;
+};

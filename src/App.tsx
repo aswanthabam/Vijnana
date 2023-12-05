@@ -1,7 +1,6 @@
-// import { useState } from 'react'
 import "./App.css";
 import "./app-variables.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
@@ -21,7 +20,7 @@ import Login from "./pages/login/Login";
 import Sidebar from "./components/sidebar/Sidebar";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { LoginStatus } from "./apis/api";
-import { GoogleIdentity } from "./utils/utils";
+import { GoogleIdentity, isLoggedIn } from "./utils/utils";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -34,6 +33,7 @@ function getTheme() {
     return "dark";
   }
 }
+
 function App() {
   const [theme, setThemeState] = useState("dark");
   var { setLoaderStatus } = useLoader();
@@ -44,7 +44,7 @@ function App() {
     setThemeState(theme);
     localStorage.setItem("theme", theme);
   };
-
+  var location = useLocation();
   useEffect(() => {
     var the = getTheme();
     setTheme(the);
@@ -60,10 +60,16 @@ function App() {
       if (status == LoginStatus.STEP1) redirect("/register/details");
       else if (status == LoginStatus.STEP2) {
         redirect("/dashboard");
-        console.log("EWEWE");
       }
     });
-    GoogleIdentity.showGoogleOneTapPopup();
+    if (
+      location.pathname != "/dashboard" &&
+      location.pathname != "/register/details" &&
+      !isLoggedIn()
+    ) {
+      console.log("Trigger google one tap");
+      GoogleIdentity.showGoogleOneTapPopup();
+    }
   }, []);
 
   return (
