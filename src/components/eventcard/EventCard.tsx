@@ -1,11 +1,29 @@
 import { Link } from "react-router-dom";
 import style from "./EventCard.module.css";
 import { _Event } from "../../utils/types";
+import { registerEvent } from "../../apis/eventApi";
+import { useLoader } from "../toploader/useLoader";
+import { useToast } from "../toast/useToast";
+import { useState, useEffect } from "react";
+import { ResponseStatus } from "../../apis/api";
 interface EventCardProps {
   event: _Event;
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event }) => {
+  var { addLoader } = useLoader();
+  var { setToastStatus } = useToast();
+  const [buttonText, setButtonText] = useState<string>("Register");
+
+  useEffect(() => {
+    console.log(event);
+    if (event.closed) setButtonText("Registration Closed");
+    else if (!event.is_reg) setButtonText("OPEN");
+    else if (event.participate_in) setButtonText("Registered");
+    // else if (event.gctian_only)
+    //   setButtonText("You cant register for this event");
+    else setButtonText("Register");
+  }, []);
   return (
     <div className={style.eventCard}>
       <div className={style.top}>
@@ -32,8 +50,27 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <Link className="primary-button" to={"/event/" + event.id}>
           Learn More
         </Link>
-        <a href={event.reg_link} className="primary-button clr2">
-          Register
+        <a
+          onClick={async () => {
+            if (!event.closed && event.is_reg && !event.participate_in) {
+              var res = await registerEvent(
+                event.id,
+                addLoader,
+                setToastStatus
+              );
+              res.status == ResponseStatus.SUCCESS &&
+                setButtonText("Registered");
+            }
+          }}
+          href="#"
+          className={
+            "primary-button" +
+            (!event.closed && event.is_reg && !event.participate_in
+              ? " clr2"
+              : " clr1")
+          }
+        >
+          {buttonText}
         </a>
       </div>
     </div>

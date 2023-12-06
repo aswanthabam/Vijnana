@@ -1,10 +1,37 @@
 import { _EventInfo } from "../utils/types";
 import {
+  ApiResponse,
   ResponseStatus,
   ResponseType,
   publicRouter,
   validateResponse,
 } from "./api";
+
+/*
+
+  registerEvent() function registers an event to the backend.
+  @param eventId: string
+  @param setLoading: (status: boolean) => void
+  @param setToast: (status: boolean, message: string | null, hideAfter: number | null) => void
+  @returns ApiResponse
+
+*/
+
+export const registerEvent = async (
+  eventId: string,
+  addLoader: (loader: Promise<any>) => void,
+  setToast: (
+    status: boolean,
+    message: string | null,
+    hideAfter: number | null
+  ) => void
+): Promise<ApiResponse> => {
+  var res = publicRouter.post("/api/v2/events/register", { eventId: eventId });
+  addLoader(res);
+  var val = await validateResponse(res);
+  setToast(true, val.data.message, 3000);
+  return val;
+};
 
 /*
   myEvents() function returns a list of events participating events from the backend.
