@@ -8,11 +8,11 @@ import { useToast } from "../toast/useToast";
 interface EventListProps {}
 
 const EventList: React.FC<EventListProps> = ({}) => {
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   const [events, setEvents] = useState<Array<_Event>>([]);
   useEffect(() => {
-    getEvents(null, setLoaderStatus, setToastStatus).then((e) => {
+    getEvents(null, addLoader, setToastStatus).then((e) => {
       if (e) setEvents(e);
       else console.log("error : no event data got");
     });

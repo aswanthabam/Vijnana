@@ -17,12 +17,12 @@ const Register: React.FC<RegisterProps> = ({}) => {
     email: "",
     password: "",
   });
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   var redirect = useNavigate();
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    if (await createAccount(data, setLoaderStatus, setToastStatus)) {
+    if (await createAccount(data, addLoader, setToastStatus)) {
       redirect("/register/details");
     }
   };

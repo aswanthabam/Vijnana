@@ -13,13 +13,13 @@ interface EventProps {
 }
 
 const Event: React.FC<EventProps> = ({}) => {
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
 
   const [event, setEvent] = useState<_EventInfo | null>(null);
   var { eventId } = useParams();
   useEffect(() => {
-    getEvents(eventId, setLoaderStatus, setToastStatus).then((val) => {
+    getEvents(eventId, addLoader, setToastStatus).then((val) => {
       if (val) setEvent(val[0]);
       else console.log("error : no event data got");
     });

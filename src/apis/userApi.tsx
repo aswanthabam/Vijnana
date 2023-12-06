@@ -16,15 +16,15 @@ import {
 /* STATUS AND DETAILS ENDPOINT */
 
 export const userDetails = async (
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
     hideAfter: number | null
   ) => void
 ): Promise<_UserDetails | null> => {
-  setLoading(true);
   var res = publicRouter.post("/api/v2/users/details");
+  addLoader(res);
   var val = await validateResponse(res);
   if (val.status == ResponseStatus.FAILED) {
     setToast(true, val.data.message, 3000);
@@ -32,10 +32,8 @@ export const userDetails = async (
   if (val.contentType == ResponseType.DATA) {
     var step = (val.data.data as any)["step"] as number;
     localStorage.setItem("step", step + "");
-    setLoading(false);
     return val.data.data as _UserDetails;
   }
-  setLoading(false);
   return null;
 };
 
@@ -43,15 +41,15 @@ export const userDetails = async (
 
 export const loginEmail = async (
   user: _UserLogin,
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
     hideAfter: number | null
   ) => void
 ): Promise<LoginStatus> => {
-  setLoading(true);
   var res = publicRouter.post("/api/v2/users/login", user);
+  addLoader(res);
   var val = await validateResponse(res);
   setToast(true, val.data.message, 3000);
   if (val.status == ResponseStatus.SUCCESS) {
@@ -61,12 +59,10 @@ export const loginEmail = async (
       var step = (val.data.data as any)["step"] as string;
       set_token(userId, token);
       localStorage.setItem("step", step);
-      setLoading(false);
       if (step == "2") return LoginStatus.STEP2;
       else return LoginStatus.STEP1;
     }
   }
-  setLoading(false);
   return LoginStatus.ERROR;
 };
 
@@ -76,15 +72,15 @@ export const loginEmail = async (
 
 export const completeRegistration = async (
   user: _UserStep2,
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
     hideAfter: number | null
   ) => void
 ): Promise<boolean> => {
-  setLoading(true);
   var res = publicRouter.post("/api/v2/users/createAccount/complete", user);
+  addLoader(res);
   var val = await validateResponse(res);
   setToast(true, val.data.message, 3000);
   if (val.status == ResponseStatus.SUCCESS) {
@@ -93,10 +89,8 @@ export const completeRegistration = async (
       var step = (val.data.data as any)["step"] as string;
       localStorage.setItem("step", step);
     }
-    setLoading(false);
     return true;
   }
-  setLoading(false);
   return false;
 };
 
@@ -104,15 +98,15 @@ export const completeRegistration = async (
 
 export const createAccount = async (
   user: _UserStep1,
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
     hideAfter: number | null
   ) => void
 ): Promise<boolean> => {
-  setLoading(true);
   var res = publicRouter.post("/api/v2/users/createAccount", user);
+  addLoader(res);
   var val = await validateResponse(res);
   setToast(true, val.data.message, 3000);
   if (val.status == ResponseStatus.SUCCESS) {
@@ -122,11 +116,9 @@ export const createAccount = async (
       var step = (val.data.data as any)["step"] as string;
       set_token(userId, token);
       localStorage.setItem("step", step);
-      setLoading(false);
       return true;
     }
   }
-  setLoading(false);
   return false;
 };
 
@@ -134,17 +126,17 @@ export const createAccount = async (
 
 export const createAccountGoogle = async (
   credential: string,
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
     hideAfter: number | null
   ) => void
 ): Promise<LoginStatus> => {
-  setLoading(true);
   var res = publicRouter.post("/api/v2/users/createAccount/google", {
     credential: credential,
   });
+  addLoader(res);
   var val = await validateResponse(res);
   setToast(true, val.data.message, 3000);
   if (val.status == ResponseStatus.SUCCESS) {
@@ -154,11 +146,9 @@ export const createAccountGoogle = async (
       var step = (val.data.data as any)["step"] as string;
       set_token(userId, token);
       localStorage.setItem("step", step);
-      setLoading(false);
       if (step == "2") return LoginStatus.STEP2;
       else return LoginStatus.STEP1;
     }
   }
-  setLoading(false);
   return LoginStatus.ERROR;
 };

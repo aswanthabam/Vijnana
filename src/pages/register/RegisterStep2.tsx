@@ -23,12 +23,12 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({}) => {
     year: 0,
     gctian: false,
   });
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   var redirect = useNavigate();
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    if (await completeRegistration(data, setLoaderStatus, setToastStatus)) {
+    if (await completeRegistration(data, addLoader, setToastStatus)) {
       redirect("/dashboard");
     }
   };

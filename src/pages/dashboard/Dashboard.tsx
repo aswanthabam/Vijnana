@@ -14,34 +14,32 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({}) => {
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   const [user, setUserDetails] = useState<_UserDetails | null>();
   const [parEvents, setParEvents] = useState<[] | null>(null);
   var redirect = useNavigate();
 
   useEffect(() => {
-    userDetails(setLoaderStatus, setToastStatus).then(
-      (val: _UserDetails | null) => {
-        setUserDetails(val);
-        if (!val) {
-          setToastStatus(true, "Please login to continue!", 3000);
-          redirect("/register");
-          return;
-        } else if (val.step < 2) {
-          setToastStatus(
-            true,
-            "Your registration is not complete! Please complete the registration to contine",
-            3000
-          );
-          redirect("/register/details");
-          return;
-        }
-        myEvents(setLoaderStatus, setToastStatus).then((pars) => {
-          setParEvents(pars);
-        });
+    userDetails(addLoader, setToastStatus).then((val: _UserDetails | null) => {
+      setUserDetails(val);
+      if (!val) {
+        setToastStatus(true, "Please login to continue!", 3000);
+        redirect("/register");
+        return;
+      } else if (val.step < 2) {
+        setToastStatus(
+          true,
+          "Your registration is not complete! Please complete the registration to contine",
+          3000
+        );
+        redirect("/register/details");
+        return;
       }
-    );
+      myEvents(addLoader, setToastStatus).then((pars) => {
+        setParEvents(pars);
+      });
+    });
   }, []);
   return (
     <div className={style.dashboard}>

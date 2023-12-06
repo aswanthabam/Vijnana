@@ -1,8 +1,11 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
 interface LoaderState {
-  status: { status: boolean };
-  setStatus: React.Dispatch<React.SetStateAction<{ status: boolean }>>;
+  status: boolean;
+  loaders: Promise<any>[];
+  setStatus: React.Dispatch<
+    React.SetStateAction<{ status: boolean; loaders: Promise<any>[] }>
+  >;
 }
 
 const LoaderStateContext = createContext<LoaderState | undefined>(undefined);
@@ -14,10 +17,13 @@ interface LoaderStateProviderProps {
 export const LoaderStateProvider: React.FC<LoaderStateProviderProps> = ({
   children,
 }) => {
-  const [status, setStatus] = useState({ status: false });
-
+  const [status, setStatus] = useState({
+    status: false,
+    loaders: [] as Promise<any>[],
+  });
   const loaderState: LoaderState = {
-    status,
+    status: status.status,
+    loaders: status.loaders,
     setStatus,
   };
 
@@ -33,15 +39,27 @@ export const useLoader = () => {
   if (!context) {
     throw new Error("useLoaderState must be used within a SharedStateProvider");
   }
-  function setLoaderStatus(status: boolean) {
-    context!.setStatus({ status: status });
+  function setStatusFalse(loader: Promise<any>) {
+    context!.loaders.splice(context!.loaders.indexOf(loader), 1);
+    if (context!.loaders.length == 0)
+      context!.setStatus({ status: false, loaders: context!.loaders });
+    else context!.setStatus({ status: true, loaders: context!.loaders });
+  }
+  function addLoader(loader: Promise<any>) {
+    context!.loaders.push(loader);
+    context!.setStatus({ status: true, loaders: context!.loaders });
+    loader
+      .then(() => {
+        setStatusFalse(loader);
+      })
+      .catch(() => {
+        setStatusFalse(loader);
+      });
   }
   const props = {
-    status: context!.status.status,
-    setLoaderStatus: setLoaderStatus,
-    // setLoaderPercentage: setLoaderPercentage,
+    status: context!.status,
+    addLoader: addLoader,
   };
-  //   window.lstatus = status;
 
   return props;
 };
