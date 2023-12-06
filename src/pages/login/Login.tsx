@@ -22,12 +22,12 @@ const Login: React.FC<LoginProps> = ({}) => {
     email: "",
     password: "",
   });
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   var redirect = useNavigate();
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    var status = await loginEmail(data, setLoaderStatus, setToastStatus);
+    var status = await loginEmail(data, addLoader, setToastStatus);
     if (status == LoginStatus.STEP2) {
       redirect("/dashboard");
     } else if (status == LoginStatus.STEP1) {

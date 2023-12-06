@@ -36,7 +36,7 @@ function getTheme() {
 
 function App() {
   const [theme, setThemeState] = useState("dark");
-  var { setLoaderStatus } = useLoader();
+  var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   const [sidebarState, setSidebarState] = useState<boolean>(false);
   const redirect = useNavigate();
@@ -53,7 +53,7 @@ function App() {
       console.log(e);
       var status = await createAccountGoogle(
         e["credential"],
-        setLoaderStatus,
+        addLoader,
         setToastStatus
       );
       console.log(status);

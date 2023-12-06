@@ -14,15 +14,15 @@ import {
 */
 
 export const myEvents = async (
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
     hideAfter: number | null
   ) => void
 ): Promise<[] | null> => {
-  setLoading(true);
   var res = publicRouter.post("/api/v2/events/myEvents");
+  addLoader(res);
   var val = await validateResponse(res);
   if (val.status == ResponseStatus.SUCCESS) {
     if (val.contentType == ResponseType.DATA) {
@@ -45,7 +45,7 @@ export const myEvents = async (
 
 export const getEvents = async (
   eventId: string | null | undefined,
-  setLoading: (status: boolean) => void,
+  addLoader: (loader: Promise<any>) => void,
   setToast: (
     status: boolean,
     message: string | null,
@@ -53,12 +53,12 @@ export const getEvents = async (
   ) => void
 ): Promise<Array<_EventInfo> | null> => {
   setToast(false, null, null);
-  setLoading(true);
   if (eventId) {
     var res = publicRouter.get("/api/v2/events/get?id=" + eventId);
   } else {
     var res = publicRouter.get("/api/v2/events/getAll");
   }
+  addLoader(res);
   var val = await validateResponse(res);
 
   var d2: Array<_EventInfo> = [];
@@ -85,11 +85,9 @@ export const getEvents = async (
         console.log(data2);
         d2.push(data2);
       }
-      setLoading(false);
       return d2;
     }
   }
   setToast(true, val.data.message, 3000);
-  setLoading(false);
   return null;
 };
