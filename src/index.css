@@ -75,3 +75,7 @@ a {
 .primary-button.clr2 {
   background: var(--color-green);
 }
+.primary-button.clr1 {
+  background: var(--color-2);
+  color: var(--color-black);
+}

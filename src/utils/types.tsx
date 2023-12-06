@@ -3,13 +3,15 @@ export type _Event = {
   name: string;
   description: string;
   type: string;
-  is_reg: boolean;
   reg_link: string;
   image: string;
   date: string;
   time: string;
   venue: string;
   closed: boolean;
+  gctian_only: boolean;
+  is_reg: boolean;
+  participate_in: boolean;
 };
 
 export type _EventInfo = {
