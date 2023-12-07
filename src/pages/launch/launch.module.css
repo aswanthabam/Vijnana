@@ -1,0 +1,23 @@
+@keyframes anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.launch {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .countDown {
+    font-size: 80px;
+    font-family: "Black Ops One", sans-serif;
+    animation: anim 1s linear infinite;
+  }
+}
