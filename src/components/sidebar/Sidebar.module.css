@@ -8,6 +8,9 @@
   left: -70%;
   z-index: 11;
   transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .header {
     width: 100%;
     height: auto;
@@ -53,8 +56,8 @@
     }
   }
   .footer {
-    position: fixed;
-    bottom: 10px;
+    position: relative;
+    bottom: 50px;
     width: calc(70vw - 40px);
     left: 0;
     display: flex;
