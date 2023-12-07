@@ -22,6 +22,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import { LoginStatus } from "./apis/api";
 import { GoogleIdentity, isLoggedIn } from "./utils/utils";
 import WhatsappIcon from "./components/whatsapp/Whatsapp";
+import Launch from "./pages/launch/launch";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -112,6 +113,7 @@ function App() {
           <Route path="details" element={<RegisterStep2 />}></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/launch" element={<Launch />}></Route>
         <Route
           path="/events"
           element={
