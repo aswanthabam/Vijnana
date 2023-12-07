@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import style from "./launch.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface EventsProps {}
 
@@ -10,7 +10,7 @@ const Launch: React.FC<EventsProps> = ({}) => {
 
   setInterval(async () => {
     if (count >= 1) await setCount(count - 1);
-    else redirect("/");
+    else redirect("/home");
   }, 1000);
   return (
     <div className={style.launch}>
