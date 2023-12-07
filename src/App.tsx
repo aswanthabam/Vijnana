@@ -113,7 +113,6 @@ function App() {
           <Route path="details" element={<RegisterStep2 />}></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/launch" element={<Launch />}></Route>
         <Route
           path="/events"
           element={
@@ -163,6 +162,21 @@ function App() {
               theme={theme}
             >
               <Event />
+            </TopBarLayer>
+          }
+        ></Route>
+
+        <Route path="/launch" element={<Launch />}></Route>
+        <Route
+          path="/home"
+          element={
+            <TopBarLayer
+              sidebarState={sidebarState}
+              setSidebarState={setSidebarState}
+              setTheme={setTheme}
+              theme={theme}
+            >
+              <Home />
             </TopBarLayer>
           }
         ></Route>

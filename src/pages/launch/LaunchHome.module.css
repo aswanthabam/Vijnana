@@ -1,0 +1,237 @@
+.home {
+  .background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      230deg,
+      rgba(47, 104, 56, 0) 23.61%,
+      rgba(37, 105, 48, 0.46) 83.24%
+    );
+
+    .topGradient {
+      background: radial-gradient(
+        50% 50% at 50% 50%,
+        var(--color-dark-green) 0%,
+        rgba(217, 217, 217, 0) 100%
+      );
+      width: 40%;
+      height: 40%;
+      flex-shrink: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -0;
+      transform: translate(50%, -50%);
+    }
+
+    .bottomDesign {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 90%;
+      height: auto;
+      z-index: 0;
+    }
+
+    .alien {
+      position: absolute;
+      bottom: 8%;
+      left: -5%;
+      width: 100vw;
+    }
+  }
+
+  .header {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - var(--topbar-total-height) - var(--bottom-spacing));
+
+    .content {
+      position: absolute;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      flex-direction: column;
+      right: 0%;
+      top: -5%;
+      transform: translate(0%, -0%);
+      & h1 {
+        color: var(--color-black);
+        font-family: Wallpoet;
+        font-size: 47px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 80px;
+
+        & span {
+          display: inline-block;
+          font-family: Wallpoet;
+          color: var(--color-green);
+          animation: sparkblink 1s ease infinite;
+        }
+        .topLineA {
+          position: relative;
+          font-family: Wallpoet;
+          display: inline-block;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 100%;
+            /* background: var(--color-black); */
+            border-top: 3px solid var(--color-black);
+            z-index: 1;
+          }
+        }
+      }
+
+      .mottoText {
+        color: var(--color-text-secondary);
+        font-family: Wallpoet;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 20px;
+      }
+      /* .infoText {
+        color: var(--color-text-secondary);
+        text-align: center;
+        font-family: Wallpoet;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 50%;
+        margin-top: 50px;
+      } */
+      .daysLeft {
+        color: var(--color-orange);
+        font-size: 15px;
+        margin-top: 50px;
+        text-align: center;
+      }
+    }
+    .headerButtons {
+      position: absolute;
+      display: flex;
+      align-items: end;
+      justify-content: start;
+      flex-direction: column;
+      gap: 20px;
+      right: 30px;
+      bottom: 30px;
+    }
+
+    /* .date {
+      position: absolute;
+      bottom: 55px;
+      left: 60px;
+
+      .day {
+        color: var(--color-orange);
+        font-size: 45px;
+        padding-right: 20px;
+      }
+      .dayTH {
+        color: var(--color-white);
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .month {
+        font-size: 25px;
+        color: var(--color-white);
+        padding-right: 20px;
+      }
+      .year {
+        color: var(--color-white);
+        font-size: 23px;
+      }
+    } */
+  }
+
+  .alien {
+    position: absolute;
+    bottom: 2%;
+    left: -5%;
+    width: 45vw;
+  }
+
+  .page2 {
+    /* position: absolute; */
+    margin-top: 70px;
+    top: 100vh;
+    padding: 25px;
+    width: calc(100% - 50px);
+    background: linear-gradient(
+      180deg,
+      rgba(47, 104, 56, 0.33) 0%,
+      rgba(255, 211, 180, 0.38) 100%
+    );
+    & h2 {
+      margin-bottom: 20px;
+      font-size: 30px;
+      color: var(--color-green);
+      width: 200px;
+    }
+  }
+}
+/* Target tablet devices */
+@media screen and (min-width: 768px) {
+  /* Your CSS styles for tablet devices go here */
+  .home {
+    .background {
+      .bottomDesign {
+        width: 35%;
+      }
+      .alien {
+        width: 45%;
+      }
+    }
+    .header {
+      .content {
+        width: auto;
+        right: 20%;
+        top: 50%;
+        transform: translate(0%, -50%);
+        & h1 {
+          font-size: 90px;
+          .topLineA {
+            &::after {
+              top: 10px;
+              border-top: 4px solid var(--color-black);
+            }
+          }
+        }
+
+        .daysLeft {
+          font-size: 20px;
+          font-family: Silkscreen;
+        }
+      }
+    }
+    .page2 {
+      padding: 30px 50px;
+      width: calc(100% - 100px);
+      margin-top: 40px;
+      & h2 {
+        width: 100%;
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+  }
+}
+/* Target desktop devices */
+@media screen and (min-width: 1024px) {
+  /* Your CSS styles for desktop devices go here */
+}
