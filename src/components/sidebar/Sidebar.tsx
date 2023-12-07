@@ -12,69 +12,71 @@ const Sidebar: React.FC<SidebarProps> = ({ state, setState }) => {
   return (
     <>
       <div className={style.sidebar + " " + (state && style.show)}>
-        <div className={style.header}>
-          <div className={style.close}>
-            <i
+        <div>
+          <div className={style.header}>
+            <div className={style.close}>
+              <i
+                onClick={() => {
+                  setState(false);
+                }}
+                className="bi bi-x-lg"
+              ></i>
+            </div>
+            <div className={style.logo}>
+              <img src="/logo.png" alt="logo" />
+            </div>
+          </div>
+          <div className={style.content}>
+            <div
+              className={
+                style.item + " " + (location.pathname == "/" && style.current)
+              }
               onClick={() => {
                 setState(false);
               }}
-              className="bi bi-x-lg"
-            ></i>
-          </div>
-          <div className={style.logo}>
-            <img src="/logo.png" alt="logo" />
-          </div>
-        </div>
-        <div className={style.content}>
-          <div
-            className={
-              style.item + " " + (location.pathname == "/" && style.current)
-            }
-            onClick={() => {
-              setState(false);
-            }}
-          >
-            <i className="bi bi-house"></i>
-            <Link to={"/"}>Home</Link>
-          </div>
-          <div
-            className={
-              style.item +
-              " " +
-              (location.pathname == "/events" && style.current)
-            }
-            onClick={() => {
-              setState(false);
-            }}
-          >
-            <i className="bi bi-calendar-heart"></i>
-            <Link to={"/events"}>Events</Link>
-          </div>
-          <div
-            className={
-              style.item +
-              " " +
-              (location.pathname == "/about" && style.current)
-            }
-            onClick={() => {
-              setState(false);
-            }}
-          >
-            <i className="bi bi-info-circle"></i>
-            <Link to={"/about"}>About</Link>
-          </div>
-          <div
-            className={
-              style.item +
-              " " +
-              (location.pathname == "/contact" && style.current)
-            }
-            onClick={() => {
-              setState(false);
-            }}
-          >
-            <i className="bi bi-person-lines-fill"></i>
-            <Link to={"/contact"}>Contact</Link>
+            >
+              <i className="bi bi-house"></i>
+              <Link to={"/"}>Home</Link>
+            </div>
+            <div
+              className={
+                style.item +
+                " " +
+                (location.pathname == "/events" && style.current)
+              }
+              onClick={() => {
+                setState(false);
+              }}
+            >
+              <i className="bi bi-calendar-heart"></i>
+              <Link to={"/events"}>Events</Link>
+            </div>
+            <div
+              className={
+                style.item +
+                " " +
+                (location.pathname == "/about" && style.current)
+              }
+              onClick={() => {
+                setState(false);
+              }}
+            >
+              <i className="bi bi-info-circle"></i>
+              <Link to={"/about"}>About</Link>
+            </div>
+            <div
+              className={
+                style.item +
+                " " +
+                (location.pathname == "/contact" && style.current)
+              }
+              onClick={() => {
+                setState(false);
+              }}
+            >
+              <i className="bi bi-person-lines-fill"></i>
+              <Link to={"/contact"}>Contact</Link>
+            </div>
           </div>
         </div>
         <div className={style.footer}>
