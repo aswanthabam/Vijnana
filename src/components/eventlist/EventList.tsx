@@ -5,14 +5,16 @@ import { getEvents } from "../../apis/eventApi";
 import { _Event } from "../../utils/types";
 import { useLoader } from "../toploader/useLoader";
 import { useToast } from "../toast/useToast";
-interface EventListProps {}
+interface EventListProps {
+  limit?: number;
+}
 
-const EventList: React.FC<EventListProps> = ({}) => {
+const EventList: React.FC<EventListProps> = ({ limit = undefined }) => {
   var { addLoader } = useLoader();
   var { setToastStatus } = useToast();
   const [events, setEvents] = useState<Array<_Event>>([]);
   useEffect(() => {
-    getEvents(null, addLoader, setToastStatus).then((e) => {
+    getEvents(null, addLoader, setToastStatus, limit).then((e) => {
       if (e) setEvents(e);
       else console.log("error : no event data got");
     });

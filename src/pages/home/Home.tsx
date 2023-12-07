@@ -62,7 +62,7 @@ const Home: React.FC<HomeProps> = ({}) => {
       <div className={style.page2}>
         <h2 className="underline">Events</h2>
         <br />
-        <EventList />
+        <EventList limit={4} />
       </div>
       <Footer />
     </div>
