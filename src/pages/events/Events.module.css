@@ -3,11 +3,27 @@
   padding: 10px;
 
   .page {
-    width: calc(100% - 100px);
-    padding: 50px;
+    width: calc(100% - 30px);
+    padding: 15px;
     & h2 {
       margin-bottom: 20px;
       width: 100px;
+    }
+
+    .intro {
+      display: block;
+      font-size: 15px;
+      color: var(--color-white-shade);
+      padding-bottom: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .events {
+    .page {
+      width: calc(100% - 200px);
+      padding: 50px 100px;
     }
   }
 }

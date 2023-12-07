@@ -77,13 +77,16 @@ export const getEvents = async (
     status: boolean,
     message: string | null,
     hideAfter: number | null
-  ) => void
+  ) => void,
+  limit: number | null | undefined = -1
 ): Promise<Array<_EventInfo> | null> => {
   setToast(false, null, null);
   if (eventId) {
     var res = publicRouter.get("/api/v2/events/get?id=" + eventId);
   } else {
-    var res = publicRouter.get("/api/v2/events/getAll");
+    var res = publicRouter.get(
+      "/api/v2/events/getAll" + (limit ? "?count=" + limit : "")
+    );
   }
   addLoader(res);
   var val = await validateResponse(res);

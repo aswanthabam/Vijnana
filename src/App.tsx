@@ -21,6 +21,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { LoginStatus } from "./apis/api";
 import { GoogleIdentity, isLoggedIn } from "./utils/utils";
+import WhatsappIcon from "./components/whatsapp/Whatsapp";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -75,7 +76,7 @@ function App() {
   return (
     <div className={"app " + theme}>
       <div id="google-login-button-hidden"></div>
-      {/* <ThemeLayer> */}
+      <WhatsappIcon />
       <Toast />
       <TopLoader />
       <Sidebar state={sidebarState} setState={setSidebarState} />
