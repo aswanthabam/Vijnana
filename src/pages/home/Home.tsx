@@ -48,7 +48,9 @@ const Home: React.FC<HomeProps> = ({}) => {
       <div className={style.header}>
         <div className={style.content}>
           <h1>
-            VIJÑĀNA <span>2.0</span>
+            VIJÑ
+            <div className={style.topLineA}>A</div>
+            NA <span>2.0</span>
           </h1>
           {/* <img style={{ height: 300 }} src="/logo.png" /> */}
           <span className={style.mottoText}>KBM Government College</span>

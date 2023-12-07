@@ -76,6 +76,24 @@
           font-family: Wallpoet;
           color: var(--color-green);
         }
+        .topLineA {
+          position: relative;
+          font-family: Wallpoet;
+          display: inline-block;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 100%;
+            /* background: var(--color-black); */
+            border-top: 3px solid var(--color-black);
+            z-index: 1;
+          }
+        }
       }
 
       .mottoText {
@@ -189,10 +207,17 @@
         transform: translate(0%, -50%);
         & h1 {
           font-size: 90px;
+          .topLineA {
+            &::after {
+              top: 10px;
+              border-top: 4px solid var(--color-black);
+            }
+          }
         }
 
         .daysLeft {
           font-size: 20px;
+          font-family: Silkscreen;
         }
       }
     }
