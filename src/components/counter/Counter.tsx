@@ -3,6 +3,7 @@ import style from "./Counter.module.css";
 
 interface CounterProps {
   date: Date;
+  className?: string;
 }
 function calculateTimeDifference(
   date1: Date,
@@ -23,7 +24,7 @@ function calculateTimeDifference(
 function addLeadingZero(number: number): string {
   return number < 10 ? `0${number}` : `${number}`;
 }
-const Counter: React.FC<CounterProps> = ({ date }) => {
+const Counter: React.FC<CounterProps> = ({ date, className }) => {
   // console.log(date);
   const [diff, setDiff] = useState({
     d: 0,
@@ -55,7 +56,7 @@ const Counter: React.FC<CounterProps> = ({ date }) => {
     // console.log(diff);
   }, 1000);
   return (
-    <div className={style.counter}>
+    <div className={style.counter + " " + className}>
       {addLeadingZero(diff.d)} : {addLeadingZero(diff.h)} :{" "}
       {addLeadingZero(diff.m)} : {addLeadingZero(diff.s)}
     </div>

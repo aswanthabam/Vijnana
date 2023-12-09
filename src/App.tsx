@@ -23,6 +23,7 @@ import { LoginStatus } from "./apis/api";
 import { GoogleIdentity, isLoggedIn } from "./utils/utils";
 import WhatsappIcon from "./components/whatsapp/Whatsapp";
 import Launch from "./pages/launch/launch";
+import LaunchHome from "./pages/launch/Home";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -170,14 +171,14 @@ function App() {
         <Route
           path="/home"
           element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <Home />
-            </TopBarLayer>
+            // <TopBarLayer
+            //   sidebarState={sidebarState}
+            //   setSidebarState={setSidebarState}
+            //   setTheme={setTheme}
+            //   theme={theme}
+            // >
+            <LaunchHome />
+            // </TopBarLayer>
           }
         ></Route>
         <Route path="*" element={<Error404 />}></Route>
