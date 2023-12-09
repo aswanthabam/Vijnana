@@ -171,14 +171,14 @@ function App() {
         <Route
           path="/home"
           element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <LaunchHome />
-            </TopBarLayer>
+            // <TopBarLayer
+            //   sidebarState={sidebarState}
+            //   setSidebarState={setSidebarState}
+            //   setTheme={setTheme}
+            //   theme={theme}
+            // >
+            <LaunchHome />
+            // </TopBarLayer>
           }
         ></Route>
         <Route path="*" element={<Error404 />}></Route>

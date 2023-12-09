@@ -8,6 +8,7 @@ interface TopBarProps {
   setTheme: (theme: string) => void;
   setSidebarState: (state: boolean) => void;
   sidebarState: boolean;
+  className?: string;
 }
 
 const TopBar: React.FC<TopBarProps> = ({
@@ -15,6 +16,7 @@ const TopBar: React.FC<TopBarProps> = ({
   theme,
   setSidebarState,
   sidebarState,
+  className,
 }) => {
   const [text, setText] = React.useState<string>("Register");
   const [link, setLink] = React.useState<string>("");
@@ -44,7 +46,7 @@ const TopBar: React.FC<TopBarProps> = ({
   });
   return (
     <>
-      <div className={style.topbar + " " + style.mobile}>
+      <div className={style.topbar + " " + style.mobile + " " + className}>
         <div
           onClick={() => {
             setSidebarState(!sidebarState);
@@ -75,7 +77,7 @@ const TopBar: React.FC<TopBarProps> = ({
         </div>
       </div>
 
-      <div className={style.topbar + " " + style.desktop}>
+      <div className={style.topbar + " " + style.desktop + " " + className}>
         <div className={style.menuItems}>
           <div className={style.menuButton}>
             <img className={style.logo} src={logo} />

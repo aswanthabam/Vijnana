@@ -4,12 +4,20 @@ import alien from "../../assets/dehill-spacelove-1-dribble.gif";
 import Counter from "../../components/counter/Counter";
 import EventList from "../../components/eventlist/EventList";
 import Footer from "../../components/footer/Footer";
+import TopBar from "../../components/topbar/topbar";
 // for build commit
 interface LaunchHomeProps {}
 
 const LaunchHome: React.FC<LaunchHomeProps> = ({}) => {
   return (
     <div className={style.home}>
+      <TopBar
+        theme="dark"
+        setSidebarState={() => {}}
+        setTheme={() => {}}
+        sidebarState={false}
+        className={style.topbar}
+      />
       <div className={style.background}>
         <div className={style.topGradient}></div>
         <svg
@@ -58,7 +66,10 @@ const LaunchHome: React.FC<LaunchHomeProps> = ({}) => {
           <span className={style.daysLeft}>
             The countdown to awesomeness begins...
           </span>
-          <Counter date={new Date("2023-12-15 00:00:00")} />
+          <Counter
+            className={style.counter}
+            date={new Date("2023-12-15 00:00:00")}
+          />
         </div>
       </div>
       <div className={style.page2}>

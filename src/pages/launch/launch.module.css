@@ -6,7 +6,14 @@
     opacity: 1;
   }
 }
-
+@keyframes rotate-anim {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .launch {
   width: 100vw;
   height: 100vh;
@@ -18,6 +25,46 @@
   .countDown {
     font-size: 80px;
     font-family: "Black Ops One", sans-serif;
-    animation: anim 1s linear infinite;
+    animation: anim 1.1s linear infinite;
+  }
+
+  .button {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    z-index: 1;
+    &::before {
+      content: "Launch";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rebeccapurple;
+      z-index: 0;
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(230deg, red, green, blue);
+      z-index: -1;
+      animation: rotate-anim 2s linear infinite;
+      filter: blur(10px);
+    }
   }
 }
