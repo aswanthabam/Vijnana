@@ -27,11 +27,11 @@
 @keyframes alien-anim {
   from {
     transform: translateX(-5%);
-    width: 41vw;
+    /* width: 41vw; */
   }
   to {
     transform: translateX(5%);
-    width: 42vw;
+    /* width: 42vw; */
   }
 }
 .home {
@@ -185,7 +185,7 @@
     position: absolute;
     bottom: 2%;
     left: -5%;
-    width: 45vw;
+    width: 41vw;
   }
 
   .page2 {
@@ -216,7 +216,7 @@
         width: 35%;
       }
       .alien {
-        width: 45%;
+        width: 42%;
       }
     }
     .header {
