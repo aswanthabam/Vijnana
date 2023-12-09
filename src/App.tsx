@@ -23,6 +23,7 @@ import { LoginStatus } from "./apis/api";
 import { GoogleIdentity, isLoggedIn } from "./utils/utils";
 import WhatsappIcon from "./components/whatsapp/Whatsapp";
 import Launch from "./pages/launch/launch";
+import LaunchHome from "./pages/launch/Home";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -176,7 +177,7 @@ function App() {
               setTheme={setTheme}
               theme={theme}
             >
-              <Home />
+              <LaunchHome />
             </TopBarLayer>
           }
         ></Route>

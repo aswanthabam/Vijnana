@@ -1,3 +1,30 @@
+@keyframes sparkblink {
+  0% {
+    opacity: 0;
+    /* background: red; */
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    /* background: green; */
+  }
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .home {
   .background {
     position: absolute;
@@ -12,6 +39,7 @@
     );
 
     .topGradient {
+      animation: sparkblink 0.5s ease 8 alternate;
       background: radial-gradient(
         50% 50% at 50% 50%,
         var(--color-dark-green) 0%,
@@ -34,6 +62,7 @@
       width: 90%;
       height: auto;
       z-index: 0;
+      animation: show 4s ease-in-out;
     }
 
     .alien {
@@ -41,10 +70,12 @@
       bottom: 8%;
       left: -5%;
       width: 100vw;
+      animation: show 4s ease-in-out;
     }
   }
 
   .header {
+    animation: show 4s ease-in-out;
     position: relative;
     width: 100vw;
     height: calc(100vh - var(--topbar-total-height) - var(--bottom-spacing));
@@ -72,7 +103,7 @@
           display: inline-block;
           font-family: Wallpoet;
           color: var(--color-green);
-          animation: sparkblink 1s ease infinite;
+          animation: sparkblink 0.5s ease infinite alternate;
         }
         .topLineA {
           position: relative;
@@ -103,17 +134,6 @@
         line-height: normal;
         margin-top: 20px;
       }
-      /* .infoText {
-        color: var(--color-text-secondary);
-        text-align: center;
-        font-family: Wallpoet;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        width: 50%;
-        margin-top: 50px;
-      } */
       .daysLeft {
         color: var(--color-orange);
         font-size: 15px;
@@ -131,32 +151,6 @@
       right: 30px;
       bottom: 30px;
     }
-
-    /* .date {
-      position: absolute;
-      bottom: 55px;
-      left: 60px;
-
-      .day {
-        color: var(--color-orange);
-        font-size: 45px;
-        padding-right: 20px;
-      }
-      .dayTH {
-        color: var(--color-white);
-        font-size: 20px;
-        margin-bottom: 20px;
-      }
-      .month {
-        font-size: 25px;
-        color: var(--color-white);
-        padding-right: 20px;
-      }
-      .year {
-        color: var(--color-white);
-        font-size: 23px;
-      }
-    } */
   }
 
   .alien {
