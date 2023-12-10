@@ -1,14 +1,22 @@
 import style from "./LaunchHome.module.css";
 // import SecondaryButton from '../../components/buttons/secondary_button/SecondaryButton';
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
-import Counter from "../../components/counter/Counter";
-import EventList from "../../components/eventlist/EventList";
-import Footer from "../../components/footer/Footer";
+// import Counter from "../../components/counter/Counter";
+// import EventList from "../../components/eventlist/EventList";
+// import Footer from "../../components/footer/Footer";
 import TopBar from "../../components/topbar/topbar";
+import { useState } from "react";
 // for build commit
 interface LaunchHomeProps {}
 
 const LaunchHome: React.FC<LaunchHomeProps> = ({}) => {
+  var [dots, setDots] = useState("...");
+
+  setInterval(async () => {
+    if (dots.length > 2) await setDots("");
+    else await setDots(dots + ".");
+    // setDots(dots);
+  }, 1000);
   return (
     <div className={style.home}>
       <TopBar
@@ -61,23 +69,27 @@ const LaunchHome: React.FC<LaunchHomeProps> = ({}) => {
             NA <span className="sparkblink-1">2.0</span>
           </h1>
           {/* <img style={{ height: 300 }} src="/logo.png" /> */}
-          <span className={style.mottoText}>KBM Government College</span>
+          <span className={style.mottoText}>
+            KBM Government College Thalassery
+          </span>
           <span className="line"></span>
           <span className={style.daysLeft}>
-            The countdown to awesomeness begins...
+            <span>Coming Soon </span>
+            {/* <span className={style.dots}>{dots}</span> */}
           </span>
-          <Counter
+
+          {/* <Counter
             className={style.counter}
             date={new Date("2023-12-15 00:00:00")}
-          />
+          /> */}
         </div>
       </div>
-      <div className={style.page2}>
+      {/* <div className={style.page2}>
         <h2 className="underline">Events</h2>
         <br />
         <EventList limit={4} />
       </div>
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };

@@ -1,3 +1,14 @@
+@keyframes blink {
+  0% {
+    opacity: 0;
+    /* background: red; */
+  }
+  100% {
+    opacity: 1;
+    /* background: green; */
+  }
+}
+
 @keyframes sparkblink {
   0% {
     opacity: 0;
@@ -158,14 +169,29 @@
         font-weight: 400;
         line-height: normal;
         margin-top: 20px;
+        text-align: center;
       }
       .daysLeft {
-        /* opacity: 0; */
+        opacity: 0;
+        animation: sparkblink 1s ease-in-out infinite;
+        animation-delay: 4s;
         color: var(--color-orange);
-        font-size: 15px;
+        font-size: 25px;
         margin-top: 50px;
         text-align: center;
         font-family: Silkscreen;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* width: 300px; */
+        & span {
+          font-family: Silkscreen;
+        }
+        .dots {
+          width: 20px;
+          display: inline;
+          text-align: left;
+        }
       }
     }
     .headerButtons {
@@ -236,7 +262,7 @@
         }
 
         .daysLeft {
-          font-size: 20px;
+          font-size: 40px;
         }
       }
     }
