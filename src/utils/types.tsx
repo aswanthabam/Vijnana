@@ -90,3 +90,17 @@ export type _UserStep2 = {
   year: number;
   gctian: boolean | null;
 };
+
+export type _EventCreateData = {
+  name: string;
+  description: string;
+  details: string;
+  type: string;
+  date: string;
+  reg_link: string | null;
+  image: string | null;
+  venue: string;
+  closed: boolean;
+  gctian_only: boolean;
+  is_reg: boolean;
+};

@@ -1,0 +1,12 @@
+.admin {
+  background: wheat;
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+  color: black;
+
+  .content {
+    height: 100%;
+    overflow: scroll;
+  }
+}

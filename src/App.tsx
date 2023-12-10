@@ -24,6 +24,8 @@ import { GoogleIdentity, isLoggedIn } from "./utils/utils";
 import WhatsappIcon from "./components/whatsapp/Whatsapp";
 import Launch from "./pages/launch/launch";
 import LaunchHome from "./pages/launch/Home";
+import Admin from "./pages/admin/Admin";
+import NewEvent from "./pages/admin/admin_pages/new_event/NewEvent";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -181,6 +183,9 @@ function App() {
             // </TopBarLayer>
           }
         ></Route>
+        <Route path="/admin" element={<Admin />}>
+          <Route path="" element={<NewEvent />}></Route>
+        </Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>
