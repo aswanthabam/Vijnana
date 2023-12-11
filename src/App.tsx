@@ -27,6 +27,7 @@ import LaunchHome from "./pages/launch/Home";
 import Admin from "./pages/admin/Admin";
 import NewEvent from "./pages/admin/admin_pages/new_event/NewEvent";
 import ViewEvent from "./pages/admin/admin_pages/view_events/ViewEvents";
+import UserList from "./pages/admin/admin_pages/users_list/UserList";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -188,7 +189,7 @@ function App() {
           <Route path="" element={<NewEvent />}></Route>
           <Route path="events/" element={<ViewEvent />}></Route>
           <Route path="events/new" element={<NewEvent />}></Route>
-          <Route path="users/" element={<NewEvent />}></Route>
+          <Route path="users/" element={<UserList />}></Route>
         </Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>

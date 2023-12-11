@@ -1,4 +1,4 @@
-import { _EventCreateData } from "../utils/types";
+import { _AdminUserList, _EventCreateData } from "../utils/types";
 import {
   ApiResponse,
   ResponseStatus,
@@ -6,6 +6,18 @@ import {
   publicRouter,
   validateResponse,
 } from "./api";
+
+export const usersList = async (): Promise<_AdminUserList[] | null> => {
+  var res = publicRouter.post("/api/v2/admin/users");
+  var val = await validateResponse(res);
+  if (
+    val.status == ResponseStatus.SUCCESS &&
+    val.contentType == ResponseType.DATA
+  ) {
+    return (val.data.data as any)["users"] as _AdminUserList[];
+  }
+  return null;
+};
 
 export const isAdmin = async (): Promise<boolean> => {
   var res = publicRouter.post("/api/v2/admin/is_admin");

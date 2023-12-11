@@ -104,3 +104,10 @@ export type _EventCreateData = {
   gctian_only: boolean;
   is_reg: boolean;
 };
+
+export type _AdminUserList = {
+  is_google: boolean;
+  is_admin: boolean;
+  participation: { event: string }[];
+  phone: string;
+} & _UserDetails;

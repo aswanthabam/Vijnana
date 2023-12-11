@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { _Event, _EventCreateData, _EventInfo } from "../../../../utils/types";
-import { useToast } from "../../../../components/toast/useToast";
-import { getEvents } from "../../../../apis/eventApi";
-import { useLoader } from "../../../../components/toploader/useLoader";
-import { Link } from "react-router-dom";
+import {
+  _AdminUserList,
+  _Event,
+  _EventCreateData,
+  _EventInfo,
+} from "../../../../utils/types";
+import { usersList } from "../../../../apis/adminApi";
 
-const ViewEvent: React.FC = () => {
-  const [events, setEvents] = useState<_EventInfo[]>([]); // [
-  const { setToastStatus } = useToast();
-  const { addLoader } = useLoader();
+const UserList: React.FC = () => {
+  const [users, setUsers] = useState<_AdminUserList[]>([]);
   useEffect(() => {
-    getEvents(null, addLoader, setToastStatus, 10).then((res) => {
-      setEvents(res ? res : []);
+    usersList().then((res) => {
+      setUsers(res ? res : []);
     });
   }, []);
   return (
@@ -19,27 +19,44 @@ const ViewEvent: React.FC = () => {
       <h3 className="underline start" style={{ marginBottom: "30px" }}>
         Registered Users List
       </h3>
-      {events.map((event) => {
+      {users.map((u) => {
         return (
           <div className="card m-2">
             <div className="card-body">
-              <h5 className="card-title">{event.name}</h5>
-              <p className="card-text">{event.description}</p>
-              <Link
-                className="btn btn-primary m-1"
-                to={"/admin/events/edit/" + event.id}
+              <h3
+                style={{
+                  width: 300,
+                  textOverflow: "visible",
+                  whiteSpace: "nowrap",
+                }}
+                className="card-title underline start mb-4"
               >
-                Edit Event
-              </Link>
-              <Link
-                className="btn btn-secondary m-1"
-                to={"/events/" + event.id}
-              >
-                View Event
-              </Link>
+                {u.name} asfjha f sag sasfab saf
+              </h3>
+              <p className="card-text">
+                <b>{u.userId}</b>
+                <br />
+                <b>Registration Status : </b>{" "}
+                {u.step === 2 ? "Completed" : "Not Completed"}
+                <br />
+                <b>College :</b> {u.college}
+                <br />
+                <b>Course :</b> {u.course} ({u.year})
+                <br />
+                <b>Email :</b> {u.email}
+                <br />
+                <b>Phone :</b> {u.phone}
+                <br />
+                <b>Register Method :</b> {u.is_google ? "Google" : "Email"}
+                <br />
+                <b>Admin :</b> {u.is_admin ? "Yes" : "No"}
+                <br />
+                <b>Registered In :</b> {u.participation.length} events
+              </p>
               <button className="btn btn-danger m-1" onClick={() => {}}>
-                Delete Event
+                Promote to admin
               </button>
+              &nbsp;<code> // Not Implemented Here</code>
             </div>
           </div>
         );
@@ -48,4 +65,4 @@ const ViewEvent: React.FC = () => {
   );
 };
 
-export default ViewEvent;
+export default UserList;
