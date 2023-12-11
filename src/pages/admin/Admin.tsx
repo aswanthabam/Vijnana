@@ -23,11 +23,62 @@ const Admin: React.FC<AdminProps> = ({}) => {
       <div className="col-3">
         <h3 style={{ textAlign: "center" }}>Vijnana Admin</h3>
         <ul className="list-group">
-          <li className="list-group-item">About Event</li>
-          <li className="list-group-item">Events</li>
-          <li className="list-group-item">Add Event</li>
-          <li className="list-group-item">Add Admin</li>
-          <li className="list-group-item">Users</li>
+          <li
+            onClick={() => {
+              redirect("/admin/about");
+            }}
+            className="list-group-item"
+          >
+            About Event
+          </li>
+          <li
+            onClick={() => {
+              redirect("/admin/events");
+            }}
+            className="list-group-item"
+          >
+            Events
+          </li>
+          <li
+            onClick={() => {
+              redirect("/admin/events/new");
+            }}
+            className="list-group-item"
+          >
+            Add Event
+          </li>
+          <li
+            onClick={() => {
+              redirect("/admin/admin/new");
+            }}
+            className="list-group-item"
+          >
+            Add Admin
+          </li>
+          <li
+            onClick={() => {
+              redirect("/admin/users");
+            }}
+            className="list-group-item"
+          >
+            Users
+          </li>
+          <li
+            onClick={() => {
+              redirect("/admin/logs/error");
+            }}
+            className="list-group-item"
+          >
+            Error Log
+          </li>
+          <li
+            onClick={() => {
+              redirect("/admin/logs/request");
+            }}
+            className="list-group-item"
+          >
+            Request Log
+          </li>
         </ul>
       </div>
       <div className={style.content + " col-9"}>

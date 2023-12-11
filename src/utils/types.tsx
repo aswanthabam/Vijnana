@@ -104,3 +104,37 @@ export type _EventCreateData = {
   gctian_only: boolean;
   is_reg: boolean;
 };
+
+export type _AdminUserList = {
+  is_google: boolean;
+  is_admin: boolean;
+  participation: { event: string }[];
+  phone: string;
+} & _UserDetails;
+
+export type _AdminRequestLog = {
+  method: string;
+  url: string;
+  user: {
+    userId: string;
+    name: string;
+    email: string;
+    phone: string;
+    college: string;
+  } | null;
+  status: number;
+  data: string;
+  response: string | null;
+  completed: boolean;
+  requestTime: string;
+  responseTime: string;
+};
+
+export type _AdminErrorLog = {
+  url: string;
+  error: string;
+  stack: string;
+  log: { logId: string; userId: string; data: string } | null;
+  requestTime: string;
+  responseTime: string;
+};
