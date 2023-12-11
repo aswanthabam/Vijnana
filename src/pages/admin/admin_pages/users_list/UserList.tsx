@@ -31,7 +31,7 @@ const UserList: React.FC = () => {
                 }}
                 className="card-title underline start mb-4"
               >
-                {u.name} asfjha f sag sasfab saf
+                {u.name}
               </h3>
               <p className="card-text">
                 <b>{u.userId}</b>

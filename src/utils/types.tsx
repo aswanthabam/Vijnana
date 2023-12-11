@@ -111,3 +111,21 @@ export type _AdminUserList = {
   participation: { event: string }[];
   phone: string;
 } & _UserDetails;
+
+export type _AdminRequestLog = {
+  method: string;
+  url: string;
+  user: {
+    userId: string;
+    name: string;
+    email: string;
+    phone: string;
+    college: string;
+  } | null;
+  status: number;
+  data: string;
+  response: string | null;
+  completed: boolean;
+  requestTime: Date;
+  resopnseTime: Date;
+};

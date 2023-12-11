@@ -1,4 +1,8 @@
-import { _AdminUserList, _EventCreateData } from "../utils/types";
+import {
+  _AdminRequestLog,
+  _AdminUserList,
+  _EventCreateData,
+} from "../utils/types";
 import {
   ApiResponse,
   ResponseStatus,
@@ -6,6 +10,20 @@ import {
   publicRouter,
   validateResponse,
 } from "./api";
+
+export const requestLog = async (
+  count: number = 10
+): Promise<_AdminRequestLog[] | null> => {
+  var res = publicRouter.get("/api/v2/admin/logs/request?count=" + count);
+  var val = await validateResponse(res);
+  if (
+    val.status == ResponseStatus.SUCCESS &&
+    val.contentType == ResponseType.DATA
+  ) {
+    return (val.data.data as any)["logs"] as _AdminRequestLog[];
+  }
+  return null;
+};
 
 export const usersList = async (): Promise<_AdminUserList[] | null> => {
   var res = publicRouter.post("/api/v2/admin/users");
