@@ -1,4 +1,5 @@
 import {
+  _AdminErrorLog,
   _AdminRequestLog,
   _AdminUserList,
   _EventCreateData,
@@ -10,6 +11,20 @@ import {
   publicRouter,
   validateResponse,
 } from "./api";
+
+export const errorLog = async (
+  count: number = 10
+): Promise<_AdminErrorLog[] | null> => {
+  var res = publicRouter.get("/api/v2/admin/logs/error?count=" + count);
+  var val = await validateResponse(res);
+  if (
+    val.status == ResponseStatus.SUCCESS &&
+    val.contentType == ResponseType.DATA
+  ) {
+    return (val.data.data as any)["logs"] as _AdminErrorLog[];
+  }
+  return null;
+};
 
 export const requestLog = async (
   count: number = 10

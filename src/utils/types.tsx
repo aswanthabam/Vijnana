@@ -126,6 +126,15 @@ export type _AdminRequestLog = {
   data: string;
   response: string | null;
   completed: boolean;
-  requestTime: Date;
-  resopnseTime: Date;
+  requestTime: string;
+  responseTime: string;
+};
+
+export type _AdminErrorLog = {
+  url: string;
+  error: string;
+  stack: string;
+  log: { logId: string; userId: string; data: string } | null;
+  requestTime: string;
+  responseTime: string;
 };
