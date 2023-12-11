@@ -66,7 +66,7 @@ const LaunchHome: React.FC<LaunchHomeProps> = ({}) => {
           <h1>
             VIJÑ
             <div className={style.topLineA}>A</div>
-            NA <span className="sparkblink-1">2.0</span>
+            NA' <span className="sparkblink-1">24</span>
           </h1>
           {/* <img style={{ height: 300 }} src="/logo.png" /> */}
           <span className={style.mottoText}>
