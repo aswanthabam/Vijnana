@@ -30,6 +30,7 @@ import ViewEvent from "./pages/admin/admin_pages/view_events/ViewEvents";
 import UserList from "./pages/admin/admin_pages/users_list/UserList";
 import RequestLog from "./pages/admin/admin_pages/request_log/RequestLog";
 import ErrorLog from "./pages/admin/admin_pages/error_log/ErrorLog";
+import AddAdmin from "./pages/admin/admin_pages/add_admin/AddAdmin";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -189,6 +190,7 @@ function App() {
         ></Route>
         <Route path="/admin" element={<Admin />}>
           <Route path="" element={<NewEvent />}></Route>
+          <Route path="admin/new" element={<AddAdmin />}></Route>
           <Route path="events/" element={<ViewEvent />}></Route>
           <Route path="events/new" element={<NewEvent />}></Route>
           <Route path="users/" element={<UserList />}></Route>

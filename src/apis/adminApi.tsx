@@ -12,6 +12,20 @@ import {
   validateResponse,
 } from "./api";
 
+export const addAdmin = async (
+  data: { email: string },
+  setToast: (
+    status: boolean,
+    message: string | null,
+    hideAfter: number | null
+  ) => void
+): Promise<ApiResponse> => {
+  var res = publicRouter.post("/api/v2/admin/add_admin", data);
+  var val = await validateResponse(res);
+  setToast(true, val.data.message, 3000);
+  return val;
+};
+
 export const errorLog = async (
   count: number = 10
 ): Promise<_AdminErrorLog[] | null> => {
