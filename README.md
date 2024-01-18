@@ -2,7 +2,7 @@
 
 This is the repository of the official website website of Vijnana Tech fest GCT
 
-> Check out the website for vijnana 2023 here : https://github.com/aswanthabam/Vijnana2023
+> Check out the website for vijnana 2023 here : https://github.com/aswanthabam/Vijnana/tree/v1
 
 > Dev hosted on : https://vijnana24.web.app
 
