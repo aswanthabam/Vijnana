@@ -31,6 +31,8 @@ import UserList from "./pages/admin/admin_pages/users_list/UserList";
 import RequestLog from "./pages/admin/admin_pages/request_log/RequestLog";
 import ErrorLog from "./pages/admin/admin_pages/error_log/ErrorLog";
 import AddAdmin from "./pages/admin/admin_pages/add_admin/AddAdmin";
+import AboutVijnana from "./pages/admin/admin_pages/about/AboutVijnana";
+import Participants from "./pages/admin/admin_pages/view_events/participants";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -190,12 +192,14 @@ function App() {
         ></Route>
         <Route path="/admin" element={<Admin />}>
           <Route path="" element={<NewEvent />}></Route>
+          <Route path="about/" element={<AboutVijnana />}></Route>
           <Route path="admin/new" element={<AddAdmin />}></Route>
           <Route path="events/" element={<ViewEvent />}></Route>
           <Route path="events/new" element={<NewEvent />}></Route>
           <Route path="users/" element={<UserList />}></Route>
           <Route path="logs/request" element={<RequestLog />}></Route>
           <Route path="logs/error" element={<ErrorLog />}></Route>
+          <Route path="participants/:id/" element={<Participants />}></Route>
         </Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>

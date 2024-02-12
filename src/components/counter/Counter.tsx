@@ -13,11 +13,14 @@ function calculateTimeDifference(
   const timeDifference = date2.getTime() - date1.getTime();
 
   // Calculate days, hours, and minutes
-  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
+  var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  var hours = Math.floor(
     (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  days = days < 0 ? 0 : days;
+  hours = hours < 0 ? 0 : hours;
+  minutes = minutes < 0 ? 0 : minutes;
 
   return { days, hours, minutes };
 }
@@ -40,7 +43,7 @@ const Counter: React.FC<CounterProps> = ({ date, className }) => {
       d: days,
       h: hours,
       m: minutes,
-      s: 60 - now.getSeconds(),
+      s: days == 0 && hours == 0 && minutes == 0 ? 0 : 60 - now.getSeconds(),
     });
   }, []);
   setTimeout(() => {
@@ -51,7 +54,7 @@ const Counter: React.FC<CounterProps> = ({ date, className }) => {
       d: days,
       h: hours,
       m: minutes,
-      s: 60 - now.getSeconds(),
+      s: days == 0 && hours == 0 && minutes == 0 ? 0 : 60 - now.getSeconds(),
     });
     // console.log(diff);
   }, 1000);

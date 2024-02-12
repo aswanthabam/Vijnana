@@ -13,6 +13,22 @@ import {
   validateResponse,
 } from "./api";
 
+export const userDetailsAdmin = async (
+  userId: string,
+  addLoader: (loader: Promise<any>) => void
+): Promise<_UserDetails | null> => {
+  var res = publicRouter.get(`/api/v2/users/user-details/?userId=${userId}`);
+  addLoader(res);
+  var val = await validateResponse(res);
+  if (val.status == ResponseStatus.FAILED) {
+    return null;
+  }
+  if (val.contentType == ResponseType.DATA) {
+    return val.data.data as _UserDetails;
+  }
+  return null;
+};
+
 /* STATUS AND DETAILS ENDPOINT */
 
 export const userDetails = async (
