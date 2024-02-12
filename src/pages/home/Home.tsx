@@ -58,7 +58,7 @@ const Home: React.FC<HomeProps> = ({}) => {
           <span className={style.daysLeft}>
             The countdown to awesomeness begins...
           </span>
-          <Counter date={new Date("2023-12-15 00:00:00")} />
+          <Counter date={new Date("2024-02-21 09:30:00")} />
         </div>
       </div>
       <div className={style.page2}>

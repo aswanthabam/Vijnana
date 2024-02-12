@@ -1,0 +1,12 @@
+.participantsPage {
+  width: 100%;
+  margin-top: 20px;
+
+  .displayItems {
+    background: red;
+
+    & h3 {
+      font-weight: 900;
+    }
+  }
+}

@@ -25,6 +25,15 @@ export type _EventInfo = {
   teams: any[];
 } & _Event;
 
+export type _AboutVijnana = {
+  name: string;
+  about: string;
+  contact: string;
+  email: string;
+  start: string;
+  end: string;
+};
+
 // export type _UserDetails = {
 //   name: string | undefined;
 //   email: string | undefined;
@@ -58,6 +67,7 @@ export type _UserDetails = {
   userId: string;
   name: string;
   email: string;
+  phone: string;
   picture: string | null;
   gctian: boolean;
   college: string;

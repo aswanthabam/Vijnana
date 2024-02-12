@@ -1,4 +1,4 @@
-import { _EventInfo } from "../utils/types";
+import { _AboutVijnana, _EventInfo } from "../utils/types";
 import {
   ApiResponse,
   ResponseStatus,
@@ -6,6 +6,30 @@ import {
   publicRouter,
   validateResponse,
 } from "./api";
+
+/*
+
+  getAboutVijnana() function returns the about vijnana from the backend.
+  @param setLoading: (status: boolean) => void
+  @param setToast: (status: boolean, message: string | null, hideAfter: number | null) => void
+  @returns _EventInfo | null
+
+*/
+
+export const getAboutVijnana = async (
+  addLoader: (loader: Promise<any>) => void
+): Promise<_AboutVijnana | null> => {
+  var res = publicRouter.get("/api/v2/events/aboutVijnana");
+  addLoader(res);
+  var val = await validateResponse(res);
+  if (val.status == ResponseStatus.SUCCESS) {
+    if (val.contentType == ResponseType.DATA) {
+      var data = val.data.data as _AboutVijnana;
+      return data;
+    }
+  }
+  return null;
+};
 
 /*
 
