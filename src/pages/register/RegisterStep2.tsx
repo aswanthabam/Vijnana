@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import style from "./Register.module.css";
 import { Link, useNavigate } from "react-router-dom";
-// import logo from "../../assets/Logo KBM.png";
 import alien from "../../assets/dehill-spacelove-1-dribble.gif";
 import {
   _EventInfo,
@@ -29,7 +28,7 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({}) => {
   const onSubmit = async (e: any) => {
     e.preventDefault();
     if (await completeRegistration(data, addLoader, setToastStatus)) {
-      redirect("/dashboard");
+      redirect("/register/events");
     }
   };
   return (
@@ -122,28 +121,37 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({}) => {
                   data.phone = e.target.value;
                   setData(data);
                 }}
-                type="phone"
+                type="number"
                 placeholder="Phone No *"
                 required
               />
-              <input
+              <select
                 onChange={(e) => {
                   data.course = e.target.value;
                   setData(data);
                 }}
-                type="text"
                 placeholder="Course *"
                 required
-              />
-              <input
+              >
+                <option value="">Course *</option>
+                <option value="BCA">BCA</option>
+                <option value="MSC">MSc Computer Science</option>
+                <option value="BCOM">BCOM</option>
+                <option value="BA">BA</option>
+              </select>
+              <select
                 onChange={(e) => {
                   data.year = parseInt(e.target.value);
                   setData(data);
                 }}
-                type="number"
                 placeholder="Year *"
                 required
-              />{" "}
+              >
+                <option value="">Year *</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+              </select>
             </>
           ) : (
             <>
@@ -152,7 +160,7 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({}) => {
                   data.phone = e.target.value;
                   setData(data);
                 }}
-                type="phone"
+                type="number"
                 placeholder="Phone No *"
                 required
               />
@@ -174,15 +182,20 @@ const RegisterStep2: React.FC<RegisterStep2Props> = ({}) => {
                 placeholder="Course *"
                 required
               />
-              <input
+              <select
                 onChange={(e) => {
                   data.year = parseInt(e.target.value);
                   setData(data);
                 }}
-                type="number"
                 placeholder="Year *"
                 required
-              />{" "}
+              >
+                <option value="">Year *</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
             </>
           )}
 

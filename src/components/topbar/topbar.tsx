@@ -3,20 +3,23 @@ import LoginButton from "../buttons/LoginButton/LoginButton";
 import style from "./topbar.module.css";
 import logo from "../../assets/logo.png";
 import React from "react";
+import LogoutButton from "../buttons/LoginButton/LogoutButton";
 interface TopBarProps {
   theme: string;
   setTheme: (theme: string) => void;
   setSidebarState: (state: boolean) => void;
   sidebarState: boolean;
   className?: string;
+  showLogoutButton?: boolean;
 }
 
 const TopBar: React.FC<TopBarProps> = ({
   setTheme,
   theme,
-  setSidebarState,
-  sidebarState,
+  // setSidebarState,
+  // sidebarState,
   className,
+  showLogoutButton,
 }) => {
   const [text, setText] = React.useState<string>("Register");
   const [link, setLink] = React.useState<string>("");
@@ -48,12 +51,12 @@ const TopBar: React.FC<TopBarProps> = ({
     <>
       <div className={style.topbar + " " + style.mobile + " " + className}>
         <div
-          onClick={() => {
-            setSidebarState(!sidebarState);
-          }}
+          // onClick={() => {
+          //   setSidebarState(!sidebarState);
+          // }}
           className={style.menuButton}
         >
-          <i className="bi bi-list"></i>
+          {/* <i className="bi bi-list"></i> */}
         </div>
         <div className={style.loginButton}>
           <span
@@ -69,11 +72,21 @@ const TopBar: React.FC<TopBarProps> = ({
               <i className="bi bi-sun"></i>
             )}
           </span>
-          <LoginButton
+          {/* <LoginButton
             onClick={handleLoginClick}
             text={text}
             iconVisible={iconVisible}
-          />
+          /> */}
+          {showLogoutButton && (
+            <LogoutButton
+              text={"Logout"}
+              iconVisible={false}
+              onClick={() => {
+                localStorage.removeItem("step");
+                redirect("/register");
+              }}
+            />
+          )}
         </div>
       </div>
 

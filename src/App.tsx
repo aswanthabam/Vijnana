@@ -33,6 +33,7 @@ import ErrorLog from "./pages/admin/admin_pages/error_log/ErrorLog";
 import AddAdmin from "./pages/admin/admin_pages/add_admin/AddAdmin";
 import AboutVijnana from "./pages/admin/admin_pages/about/AboutVijnana";
 import Participants from "./pages/admin/admin_pages/view_events/participants";
+import { RegisterEvent } from "./pages/register/events/RegisterEvents";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -71,7 +72,7 @@ function App() {
       console.log(status);
       if (status == LoginStatus.STEP1) redirect("/register/details");
       else if (status == LoginStatus.STEP2) {
-        redirect("/dashboard");
+        redirect("/register/events");
       }
     });
     if (
@@ -119,8 +120,46 @@ function App() {
           }
         ></Route>
         <Route path="/register">
-          <Route path="" element={<Register />}></Route>
-          <Route path="details" element={<RegisterStep2 />}></Route>
+          <Route
+            path=""
+            element={
+              <TopBarLayer
+                sidebarState={sidebarState}
+                setSidebarState={setSidebarState}
+                setTheme={setTheme}
+                theme={theme}
+                showLogoutButton={false}
+              >
+                <Register />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="details"
+            element={
+              <TopBarLayer
+                sidebarState={sidebarState}
+                setSidebarState={setSidebarState}
+                setTheme={setTheme}
+                theme={theme}
+              >
+                <RegisterStep2 />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="events"
+            element={
+              <TopBarLayer
+                sidebarState={sidebarState}
+                setSidebarState={setSidebarState}
+                setTheme={setTheme}
+                theme={theme}
+              >
+                <RegisterEvent />
+              </TopBarLayer>
+            }
+          ></Route>
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
