@@ -1,0 +1,19 @@
+.events {
+  width: calc(100% - 20px);
+  min-height: 200px;
+  /* max-height: calc(100vh - 110px); */
+  background: #121212ab;
+  border-radius: 30px;
+  padding: 20px 0;
+  overflow: auto;
+  .heading {
+    text-align: center;
+    width: 100%;
+  }
+  .info {
+    color: #ffffffab;
+    padding: 0 20px;
+    margin: 10px 0;
+    display: block;
+  }
+}

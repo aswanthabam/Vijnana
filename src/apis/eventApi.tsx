@@ -102,14 +102,18 @@ export const getEvents = async (
     message: string | null,
     hideAfter: number | null
   ) => void,
-  limit: number | null | undefined = -1
+  limit: number | null | undefined = -1,
+  gctian: boolean = false
 ): Promise<Array<_EventInfo> | null> => {
   setToast(false, null, null);
   if (eventId) {
     var res = publicRouter.get("/api/v2/events/get?id=" + eventId);
   } else {
     var res = publicRouter.get(
-      "/api/v2/events/getAll" + (limit ? "?count=" + limit : "")
+      "/api/v2/events/getAll?" +
+        (limit ? "count=" + limit : "&") +
+        "&gctian=" +
+        gctian
     );
   }
   addLoader(res);

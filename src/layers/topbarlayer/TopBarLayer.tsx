@@ -7,6 +7,7 @@ interface TopBarLayerProps {
   setSidebarState: (state: boolean) => void;
   sidebarState: boolean;
   theme: string;
+  showLogoutButton?: boolean;
 }
 
 const TopBarLayer: React.FC<TopBarLayerProps> = ({
@@ -14,6 +15,7 @@ const TopBarLayer: React.FC<TopBarLayerProps> = ({
   setTheme,
   setSidebarState,
   sidebarState,
+  showLogoutButton = true,
   theme,
 }) => {
   return (
@@ -23,6 +25,7 @@ const TopBarLayer: React.FC<TopBarLayerProps> = ({
         theme={theme}
         setSidebarState={setSidebarState}
         sidebarState={sidebarState}
+        showLogoutButton={showLogoutButton}
       />
       {children}
     </>

@@ -1,0 +1,24 @@
+.eventCard {
+  width: calc(100% - 60px);
+  min-height: 100px;
+  background: #15252c;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  .left {
+    .time {
+      font-size: 13px;
+      color: #747c80;
+    }
+    .description {
+      font-size: 12px;
+    }
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+  }
+}

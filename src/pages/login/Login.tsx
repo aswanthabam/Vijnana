@@ -29,7 +29,7 @@ const Login: React.FC<LoginProps> = ({}) => {
     e.preventDefault();
     var status = await loginEmail(data, addLoader, setToastStatus);
     if (status == LoginStatus.STEP2) {
-      redirect("/dashboard");
+      redirect("/register/events");
     } else if (status == LoginStatus.STEP1) {
       redirect("/register/details");
     }
