@@ -1,6 +1,12 @@
 import "./App.css";
 import "./app-variables.css";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Error404 from "./pages/errors/404/Error404";
@@ -34,6 +40,7 @@ import AddAdmin from "./pages/admin/admin_pages/add_admin/AddAdmin";
 import AboutVijnana from "./pages/admin/admin_pages/about/AboutVijnana";
 import Participants from "./pages/admin/admin_pages/view_events/participants";
 import { RegisterEvent } from "./pages/register/events/RegisterEvents";
+import { CryptaQuest } from "./pages/CryptaQuest/CryptaQuest";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -88,38 +95,19 @@ function App() {
   return (
     <div className={"app " + theme}>
       <div id="google-login-button-hidden"></div>
-      <WhatsappIcon />
       <Toast />
       <TopLoader />
       <Sidebar state={sidebarState} setState={setSidebarState} />
       <Routes>
         <Route
-          path="/"
+          path="/v1"
           element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <Home />
-            </TopBarLayer>
+            <>
+              <WhatsappIcon />
+              <Outlet />
+            </>
           }
-        ></Route>
-        <Route
-          path="/about"
-          element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <About />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route path="/register">
+        >
           <Route
             path=""
             element={
@@ -128,14 +116,13 @@ function App() {
                 setSidebarState={setSidebarState}
                 setTheme={setTheme}
                 theme={theme}
-                showLogoutButton={false}
               >
-                <Register />
+                <Home />
               </TopBarLayer>
             }
           ></Route>
           <Route
-            path="details"
+            path="about"
             element={
               <TopBarLayer
                 sidebarState={sidebarState}
@@ -143,10 +130,53 @@ function App() {
                 setTheme={setTheme}
                 theme={theme}
               >
-                <RegisterStep2 />
+                <About />
               </TopBarLayer>
             }
           ></Route>
+          <Route path="register">
+            <Route
+              path=""
+              element={
+                <TopBarLayer
+                  sidebarState={sidebarState}
+                  setSidebarState={setSidebarState}
+                  setTheme={setTheme}
+                  theme={theme}
+                  showLogoutButton={false}
+                >
+                  <Register />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="details"
+              element={
+                <TopBarLayer
+                  sidebarState={sidebarState}
+                  setSidebarState={setSidebarState}
+                  setTheme={setTheme}
+                  theme={theme}
+                >
+                  <RegisterStep2 />
+                </TopBarLayer>
+              }
+            ></Route>
+            <Route
+              path="events"
+              element={
+                <TopBarLayer
+                  sidebarState={sidebarState}
+                  setSidebarState={setSidebarState}
+                  setTheme={setTheme}
+                  theme={theme}
+                >
+                  <RegisterEvent />
+                </TopBarLayer>
+              }
+            ></Route>
+          </Route>
+          <Route path="login" element={<Login />}></Route>
           <Route
             path="events"
             element={
@@ -156,90 +186,77 @@ function App() {
                 setTheme={setTheme}
                 theme={theme}
               >
-                <RegisterEvent />
+                <Events />
               </TopBarLayer>
             }
           ></Route>
-        </Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route
-          path="/events"
-          element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <Events />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route
-          path="/contact"
-          element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <Contact />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route
-          path="/dashboard"
-          element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <Dashboard />
-            </TopBarLayer>
-          }
-        ></Route>
-        <Route
-          path="/event/:eventId"
-          element={
-            <TopBarLayer
-              sidebarState={sidebarState}
-              setSidebarState={setSidebarState}
-              setTheme={setTheme}
-              theme={theme}
-            >
-              <Event />
-            </TopBarLayer>
-          }
-        ></Route>
+          <Route
+            path="contact"
+            element={
+              <TopBarLayer
+                sidebarState={sidebarState}
+                setSidebarState={setSidebarState}
+                setTheme={setTheme}
+                theme={theme}
+              >
+                <Contact />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="dashboard"
+            element={
+              <TopBarLayer
+                sidebarState={sidebarState}
+                setSidebarState={setSidebarState}
+                setTheme={setTheme}
+                theme={theme}
+              >
+                <Dashboard />
+              </TopBarLayer>
+            }
+          ></Route>
+          <Route
+            path="event/:eventId"
+            element={
+              <TopBarLayer
+                sidebarState={sidebarState}
+                setSidebarState={setSidebarState}
+                setTheme={setTheme}
+                theme={theme}
+              >
+                <Event />
+              </TopBarLayer>
+            }
+          ></Route>
 
-        <Route path="/launch" element={<Launch />}></Route>
-        <Route
-          path="/home"
-          element={
-            // <TopBarLayer
-            //   sidebarState={sidebarState}
-            //   setSidebarState={setSidebarState}
-            //   setTheme={setTheme}
-            //   theme={theme}
-            // >
-            <LaunchHome />
-            // </TopBarLayer>
-          }
-        ></Route>
-        <Route path="/admin" element={<Admin />}>
-          <Route path="" element={<NewEvent />}></Route>
-          <Route path="about/" element={<AboutVijnana />}></Route>
-          <Route path="admin/new" element={<AddAdmin />}></Route>
-          <Route path="events/" element={<ViewEvent />}></Route>
-          <Route path="events/new" element={<NewEvent />}></Route>
-          <Route path="users/" element={<UserList />}></Route>
-          <Route path="logs/request" element={<RequestLog />}></Route>
-          <Route path="logs/error" element={<ErrorLog />}></Route>
-          <Route path="participants/:id/" element={<Participants />}></Route>
+          <Route path="launch" element={<Launch />}></Route>
+          <Route
+            path="home"
+            element={
+              // <TopBarLayer
+              //   sidebarState={sidebarState}
+              //   setSidebarState={setSidebarState}
+              //   setTheme={setTheme}
+              //   theme={theme}
+              // >
+              <LaunchHome />
+              // </TopBarLayer>
+            }
+          ></Route>
+          <Route path="admin" element={<Admin />}>
+            <Route path="" element={<NewEvent />}></Route>
+            <Route path="about/" element={<AboutVijnana />}></Route>
+            <Route path="admin/new" element={<AddAdmin />}></Route>
+            <Route path="events/" element={<ViewEvent />}></Route>
+            <Route path="events/new" element={<NewEvent />}></Route>
+            <Route path="users/" element={<UserList />}></Route>
+            <Route path="logs/request" element={<RequestLog />}></Route>
+            <Route path="logs/error" element={<ErrorLog />}></Route>
+            <Route path="participants/:id/" element={<Participants />}></Route>
+          </Route>
         </Route>
+        <Route path="/cq" element={<CryptaQuest />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>
