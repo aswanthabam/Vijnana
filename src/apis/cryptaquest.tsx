@@ -1,4 +1,9 @@
-import { publicRouter } from "./api";
+import axios from "axios";
+
+const api_url = import.meta.env.VITE_API_URL_EVENT;
+const publicRouter = axios.create({
+    baseURL: api_url,
+  });
 
 export const submitAnswer = async (participantId: string, answer: string) : Promise<SubmitResponse | null> => {
     try{
