@@ -12,7 +12,7 @@ export const Leaderboard = () => {
                 setLeaderboardList(res);
             }
         });
-    })
+    },[])
     return (
         <div className={styles.container}>
       <div className={styles.background}>
