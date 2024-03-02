@@ -6,6 +6,7 @@ import "github-markdown-css/github-markdown-light.css";
 import { Question, getQuestion, initializeParticipant, submitAnswer } from "../../apis/cryptaquest";
 // import "./style.css";
 import congratsImg from "../../assets/congrats.png";
+import {  useNavigate } from "react-router-dom";
 interface CryptaQuestProps {}
 
 export const CryptaQuest: React.FC<CryptaQuestProps> = () => {
@@ -16,6 +17,7 @@ export const CryptaQuest: React.FC<CryptaQuestProps> = () => {
   const [won, setWon] = useState<boolean>(false);
   const [name, setName] = useState<string | null>(null);
   const [isName, setIsName] = useState<boolean>(false);
+  const redirect = useNavigate();
   const submitQuestionAnswer = () => {
     if (answer === "") {
       alert("Please enter the answer");
@@ -148,7 +150,9 @@ export const CryptaQuest: React.FC<CryptaQuestProps> = () => {
           </h2>
           <p>Your Name : <b>{name} ({participantId})</b></p>
         </div>
-      </div>}
+      </div>
+      }
+      <button className={styles.leaderboardButton} onClick={()=>redirect("/cq/leaderboard")}><i className="bi bi-1-circle"></i>&nbsp; Leaderboard</button>
     </div>
   );
 };

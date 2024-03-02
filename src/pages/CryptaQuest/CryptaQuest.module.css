@@ -140,6 +140,22 @@
       overflow: auto;
       margin: 10px;
     }
+
+    & table {
+      width: 100%;
+      & tr {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        & td, th {
+          border: 2px solid #00000090;
+          text-align: center;
+        }
+        & th {
+          background: #11111134;
+        }
+      }
+    }
   }
   .switchButton {
     position: fixed;
@@ -193,5 +209,24 @@
       color: #111;
       font-size: 70%;
     }
+  }
+
+  .leaderboardButton {
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    outline: none;
+    border: none;
+    padding: 1% 2%;
+    font-size: 80%;
+    font-weight: bold;
+    border-radius: 10px;
+    background: #b5f7b8;
+    margin: 20px;
+    display: flex;
+    /* gap: 1%; */
+    align-items: center;
+    justify-content: center;
+    width: auto;
   }
 }
