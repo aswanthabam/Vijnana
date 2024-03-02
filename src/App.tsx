@@ -41,6 +41,7 @@ import AboutVijnana from "./pages/admin/admin_pages/about/AboutVijnana";
 import Participants from "./pages/admin/admin_pages/view_events/participants";
 import { RegisterEvent } from "./pages/register/events/RegisterEvents";
 import { CryptaQuest } from "./pages/CryptaQuest/CryptaQuest";
+import { Leaderboard } from "./pages/CryptaQuest/CryptaLeaderboard";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -257,6 +258,7 @@ function App() {
           </Route>
         </Route>
         <Route path="/cq" element={<CryptaQuest />}></Route>
+        <Route path="/cq/leaderboard" element={<Leaderboard />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>

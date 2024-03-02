@@ -5,6 +5,17 @@ const publicRouter = axios.create({
     baseURL: api_url,
   });
 
+export const leaderboard = async () : Promise<LeaderboardResponse[] | null> => {
+    try{
+        var res = await publicRouter.get("/api/cq/leaderboard/");
+        return res.data.data as LeaderboardResponse[];
+    }catch(err){
+        console.log(err);
+        alert("An Error Occured! [E-04]");
+        return null;
+    }
+};
+
 export const submitAnswer = async (participantId: string, answer: string) : Promise<SubmitResponse | null> => {
     try{
         var res = await publicRouter.post("/api/cq/submit/", {participantId, answer});
@@ -40,7 +51,13 @@ export const getQuestion = async (participantId: string) : Promise<QuestionRespo
     }
 };
 
+export type LeaderboardResponse = {
+    participantId:number;
+    name:string;
+    level: number;
+    time: string;
 
+}
 export type QuestionResponse = {
     won: boolean;
     data: Question;
