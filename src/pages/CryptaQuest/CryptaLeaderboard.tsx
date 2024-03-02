@@ -4,7 +4,7 @@ import styles from "./CryptaQuest.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const Leaderboard = () => {
-    const [leaderboardList, setLeaderboardList] = useState<LeaderboardResponse[] | null>(null);
+    const [leaderboardList, setLeaderboardList] = useState<LeaderboardResponse[]>([]);
     const redirect = useNavigate();
     useEffect(()=>{
         leaderboard().then((res)=>{
