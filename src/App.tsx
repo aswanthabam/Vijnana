@@ -89,7 +89,7 @@ function App() {
       !isLoggedIn()
     ) {
       console.log("Trigger google one tap");
-      GoogleIdentity.showGoogleOneTapPopup();
+      // GoogleIdentity.showGoogleOneTapPopup();
     }
   }, []);
 
