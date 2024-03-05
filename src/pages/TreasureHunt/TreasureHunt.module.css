@@ -19,7 +19,7 @@
     background-color: red;
 
     .one {
-      background-color: rgb(255, 36, 36);
+      background-color: rgb(255, 175, 36);
       width: 100%;
       height: 50%;
       position: absolute;
@@ -38,7 +38,7 @@
 
   .won {
     background: white;
-    width: 50%;
+    width: 80%;
     min-height: 30%;
     z-index: 2;
     border-radius: 5%;
@@ -57,9 +57,19 @@
     & h1 {  
       font-size: 100%;
       color: green;
+      text-align: center;
     }
   }
-
+  .quest {
+    font-size: 100%;
+    color: rgb(22, 250, 94);
+    margin-bottom: 50px;
+    font-family: "Micro 5", sans-serif;
+    z-index: 2;
+    position: fixed;
+    bottom: -3%;
+    left: 3%;
+  }
   .content {
     z-index: 2;
     width: 100%;
@@ -71,13 +81,8 @@
     /* transform: translateY(-80px); */
     max-height: 100%;
     color: black;
-    .quest {
-      font-size: 400%;
-      color: rgb(22, 250, 94);
-      margin-bottom: 50px;
-      font-family: "Micro 5", sans-serif;
-      z-index: 2;
-    }
+
+    
     .loading {
       width: 50%;
       padding: 20px;
@@ -93,7 +98,7 @@
     }
     .submitPage, .namePage {
       z-index: 2;
-      width: 50%;
+      width: 75%;
       padding: 20px;
       border-radius: 20px;
       display: flex;
@@ -102,17 +107,18 @@
       justify-content: center;
       gap: 20px;
       background: #fcecec;
-      padding: 1% 3%;
+      padding: 10% 10%;
       & h1 {
         font-size: 200%;
         color: #3f3d17f4;
       }
       .result, input {
         width: 100%;
-        height: 150px;
+        height: 50px;
         border-radius: 20px;
         padding: 1.5%;
         font-size: 110%;
+        text-align: center;
       }
       & input {
         width: 70%;
@@ -133,12 +139,15 @@
     }
     .questionPage {
       background: white;
-      width: 50%;
-      padding: 1% 3%;
+      width: 80%;
+      padding: 10% 5%;
       border-radius: 20px;
       max-height: 70%;
       overflow: auto;
       margin: 10px;
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     & table {
@@ -168,9 +177,10 @@
     font-weight: bold;
     border-radius: 10px;
     background: #f7f7f7;
-    margin: 20px;
     display: flex;
     gap: 1%;
+    margin: 0 2%;
+    height:8%;
     align-items: center;
 
     & i {
@@ -181,19 +191,18 @@
   .info {
     position: fixed;
     background: #fff;
-    padding: 1%;
+    padding: 1% 2%;
     border-radius: 10px;
-    top: 2%;
-    left: 2%;
-    max-height: 20%;
+    top: 1%;
+    left: 1%;
+    height: 8%;
     overflow: auto;
-    min-width: 17%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15%;
-
+    gap: 1%;
+    margin: 0 2%;
     & h1 {
       font-size: 100%;
       color: hsla(57, 47%, 17%, 0.957);

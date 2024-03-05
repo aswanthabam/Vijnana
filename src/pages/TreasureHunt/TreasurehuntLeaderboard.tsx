@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { LeaderboardResponse, leaderboard } from "../../apis/cryptaquest";
-import styles from "./CryptaQuest.module.css";
+import { LeaderboardResponse, leaderboard } from "../../apis/treasurehunt";
+import styles from "./TreasureHunt.module.css";
 import { useNavigate } from "react-router-dom";
 
-export const Leaderboard = () => {
+export const THLeaderboard = () => {
     const [leaderboardList, setLeaderboardList] = useState<LeaderboardResponse[]>([]);
     const redirect = useNavigate();
     useEffect(()=>{
@@ -46,6 +46,6 @@ export const Leaderboard = () => {
                     }
                 </tbody>
             </table>
-            <button onClick={()=>redirect("/cq")} className={styles.switchButton}> Go Back</button></div></div>
+            <button onClick={()=>redirect("/th")} className={styles.switchButton}> Go Back</button></div></div>
         </div>
     );};

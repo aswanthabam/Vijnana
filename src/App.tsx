@@ -42,6 +42,8 @@ import Participants from "./pages/admin/admin_pages/view_events/participants";
 import { RegisterEvent } from "./pages/register/events/RegisterEvents";
 import { CryptaQuest } from "./pages/CryptaQuest/CryptaQuest";
 import { Leaderboard } from "./pages/CryptaQuest/CryptaLeaderboard";
+import { TreasureHunt } from "./pages/TreasureHunt/TreasureHunt";
+import { THLeaderboard } from "./pages/TreasureHunt/TreasurehuntLeaderboard";
 
 function getTheme() {
   var theme = localStorage.getItem("theme");
@@ -259,6 +261,8 @@ function App() {
         </Route>
         <Route path="/cq" element={<CryptaQuest />}></Route>
         <Route path="/cq/leaderboard" element={<Leaderboard />}></Route>
+        <Route path="/th" element={<TreasureHunt />}></Route>
+        <Route path="/th/leaderboard" element={<THLeaderboard />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </div>
