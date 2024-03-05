@@ -3,6 +3,9 @@ import axios from "axios";
 const api_url = import.meta.env.VITE_API_URL_EVENT;
 const publicRouter = axios.create({
     baseURL: api_url,
+    headers:{
+        "ngrok-skip-browser-warning":"69420"
+    }
   });
 
 export const leaderboard = async () : Promise<LeaderboardResponse[] | null> => {
